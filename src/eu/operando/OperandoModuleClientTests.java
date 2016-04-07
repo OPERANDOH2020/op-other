@@ -11,7 +11,11 @@
  */
 package eu.operando;
 
-public class OperandoClientTests extends OperandoConstants
+import org.junit.Rule;
+
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
+
+public abstract class OperandoModuleClientTests extends OperandoModuleClient
 {
 	public static final String PREFIX_HTTP = "http://";
 	public static final int PORT_WIREMOCK = 8089;
@@ -30,4 +34,12 @@ public class OperandoClientTests extends OperandoConstants
 	public static final String URL_POLICY_DB = PROTOCOL_AND_HOST + PATH_OPERANDO_CORE_POLICIES_DB;
 	public static final String URL_BIG_DATA_ANALYTICS = PROTOCOL_AND_HOST + PATH_OPERANDO_CORE_BIGDATA;
 	public static final String URL_PRIVACY_FOR_BENEFIT = PROTOCOL_AND_HOST + PATH_OPERANDO_CORE_PRIVACY_FOR_BENEFIT;
+	
+	private WireMockRule wireMockRule = new WireMockRule(PORT_WIREMOCK);
+
+	@Rule
+	public WireMockRule getWireMockRule()
+	{
+		return wireMockRule;
+	}
 }
