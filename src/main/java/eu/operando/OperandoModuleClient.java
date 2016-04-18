@@ -20,6 +20,11 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * This abstract class represents a 'client' internal to an OPERANDO module, whose purpose is
+ * to process requests from the 'internal' components of the module which require interaction
+ * with 'servers' outside the module (e.g. other OPERANDO modules).
+ */
 public abstract class OperandoModuleClient
 {
 	//Constants defined in https://docs.google.com/spreadsheets/d/1ZBKxcjAeaQXDg4tWkGII4njJYhZKAYRg8ULOvcu0M3o/edit#gid=0

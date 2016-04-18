@@ -8,8 +8,9 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 
 import java.util.HashMap;
 
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
-
+/**
+ * Class which tests the code in OperandoApiModuleClient.
+ */
 public abstract class OperandoApiModuleClientTests extends OperandoModuleClientTests
 {
 	public void testGetReport_NoOptionalParameters_CorrectHttpRequest(OperandoApiModuleClient client)

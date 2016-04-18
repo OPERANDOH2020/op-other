@@ -2,25 +2,26 @@ package eu.operando;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
 import java.util.Map.Entry;
-
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
-
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import java.util.Set;
 
 import javax.ws.rs.client.Invocation.Builder;
+import javax.ws.rs.client.WebTarget;
 
+/**
+ * This class represents a client for one of the API modules, i.e. the Regulator API or OSP API.
+ * @see OperandoModuleClient 
+ */
 public abstract class OperandoApiModuleClient extends OperandoModuleClient
 {
-	private String protocolAndHostAuthenticationService;
+	private String protocolAndHostAuthenticationService; //TODO - implement
 	private String protocolAndHostOspEnforcement;
 	private String protocolAndHostReportGenerator;
-	private String protocolAndHostLogDb;
+	private String protocolAndHostLogDb; //TODO - implement
 
+	 /**
+	  * @see String#equals(Object) equals
+	  */
 	public OperandoApiModuleClient(String protocolAndHostAuthenticationService, String protocolAndHostOspEnforcement, String protocolAndHostReportGenerator, String protocolAndHostLogDb)
 	{
 		this.protocolAndHostAuthenticationService = protocolAndHostAuthenticationService;
