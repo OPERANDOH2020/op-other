@@ -11,9 +11,9 @@ import java.util.HashMap;
 /**
  * Class which tests the code in OperandoApiModuleClient.
  */
-public abstract class OperandoApiModuleClientTests extends OperandoModuleClientTests
+public abstract class ClientOperandoModuleApiTests extends ClientOperandoModuleExternalTests
 {
-	public void testGetReport_NoOptionalParameters_CorrectHttpRequest(OperandoApiModuleClient client)
+	public void testGetReport_NoOptionalParameters_CorrectHttpRequest(ClientOperandoModuleApi client)
 	{
 		//Set up
 		String endpoint = ENDPOINT_REPORT_GENERATOR_REPORTS;
@@ -36,7 +36,7 @@ public abstract class OperandoApiModuleClientTests extends OperandoModuleClientT
 		
 	}
 	
-	public void testGetReport_TwoOptionalParameters_CorrectHttpRequest(OperandoApiModuleClient client)
+	public void testGetReport_TwoOptionalParameters_CorrectHttpRequest(ClientOperandoModuleApi client)
 	{
 		//Set up
 		String endpoint = ENDPOINT_REPORT_GENERATOR_REPORTS;

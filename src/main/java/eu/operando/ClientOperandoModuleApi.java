@@ -10,24 +10,21 @@ import javax.ws.rs.client.WebTarget;
 
 /**
  * This class represents a client for one of the API modules, i.e. the Regulator API or OSP API.
- * @see OperandoModuleClient 
+ * @see ClientOperandoModule
  */
-public abstract class OperandoApiModuleClient extends OperandoModuleClient
+public abstract class ClientOperandoModuleApi extends ClientOperandoModuleExternal
 {
-	private String protocolAndHostAuthenticationService; //TODO - implement
-	private String protocolAndHostOspEnforcement;
+	private String protocolAndHostOspEnforcement; //TODO - for the moment this is only used by the RAPI, but will be used by the OSP API for the MVP.
 	private String protocolAndHostReportGenerator;
-	private String protocolAndHostLogDb; //TODO - implement
 
 	 /**
 	  * @see String#equals(Object) equals
 	  */
-	public OperandoApiModuleClient(String protocolAndHostAuthenticationService, String protocolAndHostOspEnforcement, String protocolAndHostReportGenerator, String protocolAndHostLogDb)
+	public ClientOperandoModuleApi(String protocolAndHostAuthenticationService, String protocolAndHostLogDb, String protocolAndHostOspEnforcement, String protocolAndHostReportGenerator)
 	{
-		this.protocolAndHostAuthenticationService = protocolAndHostAuthenticationService;
+		super(protocolAndHostAuthenticationService, protocolAndHostLogDb);
 		this.protocolAndHostOspEnforcement = protocolAndHostOspEnforcement;
 		this.protocolAndHostReportGenerator = protocolAndHostReportGenerator;
-		this.protocolAndHostLogDb = protocolAndHostLogDb;
 	}
 
 	public void getReport(int reportId, String format, HashMap<String, String> parametersOptional)
@@ -48,7 +45,7 @@ public abstract class OperandoApiModuleClient extends OperandoModuleClient
 			target = target.queryParam(key, value);
 		}
 
-		//Send the request with the regulation encoded as JSON in the body.
+		//Send the request.
 		Builder requestBuilder = target.request();
 		requestBuilder.get();
 	}
