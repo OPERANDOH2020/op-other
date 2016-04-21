@@ -82,7 +82,7 @@ public abstract class ClientOperandoModule
 	public static final String PATH_INTERNAL_OPERANDO_PDR_REPOSITORY = "/operando/pdr/repository";
 
 	//External base paths.
-	public static final String PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API = "/authentication"; //TODO - waiting on UPRC to change to match.
+	public static final String PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API = "/authentication";
 	
 	//RESTful endpoints for various modules
 	public static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID = PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION + "/regulations/%d";
@@ -102,7 +102,7 @@ public abstract class ClientOperandoModule
 	
 
 	//External endpoints for various modules.
-	public static final String ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION = PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API + "/tickets/service_ticket/%s/validation"; //TODO - this is liable to change and should be checked. 
+	public static final String ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION = PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API + "/tickets/service_ticket/%s/validation"; 
 	
 	private Client client = ClientBuilder.newClient();
 
@@ -112,7 +112,7 @@ public abstract class ClientOperandoModule
 	}
 	
 	/**
-	 * Helper to convert a POJO to JSON using OPERANDO's default JSON format
+	 * Convert a POJO to JSON using OPERANDO's default JSON format
 	 */
 	public String createStringJsonFollowingOperandoConventions(Object object)
 	{
@@ -121,9 +121,7 @@ public abstract class ClientOperandoModule
 	}
 
 	/**
-	 * Helper to convert JSON (using OPERANDO's default JSON format) to a POJO.
-	 * 
-	 * TODO - combine
+	 * Convert JSON (using OPERANDO's default JSON format) to a POJO.
 	 */
 	public <T> T getObjectFromJsonFollowingOperandoConventions(String strJson, Class<T> classOfT)
 	{
@@ -132,7 +130,7 @@ public abstract class ClientOperandoModule
 	}
 
 	/**
-	 * Helper to convert JSON (using OPERANDO's default JSON format) to a POJO.
+	 * Convert JSON (using OPERANDO's default JSON format) to a POJO.
 	 */
 	public <T> T getObjectFromJsonFollowingOperandoConventions(String strJson, Type typeOfT)
 	{
