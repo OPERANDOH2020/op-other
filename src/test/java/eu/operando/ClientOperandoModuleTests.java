@@ -11,10 +11,28 @@
  */
 package eu.operando;
 
-import java.lang.reflect.Type;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.put;
+import static com.github.tomakehurst.wiremock.client.WireMock.putRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+import javax.ws.rs.HttpMethod;
 
 import org.junit.Rule;
 
+import com.github.tomakehurst.wiremock.client.MappingBuilder;
+import com.github.tomakehurst.wiremock.client.RequestPatternBuilder;
+import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -93,39 +111,125 @@ public abstract class ClientOperandoModuleTests
 	//External endpoints for various modules.
 	public static final String ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION = PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API + "/tickets/service_ticket/%s/validation"; //TODO - this is liable to change and should be checked. 
 
-	private WireMockRule wireMockRule = new WireMockRule(PORT_WIREMOCK);
-
 	@Rule
-	public WireMockRule getWireMockRule()
+	public WireMockRule wireMockRule = new WireMockRule(PORT_WIREMOCK);
+	
+	/**
+	 * Stubbing
+	 */
+	/**
+	 * httpMethod must be one of GET/POST/PUT.
+	 */
+	public void stub(String httpMethod, String endpoint)
 	{
-		return wireMockRule;
+		stub(httpMethod, endpoint, "");
+	}
+	/**
+	 * httpMethod must be one of GET/POST/PUT.
+	 */
+	public void stub(String httpMethod, String endpoint, String responseBody)
+	{
+		checkValidHttpMethod(httpMethod);
+		
+		MappingBuilder mappingBuilder = get(urlPathEqualTo(endpoint));
+		if (httpMethod.equals(HttpMethod.POST))
+		{
+			mappingBuilder = post(urlPathEqualTo(endpoint));
+		}
+		else if (httpMethod.equals(HttpMethod.PUT))
+		{
+			mappingBuilder = put(urlPathEqualTo(endpoint));
+		}
+		
+		ResponseDefinitionBuilder response = aResponse();
+		if (!responseBody.isEmpty())
+		{
+			response.withBody(responseBody);
+		}
+		mappingBuilder.willReturn(response);
+		
+		wireMockRule.stubFor(mappingBuilder);
+	}
+	
+	/**
+	 * Verification.
+	 */
+	public void verify(String httpMethod, String endpoint)
+	{
+		verifyWithoutQueryParams(httpMethod, endpoint, null);
+	}
+	public void verifyWithoutQueryParams(String httpMethod, String endpoint, Object objectInBodyAsJson)
+	{
+		verify(httpMethod, endpoint, new HashMap<String, String>(), objectInBodyAsJson);
+	}
+	public void verifyWithoutBody(String httpMethod, String endpoint, HashMap<String, String> queriesParamToValue)
+	{
+		verify(httpMethod, endpoint, queriesParamToValue, null);
+	}
+	public void verify(String httpMethod, String endpoint, HashMap<String, String> queriesParamToValue, Object objectInBodyAsJson)
+	{
+		checkValidHttpMethod(httpMethod);
+		
+		//correct verb and endpoint
+		RequestPatternBuilder requestPatternBuilder = getRequestedFor(urlPathEqualTo(endpoint));
+		if (httpMethod.equals(HttpMethod.POST))
+		{
+			requestPatternBuilder = postRequestedFor(urlPathEqualTo(endpoint));
+		}
+		else if (httpMethod.equals(HttpMethod.PUT))
+		{
+			requestPatternBuilder = putRequestedFor(urlPathEqualTo(endpoint));
+		}
+
+		//correct queries 
+		addQueries(queriesParamToValue, requestPatternBuilder);
+
+		//correct body; sometimes want an empty body.
+		if (objectInBodyAsJson != null)
+		{
+			String stringJson = getStringJsonFollowingOperandoConventions(objectInBodyAsJson);
+			requestPatternBuilder.withRequestBody(equalToJson(stringJson));
+		}
+
+		//verify
+		wireMockRule.verify(requestPatternBuilder);
+	}
+	
+	/**
+	 * Add queries from hashmap.
+	 */
+	private void addQueries(HashMap<String, String> queriesParamToValue, RequestPatternBuilder requestPatternBuilder)
+	{
+		Set<String> keySet = queriesParamToValue.keySet();
+		Iterator<String> iterator = keySet.iterator();
+		while (iterator.hasNext())
+		{
+			String key = iterator.next();
+			String value = queriesParamToValue.get(key);
+			requestPatternBuilder.withQueryParam(key, equalTo(value));
+		}
+	}
+	
+	/**
+	 * Make sure that the method that was passed in is a supported method.
+	 */
+	private void checkValidHttpMethod(String httpMethod)
+	{
+		if (!httpMethod.equals(HttpMethod.GET)
+		  && !httpMethod.equals(HttpMethod.POST)
+		  && !httpMethod.equals(HttpMethod.PUT))
+		{
+			throw new IllegalArgumentException("invalid HTTP verb");
+		}
 	}
 
 	/**
-	 * Helper to convert a POJO to JSON using OPERANDO's default JSON format
+	 * Convert a POJO to JSON using OPERANDO's default JSON format
 	 */
 	public String getStringJsonFollowingOperandoConventions(Object object)
 	{
 		Gson gson = getGsonOperando();
 		return gson.toJson(object);
-	}
-
-	/**
-	 * Helper to convert JSON (using OPERANDO's default JSON format) to a POJO.
-	 */
-	public <T> T getStringJsonFollowingOperandoConventions(String strJson, Class<T> classOfT)
-	{
-		Gson gson = getGsonOperando();
-		return gson.fromJson(strJson, classOfT);
-	}
-
-	/**
-	 * Helper to convert JSON (using OPERANDO's default JSON format) to a POJO.
-	 */
-	public <T> T getObjectFromJsonFollowingOperandoConventions(String strJson, Type typeOfT)
-	{
-		Gson gson = getGsonOperando();
-		return gson.fromJson(strJson, typeOfT);
 	}
 
 	/**

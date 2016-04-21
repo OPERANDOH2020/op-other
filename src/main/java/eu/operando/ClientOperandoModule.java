@@ -122,8 +122,10 @@ public abstract class ClientOperandoModule
 
 	/**
 	 * Helper to convert JSON (using OPERANDO's default JSON format) to a POJO.
+	 * 
+	 * TODO - combine
 	 */
-	public <T> T getStringJsonFollowingOperandoConventions(String strJson, Class<T> classOfT)
+	public <T> T getObjectFromJsonFollowingOperandoConventions(String strJson, Class<T> classOfT)
 	{
 		Gson gson = getGsonOperando();
 		return gson.fromJson(strJson, classOfT);
