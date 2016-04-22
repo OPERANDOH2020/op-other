@@ -17,16 +17,16 @@ public abstract class ClientOperandoModuleApi extends ClientOperandoModuleExtern
 	private String protocolAndHostOspEnforcement; //TODO - for the moment this is only used by the RAPI, but will be used by the OSP API for the MVP.
 	private String protocolAndHostReportGenerator;
 
-	 /**
-	  * @see String#equals(Object) equals
-	  */
-	public ClientOperandoModuleApi(String protocolAndHostAuthenticationService, String protocolAndHostLogDb, String protocolAndHostOspEnforcement, String protocolAndHostReportGenerator)
+	public ClientOperandoModuleApi(String protocolAndHostAuthenticationApi, String protocolAndHostLogDb, String protocolAndHostOspEnforcement, String protocolAndHostReportGenerator)
 	{
-		super(protocolAndHostAuthenticationService, protocolAndHostLogDb);
+		super(protocolAndHostAuthenticationApi, protocolAndHostLogDb);
 		this.protocolAndHostOspEnforcement = protocolAndHostOspEnforcement;
 		this.protocolAndHostReportGenerator = protocolAndHostReportGenerator;
 	}
 
+	/**
+	 * Report Generator
+	 */
 	public void getReport(int reportId, String format, HashMap<String, String> parametersOptional)
 	{
 		//Create a web target for the correct end-point.
@@ -34,7 +34,7 @@ public abstract class ClientOperandoModuleApi extends ClientOperandoModuleExtern
 		target = target.path(ENDPOINT_REPORT_GENERATOR_REPORTS);
 		target = target.queryParam("_reportID", reportId);
 		target = target.queryParam("_format", format);
-		
+
 		Set<Entry<String, String>> entrySet = parametersOptional.entrySet();
 		Iterator<Entry<String, String>> iterator = entrySet.iterator();
 		while (iterator.hasNext())

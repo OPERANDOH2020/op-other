@@ -97,6 +97,7 @@ public abstract class ClientOperandoModule
 	public static final String ENDPOINT_PRIVACY_FOR_BENEFIT_OFFERS = PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT + "/offers";
 	public static final String ENDPOINT_PRIVACY_FOR_BENEFIT_OFFERS_VARIABLE_OFFER_ID = ENDPOINT_PRIVACY_FOR_BENEFIT_OFFERS + "/%d";
 	public static final String ENDPOINT_PRIVACY_FOR_BENEFIT_OSPS_VARIABLE_OSP_ID_DEALS = PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT + "/osps/%d/deals";
+	public static final String ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID = PATH_INTERNAL_OPERANDO_CORE_BIGDATA + "/reports/%d";
 	public static final String ENDPOINT_REPORT_GENERATOR_REPORTS = PATH_INTERNAL_OPERANDO_WEBUI_REPORTS + "/reports";
 	public static final String ENDPOINT_LOG_DB_LOG = PATH_INTERNAL_OPERANDO_CORE_LOG_DB + "/log";
 	
@@ -114,7 +115,7 @@ public abstract class ClientOperandoModule
 	/**
 	 * Convert a POJO to JSON using OPERANDO's default JSON format
 	 */
-	public String createStringJsonFollowingOperandoConventions(Object object)
+	public static String createStringJsonFollowingOperandoConventions(Object object)
 	{
 		Gson gson = getGsonOperando();
 		return gson.toJson(object);
@@ -123,7 +124,7 @@ public abstract class ClientOperandoModule
 	/**
 	 * Convert JSON (using OPERANDO's default JSON format) to a POJO.
 	 */
-	public <T> T getObjectFromJsonFollowingOperandoConventions(String strJson, Class<T> classOfT)
+	public static <T> T getObjectFromJsonFollowingOperandoConventions(String strJson, Class<T> classOfT)
 	{
 		Gson gson = getGsonOperando();
 		return gson.fromJson(strJson, classOfT);
@@ -132,7 +133,7 @@ public abstract class ClientOperandoModule
 	/**
 	 * Convert JSON (using OPERANDO's default JSON format) to a POJO.
 	 */
-	public <T> T getObjectFromJsonFollowingOperandoConventions(String strJson, Type typeOfT)
+	public static <T> T getObjectFromJsonFollowingOperandoConventions(String strJson, Type typeOfT)
 	{
 		Gson gson = getGsonOperando();
 		return gson.fromJson(strJson, typeOfT);
@@ -141,7 +142,7 @@ public abstract class ClientOperandoModule
 	/**
 	 * Returns a Gson with OPERANDO's field naming policy.
 	 */
-	private Gson getGsonOperando()
+	private static Gson getGsonOperando()
 	{
 		//According to our current conventions, JSON should be in snake_case.
 		GsonBuilder builder = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
@@ -152,7 +153,7 @@ public abstract class ClientOperandoModule
 	/**
 	 * Takes in a java object, converts it to JSON, and returns an entity containing the JSON string.
 	 */
-	public <T> Entity<String> createEntityStringJsonFromObject(T object)
+	public static <T> Entity<String> createEntityStringJsonFromObject(T object)
 	{
 		String json = createStringJsonFollowingOperandoConventions(object);
 		return Entity.entity(json, MediaType.APPLICATION_JSON);

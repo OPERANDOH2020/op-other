@@ -20,27 +20,33 @@ import javax.ws.rs.client.WebTarget;
  */
 public abstract class ClientOperandoModuleExternal extends ClientOperandoModule
 {
-	private String protocolAndHostAuthenticationService = "";
+	private String protocolAndHostAuthenticationApi = "";
 	private String protocolAndHostLogDb = "";
 
-	public ClientOperandoModuleExternal(String protocolAndHostAuthenticationService, String protocolAndHostLogDb)
+	public ClientOperandoModuleExternal(String protocolAndHostAuthenticationApi, String protocolAndHostLogDb)
 	{
-		this.protocolAndHostAuthenticationService = protocolAndHostAuthenticationService;
+		this.protocolAndHostAuthenticationApi = protocolAndHostAuthenticationApi;
 		this.protocolAndHostLogDb = protocolAndHostLogDb;		
 	}
 
+	/**
+	 * Authentication Service
+	 */
 	public void authoriseOsp(String serviceTicket)
 	{
 		//Create a web target for the correct end-point.
 		String endpoint = String.format(ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION, serviceTicket);
-		WebTarget target = getClient().target(protocolAndHostAuthenticationService);
+		WebTarget target = getClient().target(protocolAndHostAuthenticationApi);
 		target = target.path(endpoint);
 		
 		//Send the request.
 		Builder requestBuilder = target.request();
 		requestBuilder.get();
 	}
-
+	
+	/**
+	 * Log DB
+	 */
 	public void logActivity(LogOperando logOperando)
 	{
 		//Create a web target for the correct end-point.
