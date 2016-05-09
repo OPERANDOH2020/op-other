@@ -27,6 +27,7 @@ import com.google.gson.GsonBuilder;
  * to process requests from the 'internal' components of the module which require interaction
  * with 'servers' outside the module (e.g. other OPERANDO modules).
  */
+@SuppressWarnings("unused")
 public abstract class ClientOperandoModule
 {
 	//Constants defined in https://docs.google.com/spreadsheets/d/1ZBKxcjAeaQXDg4tWkGII4njJYhZKAYRg8ULOvcu0M3o/edit#gid=0
@@ -57,32 +58,33 @@ public abstract class ClientOperandoModule
 	public static final int MODULE_ID_USER_DATA_REPOSITORY = 4004;
 
 	//The base path at which the relevant API can be found
-	public static final String PATH_INTERNAL_OPERANDO_CORE_ANONYMIZATION = "/operando/core/anonymization";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_AUTHENTICATION = "/operando/core/authentication";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_BIGDATA = "/operando/core/bigdata";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT = "/operando/core/osp_enforcement";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT = "/operando/core/privacy_for_benefit";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION = "/operando/core/policy_computation";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MNG = "/operando/core/rights_mng";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT = "/operando/core/device_enforcement";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_WATCHDOG = "/operando/core/watchdog";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = "/operando/core/policies_db";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_USER_DB = "/operando/core/user_db";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_LOG_DB = "/operando/core/log_db";
-	public static final String PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES = "/operando/interfaces/email_services";
-	public static final String PATH_INTERNAL_OPERANDO_INTERFACES_OSP_API = "/operando/interfaces/osp_api";
-	public static final String PATH_INTERNAL_OPERANDO_INTERFACES_REGULATOR = "/operando/interfaces/regulator";
-	public static final String PATH_INTERNAL_OPERANDO_INTERFACES_USER_AGENT = "/operando/interfaces/user_agent";
-	public static final String PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES = "/operando/interfaces/web_services";
-	public static final String PATH_INTERNAL_OPERANDO_WEBUI_ADMIN = "/operando/webui/admin";
-	public static final String PATH_INTERNAL_OPERANDO_WEBUI_DASHBOARD = "/operando/webui/dashboard";
-	public static final String PATH_INTERNAL_OPERANDO_WEBUI_REPORTS = "/operando/webui/reports";
-	public static final String PATH_INTERNAL_OPERANDO_PDR_GATEKEEPER = "/operando/pdr/gatekeeper";
-	public static final String PATH_INTERNAL_OPERANDO_PDR_ACCESS_NODE = "/operando/pdr/access_node";
-	public static final String PATH_INTERNAL_OPERANDO_PDR_REPOSITORY = "/operando/pdr/repository";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_ANONYMIZATION = "/operando/core/anonymization";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_AUTHENTICATION = "/operando/core/authentication";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_BIGDATA = "/operando/core/bigdata";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT = "/operando/core/osp_enforcement";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT = "/operando/core/privacy_for_benefit";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION = "/operando/core/policy_computation";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT = "/operando/core/rights_mng";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT = "/operando/core/device_enforcement";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_WATCHDOG = "/operando/core/watchdog";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = "/operando/core/policies_db";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_USER_DB = "/operando/core/user_db";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_LOG_DB = "/operando/core/log_db";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES = "/operando/interfaces/email_services";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_OSP_API = "/operando/interfaces/osp_api";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_REGULATOR = "/operando/interfaces/regulator";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_USER_AGENT = "/operando/interfaces/user_agent";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES = "/operando/interfaces/web_services";
+	private static final String PATH_INTERNAL_OPERANDO_WEBUI_ADMIN = "/operando/webui/admin";
+	private static final String PATH_INTERNAL_OPERANDO_WEBUI_DASHBOARD = "/operando/webui/dashboard";
+	private static final String PATH_INTERNAL_OPERANDO_WEBUI_REPORTS = "/operando/webui/reports";
+	private static final String PATH_INTERNAL_OPERANDO_PDR_GATEKEEPER = "/operando/pdr/gatekeeper";
+	private static final String PATH_INTERNAL_OPERANDO_PDR_DATA_ACCESS_NODE = "/operando/pdr/access_node";
+	private static final String PATH_INTERNAL_OPERANDO_PDR_REPOSITORY = "/operando/pdr/repository";
 
 	//External base paths.
 	public static final String PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API = "/authentication";
+	public static final String PATH_EXTERNAL_OPERANDO_GATEKEEPER = "/gatekeeper";
 	
 	//RESTful endpoints for various modules
 	public static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID = PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION + "/regulations/%d";
@@ -100,8 +102,11 @@ public abstract class ClientOperandoModule
 	public static final String ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID = PATH_INTERNAL_OPERANDO_CORE_BIGDATA + "/reports/%d";
 	public static final String ENDPOINT_REPORT_GENERATOR_REPORTS = PATH_INTERNAL_OPERANDO_WEBUI_REPORTS + "/reports";
 	public static final String ENDPOINT_LOG_DB_LOG = PATH_INTERNAL_OPERANDO_CORE_LOG_DB + "/log";
+	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_POLICIES = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPPrivacyTerms";
+	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_OPTIONS = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPSettings";
+	public static final String ENDPOINT_RIGHTS_MANAGEMENT_QUERY_EVALUATOR = PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT + "/QueryEvaluator";
+	public static final String ENDPOINT_DATA_ACCESS_NODE_DAN_URL_FOR_QUERY = PATH_INTERNAL_OPERANDO_PDR_DATA_ACCESS_NODE + "/dan_url_for_query";
 	
-
 	//External endpoints for various modules.
 	public static final String ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION = PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API + "/tickets/service_ticket/%s/validation"; 
 	

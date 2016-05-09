@@ -44,6 +44,7 @@ import com.google.gson.GsonBuilder;
  * that is better to have duplicated code for testing, which actually tests what it should, than avoiding code
  * duplication in test code (e.g. by making this class extend OperandoModuleClient) but risk bugs as a result. 
  */
+@SuppressWarnings("unused")
 public abstract class ClientOperandoModuleTests
 {
 	public static final String PREFIX_HTTP = "http://";
@@ -52,45 +53,45 @@ public abstract class ClientOperandoModuleTests
 	public static final String PROTOCOL_AND_HOST_HTTP_LOCALHOST = PREFIX_HTTP + HOST_WIREMOCK;
 
 	//The base path at which the relevant API can be found
-	public static final String PATH_INTERNAL_OPERANDO_CORE_ANONYMIZATION = "/operando/core/anonymization";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_AUTHENTICATION = "/operando/core/authentication";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_BIGDATA = "/operando/core/bigdata";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT = "/operando/core/osp_enforcement";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT = "/operando/core/privacy_for_benefit";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION = "/operando/core/policy_computation";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MNG = "/operando/core/rights_mng";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT = "/operando/core/device_enforcement";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_WATCHDOG = "/operando/core/watchdog";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = "/operando/core/policies_db";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_USER_DB = "/operando/core/user_db";
-	public static final String PATH_INTERNAL_OPERANDO_CORE_LOG_DB = "/operando/core/log_db";
-	public static final String PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES = "/operando/interfaces/email_services";
-	public static final String PATH_INTERNAL_OPERANDO_INTERFACES_OSP_API = "/operando/interfaces/osp_api";
-	public static final String PATH_INTERNAL_OPERANDO_INTERFACES_REGULATOR = "/operando/interfaces/regulator";
-	public static final String PATH_INTERNAL_OPERANDO_INTERFACES_USER_AGENT = "/operando/interfaces/user_agent";
-	public static final String PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES = "/operando/interfaces/web_services";
-	public static final String PATH_INTERNAL_OPERANDO_WEBUI_ADMIN = "/operando/webui/admin";
-	public static final String PATH_INTERNAL_OPERANDO_WEBUI_DASHBOARD = "/operando/webui/dashboard";
-	public static final String PATH_INTERNAL_OPERANDO_WEBUI_REPORTS = "/operando/webui/reports";
-	public static final String PATH_INTERNAL_OPERANDO_PDR_GATEKEEPER = "/operando/pdr/gatekeeper";
-	public static final String PATH_INTERNAL_OPERANDO_PDR_ACCESS_NODE = "/operando/pdr/access_node";
-	public static final String PATH_INTERNAL_OPERANDO_PDR_REPOSITORY = "/operando/pdr/repository";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_ANONYMIZATION = "/operando/core/anonymization";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_AUTHENTICATION = "/operando/core/authentication";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_BIGDATA = "/operando/core/bigdata";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT = "/operando/core/osp_enforcement";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT = "/operando/core/privacy_for_benefit";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION = "/operando/core/policy_computation";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT = "/operando/core/rights_mng";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT = "/operando/core/device_enforcement";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_WATCHDOG = "/operando/core/watchdog";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = "/operando/core/policies_db";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_USER_DB = "/operando/core/user_db";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_LOG_DB = "/operando/core/log_db";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES = "/operando/interfaces/email_services";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_OSP_API = "/operando/interfaces/osp_api";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_REGULATOR = "/operando/interfaces/regulator";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_USER_AGENT = "/operando/interfaces/user_agent";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES = "/operando/interfaces/web_services";
+	private static final String PATH_INTERNAL_OPERANDO_WEBUI_ADMIN = "/operando/webui/admin";
+	private static final String PATH_INTERNAL_OPERANDO_WEBUI_DASHBOARD = "/operando/webui/dashboard";
+	private static final String PATH_INTERNAL_OPERANDO_WEBUI_REPORTS = "/operando/webui/reports";
+	private static final String PATH_INTERNAL_OPERANDO_PDR_GATEKEEPER = "/operando/pdr/gatekeeper";
+	private static final String PATH_INTERNAL_OPERANDO_PDR_DATA_ACCESS_NODE = "/operando/pdr/access_node";
+	private static final String PATH_INTERNAL_OPERANDO_PDR_REPOSITORY = "/operando/pdr/repository";
 	
 	//External base paths.
-	public static final String PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API = "/authentication"; //TODO - waiting on UPRC to change to match.
+	private static final String PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API = "/authentication"; //TODO - waiting on UPRC to change to match.
 
-	public static final String URL_AUTHENTICATION_SERVICE = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_AUTHENTICATION;
-	public static final String URL_RIGHTS_MANAGEMENT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MNG;
-	public static final String URL_DATA_ACCESS_NODE = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_PDR_ACCESS_NODE;
-	public static final String URL_LOG_DB = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_LOG_DB;
-	public static final String URL_REPORT_GENERATOR = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_WEBUI_REPORTS;
-	public static final String URL_POLICY_COMPUTATION = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION;
-	public static final String URL_OSP_ENFORCEMENT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT;
-	public static final String URL_USER_DEVICE_ENFORCEMENT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT;
-	public static final String URL_EMAIL_SERVICES = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES;
-	public static final String URL_POLICY_DB = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB;
-	public static final String URL_BIG_DATA_ANALYTICS = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_BIGDATA;
-	public static final String URL_PRIVACY_FOR_BENEFIT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT;
+	private static final String URL_AUTHENTICATION_SERVICE = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_AUTHENTICATION;
+	private static final String URL_RIGHTS_MANAGEMENT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT;
+	private static final String URL_DATA_ACCESS_NODE = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_PDR_DATA_ACCESS_NODE;
+	private static final String URL_LOG_DB = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_LOG_DB;
+	private static final String URL_REPORT_GENERATOR = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_WEBUI_REPORTS;
+	private static final String URL_POLICY_COMPUTATION = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION;
+	private static final String URL_OSP_ENFORCEMENT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT;
+	private static final String URL_USER_DEVICE_ENFORCEMENT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT;
+	private static final String URL_EMAIL_SERVICES = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES;
+	private static final String URL_POLICY_DB = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB;
+	private static final String URL_BIG_DATA_ANALYTICS = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_BIGDATA;
+	private static final String URL_PRIVACY_FOR_BENEFIT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT;
 
 	//RESTful endpoints for various modules
 	public static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID = PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION + "/regulations/%d";
@@ -108,6 +109,10 @@ public abstract class ClientOperandoModuleTests
 	public static final String ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID = PATH_INTERNAL_OPERANDO_CORE_BIGDATA + "/reports/%d";
 	public static final String ENDPOINT_REPORT_GENERATOR_REPORTS = PATH_INTERNAL_OPERANDO_WEBUI_REPORTS + "/reports";
 	public static final String ENDPOINT_LOG_DB_LOG = PATH_INTERNAL_OPERANDO_CORE_LOG_DB + "/log";
+	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_POLICIES = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPPrivacyTerms";
+	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_OPTIONS = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPSettings";
+	public static final String ENDPOINT_RIGHTS_MANAGEMENT_QUERY_EVALUATOR = PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT + "/QueryEvaluator";
+	public static final String ENDPOINT_DATA_ACCESS_NODE_DAN_URL_FOR_QUERY = PATH_INTERNAL_OPERANDO_PDR_DATA_ACCESS_NODE + "/dan_url_for_query";
 	
 	//External endpoints for various modules.
 	public static final String ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION = PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API + "/tickets/service_ticket/%s/validation"; //TODO - this is liable to change and should be checked. 
@@ -123,15 +128,33 @@ public abstract class ClientOperandoModuleTests
 	 */
 	public void stub(String httpMethod, String endpoint)
 	{
-		stub(httpMethod, endpoint, "");
+		stub(httpMethod, endpoint, null);
 	}
 	/**
 	 * httpMethod must be one of GET/POST/PUT.
 	 */
-	public void stub(String httpMethod, String endpoint, String responseBody)
+	public void stub(String httpMethod, String endpoint, Object objectInResponseBody)
 	{
+		stub(httpMethod, endpoint, objectInResponseBody, -1);
+	}
+	/**
+	 * httpMethod must be one of GET/POST/PUT.
+	 */
+	public void stub(String httpMethod, String endpoint, Object objectInResponseBody, int statusCode)
+	{
+		String strJsonBody = "";
+		if (objectInResponseBody != null)
+		{
+			strJsonBody = createStringJsonFollowingOperandoConventions(objectInResponseBody);
+		}
+		stub(httpMethod, endpoint, strJsonBody, -1);
+	}
+	public void stub(String httpMethod, String endpoint, String strJsonBody, int statusCode)
+	{
+		//Check validity of parameters.
 		checkValidHttpMethod(httpMethod);
 		
+		//Build up the expected request.
 		MappingBuilder mappingBuilder = get(urlPathEqualTo(endpoint));
 		if (httpMethod.equals(HttpMethod.POST))
 		{
@@ -142,32 +165,38 @@ public abstract class ClientOperandoModuleTests
 			mappingBuilder = put(urlPathEqualTo(endpoint));
 		}
 		
+		//Build up the stub response.
 		ResponseDefinitionBuilder response = aResponse();
-		if (!responseBody.isEmpty())
+		if (!strJsonBody.isEmpty())
 		{
-			response.withBody(responseBody);
+			response.withBody(strJsonBody);
 		}
-		mappingBuilder.willReturn(response);
+		if (statusCode > -1)
+		{
+			response.withStatus(statusCode);
+		}
 		
+		//Make sure that if a request is received matching the expected request, then the correct stub response is returned. 
+		mappingBuilder.willReturn(response);		
 		wireMockRule.stubFor(mappingBuilder);
 	}
 	
 	/**
 	 * Verification.
 	 */
-	public void verify(String httpMethod, String endpoint)
+	public void verifyCorrectHttpRequest(String httpMethod, String endpoint)
 	{
-		verifyWithoutQueryParams(httpMethod, endpoint, null);
+		verifyCorrectHttpRequestWithoutQueryParams(httpMethod, endpoint, null);
 	}
-	public void verifyWithoutQueryParams(String httpMethod, String endpoint, Object objectInBodyAsJson)
+	public void verifyCorrectHttpRequestWithoutQueryParams(String httpMethod, String endpoint, Object objectInBodyAsJson)
 	{
-		verify(httpMethod, endpoint, new HashMap<String, String>(), objectInBodyAsJson);
+		verifyCorrectHttpRequest(httpMethod, endpoint, new HashMap<String, String>(), objectInBodyAsJson);
 	}
-	public void verifyWithoutBody(String httpMethod, String endpoint, HashMap<String, String> queriesParamToValue)
+	public void verifyCorrectHttpRequestWithoutBody(String httpMethod, String endpoint, HashMap<String, String> queriesParamToValue)
 	{
-		verify(httpMethod, endpoint, queriesParamToValue, null);
+		verifyCorrectHttpRequest(httpMethod, endpoint, queriesParamToValue, null);
 	}
-	public void verify(String httpMethod, String endpoint, HashMap<String, String> queriesParamToValue, Object objectInBodyAsJson)
+	public void verifyCorrectHttpRequest(String httpMethod, String endpoint, HashMap<String, String> queriesParamToValue, Object objectInBodyAsJson)
 	{
 		checkValidHttpMethod(httpMethod);
 		
@@ -188,7 +217,7 @@ public abstract class ClientOperandoModuleTests
 		//correct body; sometimes want an empty body.
 		if (objectInBodyAsJson != null)
 		{
-			String stringJson = getStringJsonFollowingOperandoConventions(objectInBodyAsJson);
+			String stringJson = createStringJsonFollowingOperandoConventions(objectInBodyAsJson);
 			requestPatternBuilder.withRequestBody(equalToJson(stringJson));
 		}
 
@@ -227,7 +256,7 @@ public abstract class ClientOperandoModuleTests
 	/**
 	 * Convert a POJO to JSON using OPERANDO's default JSON format
 	 */
-	public String getStringJsonFollowingOperandoConventions(Object object)
+	private String createStringJsonFollowingOperandoConventions(Object object)
 	{
 		Gson gson = getGsonOperando();
 		return gson.toJson(object);

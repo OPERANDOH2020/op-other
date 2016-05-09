@@ -13,6 +13,9 @@ package eu.operando;
 
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
+
+import org.apache.http.HttpStatus;
 
 /**
  * Represents the client of an OPERANDO module which is accessible to those outside of the OPERANDO platform.
@@ -30,10 +33,12 @@ public abstract class ClientOperandoModuleExternal extends ClientOperandoModule
 	}
 
 	/**
-	 * Authentication Service
+	 * Authentication Service 
 	 */
-	public void authoriseOsp(String serviceTicket)
+	public boolean isOspAuthenticated(String serviceTicket)
 	{
+		boolean validTicket = false;
+		
 		//Create a web target for the correct end-point.
 		String endpoint = String.format(ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION, serviceTicket);
 		WebTarget target = getClient().target(protocolAndHostAuthenticationApi);
@@ -41,7 +46,16 @@ public abstract class ClientOperandoModuleExternal extends ClientOperandoModule
 		
 		//Send the request.
 		Builder requestBuilder = target.request();
-		requestBuilder.get();
+		Response response = requestBuilder.get();
+		
+		//Interpret the response.
+		int status = response.getStatus();
+		if (status == HttpStatus.SC_OK)
+		{
+			validTicket = true;
+		}
+		
+		return validTicket;
 	}
 	
 	/**

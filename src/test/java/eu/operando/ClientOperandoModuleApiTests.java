@@ -22,7 +22,7 @@ public abstract class ClientOperandoModuleApiTests extends ClientOperandoModuleE
 		HashMap<String, String> queriesParamToValue = new HashMap<String, String>();
 		queriesParamToValue.put("_reportID", "" + reportId);
 		queriesParamToValue.put("_format", "" + format);
-		verifyWithoutBody(HttpMethod.GET, ENDPOINT_REPORT_GENERATOR_REPORTS, queriesParamToValue);
+		verifyCorrectHttpRequestWithoutBody(HttpMethod.GET, ENDPOINT_REPORT_GENERATOR_REPORTS, queriesParamToValue);
 		
 	}
 	
@@ -48,6 +48,6 @@ public abstract class ClientOperandoModuleApiTests extends ClientOperandoModuleE
 		queriesParamToValue.put("_format", "" + format);
 		queriesParamToValue.put(parameterOneName, parameterOneValue);
 		queriesParamToValue.put(parameterTwoName, parameterTwoValue);
-		verifyWithoutBody(HttpMethod.GET, ENDPOINT_REPORT_GENERATOR_REPORTS, queriesParamToValue);
+		verifyCorrectHttpRequestWithoutBody(HttpMethod.GET, ENDPOINT_REPORT_GENERATOR_REPORTS, queriesParamToValue);
 	}
 }
