@@ -23,13 +23,13 @@ import org.apache.http.HttpStatus;
  */
 public abstract class ClientOperandoModuleExternal extends ClientOperandoModule
 {
-	private String protocolAndHostAuthenticationApi = "";
-	private String protocolAndHostLogDb = "";
+	private String originAuthenticationApi = "";
+	private String originLogDb = "";
 
-	public ClientOperandoModuleExternal(String protocolAndHostAuthenticationApi, String protocolAndHostLogDb)
+	public ClientOperandoModuleExternal(String originAuthenticationApi, String originLogDb)
 	{
-		this.protocolAndHostAuthenticationApi = protocolAndHostAuthenticationApi;
-		this.protocolAndHostLogDb = protocolAndHostLogDb;		
+		this.originAuthenticationApi = originAuthenticationApi;
+		this.originLogDb = originLogDb;		
 	}
 
 	/**
@@ -41,7 +41,7 @@ public abstract class ClientOperandoModuleExternal extends ClientOperandoModule
 		
 		//Create a web target for the correct end-point.
 		String endpoint = String.format(ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION, serviceTicket);
-		WebTarget target = getClient().target(protocolAndHostAuthenticationApi);
+		WebTarget target = getClient().target(originAuthenticationApi);
 		target = target.path(endpoint);
 		
 		//Send the request.
@@ -64,7 +64,7 @@ public abstract class ClientOperandoModuleExternal extends ClientOperandoModule
 	public void logActivity(LogOperando logOperando)
 	{
 		//Create a web target for the correct end-point.
-		WebTarget target = getClient().target(protocolAndHostLogDb);
+		WebTarget target = getClient().target(originLogDb);
 		target = target.path(ENDPOINT_LOG_DB_LOG);
 
 		//Send the request.

@@ -27,6 +27,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 import javax.ws.rs.HttpMethod;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
 
 import org.junit.Rule;
 
@@ -50,7 +52,7 @@ public abstract class ClientOperandoModuleTests
 	public static final String PREFIX_HTTP = "http://";
 	public static final int PORT_WIREMOCK = 8089;
 	public static final String HOST_WIREMOCK = "localhost:" + PORT_WIREMOCK;
-	public static final String PROTOCOL_AND_HOST_HTTP_LOCALHOST = PREFIX_HTTP + HOST_WIREMOCK;
+	public static final String ORIGIN_WIREMOCK = PREFIX_HTTP + HOST_WIREMOCK;
 
 	//The base path at which the relevant API can be found
 	private static final String PATH_INTERNAL_OPERANDO_CORE_ANONYMIZATION = "/operando/core/anonymization";
@@ -80,18 +82,18 @@ public abstract class ClientOperandoModuleTests
 	//External base paths.
 	private static final String PATH_EXTERNAL_OPERANDO_AUTHENTICATION_API = "/authentication"; //TODO - waiting on UPRC to change to match.
 
-	private static final String URL_AUTHENTICATION_SERVICE = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_AUTHENTICATION;
-	private static final String URL_RIGHTS_MANAGEMENT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT;
-	private static final String URL_DATA_ACCESS_NODE = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_PDR_DATA_ACCESS_NODE;
-	private static final String URL_LOG_DB = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_LOG_DB;
-	private static final String URL_REPORT_GENERATOR = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_WEBUI_REPORTS;
-	private static final String URL_POLICY_COMPUTATION = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION;
-	private static final String URL_OSP_ENFORCEMENT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT;
-	private static final String URL_USER_DEVICE_ENFORCEMENT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT;
-	private static final String URL_EMAIL_SERVICES = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES;
-	private static final String URL_POLICY_DB = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB;
-	private static final String URL_BIG_DATA_ANALYTICS = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_BIGDATA;
-	private static final String URL_PRIVACY_FOR_BENEFIT = PROTOCOL_AND_HOST_HTTP_LOCALHOST + PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT;
+	private static final String URL_AUTHENTICATION_SERVICE = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_CORE_AUTHENTICATION;
+	private static final String URL_RIGHTS_MANAGEMENT = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT;
+	private static final String URL_DATA_ACCESS_NODE = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_PDR_DATA_ACCESS_NODE;
+	private static final String URL_LOG_DB = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_CORE_LOG_DB;
+	private static final String URL_REPORT_GENERATOR = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_WEBUI_REPORTS;
+	private static final String URL_POLICY_COMPUTATION = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION;
+	private static final String URL_OSP_ENFORCEMENT = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT;
+	private static final String URL_USER_DEVICE_ENFORCEMENT = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT;
+	private static final String URL_EMAIL_SERVICES = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES;
+	private static final String URL_POLICY_DB = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB;
+	private static final String URL_BIG_DATA_ANALYTICS = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_CORE_BIGDATA;
+	private static final String URL_PRIVACY_FOR_BENEFIT = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT;
 
 	//RESTful endpoints for various modules
 	public static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID = PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION + "/regulations/%d";
@@ -147,7 +149,7 @@ public abstract class ClientOperandoModuleTests
 		{
 			strJsonBody = createStringJsonFollowingOperandoConventions(objectInResponseBody);
 		}
-		stub(httpMethod, endpoint, strJsonBody, -1);
+		stub(httpMethod, endpoint, strJsonBody, statusCode);
 	}
 	public void stub(String httpMethod, String endpoint, String strJsonBody, int statusCode)
 	{
@@ -169,6 +171,7 @@ public abstract class ClientOperandoModuleTests
 		ResponseDefinitionBuilder response = aResponse();
 		if (!strJsonBody.isEmpty())
 		{
+			response.withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
 			response.withBody(strJsonBody);
 		}
 		if (statusCode > -1)

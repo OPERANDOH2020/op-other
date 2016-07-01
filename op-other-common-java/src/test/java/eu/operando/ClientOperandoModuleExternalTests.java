@@ -25,7 +25,7 @@ public class ClientOperandoModuleExternalTests extends ClientOperandoModuleTests
 	/**
 	 * Authentication API.
 	 */
-	public void testAuthoriseOsp_CorrectHttpRequest(ClientOperandoModuleExternal client)
+	public void testIsOspAuthenticated_CorrectHttpRequest(ClientOperandoModuleExternal client)
 	{
 		//Set up
 		String serviceTicket = "qwerty1234";
@@ -37,7 +37,7 @@ public class ClientOperandoModuleExternalTests extends ClientOperandoModuleTests
 		String endpoint = String.format(ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION, serviceTicket);
 		verifyCorrectHttpRequest(HttpMethod.GET, endpoint);
 	}
-	public void testAuthoriseOsp_HandleValidTicketCorrectly(ClientOperandoModuleExternal client)
+	public void testIsOspAuthenticated_HandleValidTicketCorrectly(ClientOperandoModuleExternal client)
 	{
 		//Set up
 		String serviceTicket = "qwerty1234";
@@ -50,7 +50,7 @@ public class ClientOperandoModuleExternalTests extends ClientOperandoModuleTests
 		//Verify
 		assertThat(validTicket, is(true));
 	}
-	public void testAuthoriseOsp_HandleInvalidTicketCorrectly(ClientOperandoModuleExternal client)
+	public void testIsOspAuthenticated_HandleInvalidTicketCorrectly(ClientOperandoModuleExternal client)
 	{
 		//Set up
 		String serviceTicket = "qwerty1234";

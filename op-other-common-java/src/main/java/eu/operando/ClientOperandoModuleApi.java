@@ -14,14 +14,14 @@ import javax.ws.rs.client.WebTarget;
  */
 public abstract class ClientOperandoModuleApi extends ClientOperandoModuleExternal
 {
-	private String protocolAndHostOspEnforcement; //TODO - for the moment this is only used by the RAPI, but will be used by the OSP API for the MVP.
-	private String protocolAndHostReportGenerator;
+	private String originOspEnforcement; //TODO - for the moment this is only used by the RAPI, but will be used by the OSP API for the MVP.
+	private String originReportGenerator;
 
-	public ClientOperandoModuleApi(String protocolAndHostAuthenticationApi, String protocolAndHostLogDb, String protocolAndHostOspEnforcement, String protocolAndHostReportGenerator)
+	public ClientOperandoModuleApi(String originAuthenticationApi, String originLogDb, String originOspEnforcement, String originReportGenerator)
 	{
-		super(protocolAndHostAuthenticationApi, protocolAndHostLogDb);
-		this.protocolAndHostOspEnforcement = protocolAndHostOspEnforcement;
-		this.protocolAndHostReportGenerator = protocolAndHostReportGenerator;
+		super(originAuthenticationApi, originLogDb);
+		this.originOspEnforcement = originOspEnforcement;
+		this.originReportGenerator = originReportGenerator;
 	}
 
 	/**
@@ -30,7 +30,7 @@ public abstract class ClientOperandoModuleApi extends ClientOperandoModuleExtern
 	public void getReport(int reportId, String format, HashMap<String, String> parametersOptional)
 	{
 		//Create a web target for the correct end-point.
-		WebTarget target = getClient().target(protocolAndHostReportGenerator);
+		WebTarget target = getClient().target(originReportGenerator);
 		target = target.path(ENDPOINT_REPORT_GENERATOR_REPORTS);
 		target = target.queryParam("_reportID", reportId);
 		target = target.queryParam("_format", format);
@@ -50,8 +50,8 @@ public abstract class ClientOperandoModuleApi extends ClientOperandoModuleExtern
 		requestBuilder.get();
 	}
 
-	public String getProtocolAndHostOspEnforcement()
+	protected String getOriginOspEnforcement()
 	{
-		return protocolAndHostOspEnforcement;
+		return originOspEnforcement;
 	}
 }

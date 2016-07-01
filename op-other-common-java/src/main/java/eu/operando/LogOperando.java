@@ -28,6 +28,10 @@ public class LogOperando
 	private String title;
 	private String description;
 
+	public LogOperando()
+	{
+		
+	}
 	public LogOperando(String requesterType, String requesterId, String logPriority, String logDataType, String title,
 			String description)
 	{
