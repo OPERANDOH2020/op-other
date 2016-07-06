@@ -64,7 +64,7 @@ public abstract class ClientOperandoModule
 	private static final String PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT = "/operando/core/osp_enforcement";
 	private static final String PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT = "/operando/core/privacy_for_benefit";
 	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION = "/operando/core/policy_computation";
-	private static final String PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT = "/operando/core/rights_mng";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT = "/operando/core/rm";
 	private static final String PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT = "/operando/core/device_enforcement";
 	private static final String PATH_INTERNAL_OPERANDO_CORE_WATCHDOG = "/operando/core/watchdog";
 	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = "/operando/core/policies_db";
@@ -104,6 +104,7 @@ public abstract class ClientOperandoModule
 	public static final String ENDPOINT_LOG_DB_LOG = PATH_INTERNAL_OPERANDO_CORE_LOG_DB + "/log";
 	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_POLICIES = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPPrivacyTerms";
 	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_OPTIONS = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPSettings";
+	public static final String ENDPOINT_RIGHTS_MANAGEMENT_RESULTS = PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT + "/Results";
 	public static final String ENDPOINT_RIGHTS_MANAGEMENT_QUERY_EVALUATOR = PATH_INTERNAL_OPERANDO_CORE_RIGHTS_MANAGEMENT + "/QueryEvaluator";
 	public static final String ENDPOINT_DATA_ACCESS_NODE_DAN_URL_FOR_QUERY = PATH_INTERNAL_OPERANDO_PDR_DATA_ACCESS_NODE + "/dan_url_for_query";
 	
