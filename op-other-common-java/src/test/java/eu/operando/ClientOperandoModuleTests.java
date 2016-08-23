@@ -29,6 +29,7 @@ import java.util.Set;
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response.Status;
 
 import org.junit.Rule;
 
@@ -139,21 +140,21 @@ public abstract class ClientOperandoModuleTests
 	 */
 	public void stub(String httpMethod, String endpoint, Object objectInResponseBody)
 	{
-		stub(httpMethod, endpoint, objectInResponseBody, -1);
+		stub(httpMethod, endpoint, objectInResponseBody, null);
 	}
 	/**
 	 * httpMethod must be one of GET/POST/PUT.
 	 */
-	public void stub(String httpMethod, String endpoint, Object objectInResponseBody, int statusCode)
+	public void stub(String httpMethod, String endpoint, Object objectInResponseBody, Status status)
 	{
 		String strJsonBody = "";
 		if (objectInResponseBody != null)
 		{
 			strJsonBody = createStringJsonFollowingOperandoConventions(objectInResponseBody);
 		}
-		stub(httpMethod, endpoint, strJsonBody, statusCode);
+		stub(httpMethod, endpoint, strJsonBody, status);
 	}
-	public void stub(String httpMethod, String endpoint, String strJsonBody, int statusCode)
+	public void stub(String httpMethod, String endpoint, String strJsonBody, Status status)
 	{
 		//Check validity of parameters.
 		checkValidHttpMethod(httpMethod);
@@ -176,8 +177,9 @@ public abstract class ClientOperandoModuleTests
 			response.withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
 			response.withBody(strJsonBody);
 		}
-		if (statusCode > -1)
+		if (status != null)
 		{
+			int statusCode = status.getStatusCode();
 			response.withStatus(statusCode);
 		}
 		

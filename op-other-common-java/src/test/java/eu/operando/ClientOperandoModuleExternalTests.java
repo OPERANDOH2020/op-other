@@ -42,7 +42,7 @@ public class ClientOperandoModuleExternalTests extends ClientOperandoModuleTests
 		//Set up
 		String serviceTicket = "qwerty1234";
 		String endpoint = String.format(ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION, serviceTicket);
-		stub(HttpMethod.GET, endpoint, "", Status.OK.getStatusCode());
+		stub(HttpMethod.GET, endpoint, "", Status.OK);
 		
 		//Exercise
 		boolean	validTicket = client.isOspAuthenticated(serviceTicket);
@@ -55,7 +55,7 @@ public class ClientOperandoModuleExternalTests extends ClientOperandoModuleTests
 		//Set up
 		String serviceTicket = "qwerty1234";
 		String endpoint = String.format(ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION, serviceTicket);
-		stub(HttpMethod.GET, endpoint, "", Status.BAD_REQUEST.getStatusCode());
+		stub(HttpMethod.GET, endpoint, "", Status.BAD_REQUEST);
 
 		//Exercise
 		boolean	validTicket = client.isOspAuthenticated(serviceTicket);
