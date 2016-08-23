@@ -32,10 +32,10 @@ import javax.ws.rs.core.MediaType;
 
 import org.junit.Rule;
 
-import com.github.tomakehurst.wiremock.client.MappingBuilder;
-import com.github.tomakehurst.wiremock.client.RequestPatternBuilder;
+import com.github.tomakehurst.wiremock.client.RemoteMappingBuilder;
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -96,13 +96,15 @@ public abstract class ClientOperandoModuleTests
 	private static final String URL_PRIVACY_FOR_BENEFIT = ORIGIN_WIREMOCK + PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT;
 
 	//RESTful endpoints for various modules
-	public static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID = PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION + "/regulations/%d";
-	public static final String ENDPOINT_OSP_ENFORCEMENT_REGULATIONS_VARIABLE_REG_ID = PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT + "/regulations/%d";
-	public static final String ENDPOINT_OSP_ENFORCEMENT_PRIVACY_SETTINGS_VARIABLE_OSP_ID = PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT + "/osps/%d/privacy_settings";
+	public static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION + "/regulations";
+	public static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_COMPUTATION_REGULATIONS + "/{reg_id}";
+	public static final String ENDPOINT_OSP_ENFORCEMENT_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT + "/regulations";
+	public static final String ENDPOINT_OSP_ENFORCEMENT_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_OSP_ENFORCEMENT_REGULATIONS + "/{reg_id}";
+	public static final String ENDPOINT_OSP_ENFORCEMENT_PRIVACY_SETTINGS_VARIABLE_OSP_ID = PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT + "/osps/{osp_id}/privacy_settings";
 	public static final String ENDPOINT_USER_DEVICE_ENFORCEMENT_PRIVACY_SETTINGS = PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT + "/privacy_settings";
 	public static final String ENDPOINT_EMAIL_SERVICES_EMAIL_NOTIFICATION = PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES + "/email_notification";
 	public static final String ENDPOINT_POLICY_DB_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB + "/regulations";
-	public static final String ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_DB_REGULATIONS + "/%d";
+	public static final String ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_DB_REGULATIONS + "/{reg_id}";
 	public static final String ENDPOINT_PRIVACY_FOR_BENEFIT_DEALS_VARIABLE_DEAL_ID = PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT + "/deals/%d";
 	public static final String ENDPOINT_PRIVACY_FOR_BENEFIT_DEALS_VARIABLE_DEAL_ID_ACKNOWLEDGEMENT = ENDPOINT_PRIVACY_FOR_BENEFIT_DEALS_VARIABLE_DEAL_ID + "/acknowledgement";
 	public static final String ENDPOINT_PRIVACY_FOR_BENEFIT_OFFERS = PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT + "/offers";
@@ -157,7 +159,7 @@ public abstract class ClientOperandoModuleTests
 		checkValidHttpMethod(httpMethod);
 		
 		//Build up the expected request.
-		MappingBuilder mappingBuilder = get(urlPathEqualTo(endpoint));
+		RemoteMappingBuilder mappingBuilder = get(urlPathEqualTo(endpoint));
 		if (httpMethod.equals(HttpMethod.POST))
 		{
 			mappingBuilder = post(urlPathEqualTo(endpoint));
@@ -189,9 +191,9 @@ public abstract class ClientOperandoModuleTests
 	 */
 	public void verifyCorrectHttpRequest(String httpMethod, String endpoint)
 	{
-		verifyCorrectHttpRequestWithoutQueryParams(httpMethod, endpoint, null);
+		verifyCorrectHttpRequestNoQueryParams(httpMethod, endpoint, null);
 	}
-	public void verifyCorrectHttpRequestWithoutQueryParams(String httpMethod, String endpoint, Object objectInBodyAsJson)
+	public void verifyCorrectHttpRequestNoQueryParams(String httpMethod, String endpoint, Object objectInBodyAsJson)
 	{
 		verifyCorrectHttpRequest(httpMethod, endpoint, new HashMap<String, String>(), objectInBodyAsJson);
 	}

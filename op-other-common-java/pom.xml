@@ -34,12 +34,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.github.tomakehurst</groupId>
-			<artifactId>wiremock</artifactId>
-			<version>1.57</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
@@ -59,6 +53,13 @@
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet-core</artifactId>
 			<version>2.22.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock-standalone</artifactId> <!-- Using standalone since getting weird errors trying to with normal jar. 
+				It seems that I'm not able to download the dependencies of the thin jar. -->
+			<version>2.1.6</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 

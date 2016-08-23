@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 
 import javax.ws.rs.HttpMethod;
-import org.apache.http.HttpStatus;
+import javax.ws.rs.core.Response.Status;
 
 /**
  * For testing the code in ClientOperandoModuleExternal.
@@ -42,7 +42,7 @@ public class ClientOperandoModuleExternalTests extends ClientOperandoModuleTests
 		//Set up
 		String serviceTicket = "qwerty1234";
 		String endpoint = String.format(ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION, serviceTicket);
-		stub(HttpMethod.GET, endpoint, "", HttpStatus.SC_OK);
+		stub(HttpMethod.GET, endpoint, "", Status.OK.getStatusCode());
 		
 		//Exercise
 		boolean	validTicket = client.isOspAuthenticated(serviceTicket);
@@ -55,7 +55,7 @@ public class ClientOperandoModuleExternalTests extends ClientOperandoModuleTests
 		//Set up
 		String serviceTicket = "qwerty1234";
 		String endpoint = String.format(ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION, serviceTicket);
-		stub(HttpMethod.GET, endpoint, "", HttpStatus.SC_BAD_REQUEST);
+		stub(HttpMethod.GET, endpoint, "", Status.BAD_REQUEST.getStatusCode());
 
 		//Exercise
 		boolean	validTicket = client.isOspAuthenticated(serviceTicket);
@@ -79,6 +79,6 @@ public class ClientOperandoModuleExternalTests extends ClientOperandoModuleTests
 		client.logActivity(logOperando);
 		
 		//Verify
-		verifyCorrectHttpRequestWithoutQueryParams(HttpMethod.POST, ENDPOINT_LOG_DB_LOG, logOperando);
+		verifyCorrectHttpRequestNoQueryParams(HttpMethod.POST, ENDPOINT_LOG_DB_LOG, logOperando);
 	}
 }

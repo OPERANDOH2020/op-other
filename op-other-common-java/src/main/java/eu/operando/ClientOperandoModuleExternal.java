@@ -14,8 +14,7 @@ package eu.operando;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-
-import org.apache.http.HttpStatus;
+import javax.ws.rs.core.Response.Status;
 
 /**
  * Represents the client of an OPERANDO module which is accessible to those outside of the OPERANDO platform.
@@ -50,7 +49,7 @@ public abstract class ClientOperandoModuleExternal extends ClientOperandoModule
 		
 		//Interpret the response.
 		int status = response.getStatus();
-		if (status == HttpStatus.SC_OK)
+		if (status == Status.OK.getStatusCode())
 		{
 			validTicket = true;
 		}
