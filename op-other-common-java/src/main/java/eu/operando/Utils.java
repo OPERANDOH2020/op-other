@@ -4,9 +4,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.Response.Status.Family;
+
 public final class Utils
 {
-
+	private Utils()
+	{
+		throw new AssertionError("This class should not be instantiated; it is a Util class.");
+	}
+	
 	/**
 	 * Returns the value of the property from PROPERTIES_FILE with name equal to propertyName parsed as an int.
 	 */
@@ -41,5 +48,15 @@ public final class Utils
 
 		return propertyValue;
 	}
-
+	
+	/**
+	 * Checks to see if a status code is in a particular family.
+	 */
+	public static boolean statusCodeIsInFamily(int statusCode, Family family)
+	{
+		Status status = Status.fromStatusCode(statusCode);
+		Family statusFamilyResponse = status.getFamily();
+		boolean doesFamilyContainStatus = statusFamilyResponse.equals(family);
+		return doesFamilyContainStatus;
+	}
 }

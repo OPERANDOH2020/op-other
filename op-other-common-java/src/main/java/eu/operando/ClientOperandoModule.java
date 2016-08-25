@@ -17,6 +17,8 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.Response.Status.Family;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -123,7 +125,7 @@ public abstract class ClientOperandoModule
 	/**
 	 * Convert a POJO to JSON using OPERANDO's default JSON format
 	 */
-	public static String createStringJsonFollowingOperandoConventions(Object object)
+	protected static String createStringJsonFollowingOperandoConventions(Object object)
 	{
 		Gson gson = getGsonOperando();
 		return gson.toJson(object);
@@ -132,7 +134,7 @@ public abstract class ClientOperandoModule
 	/**
 	 * Convert JSON (using OPERANDO's default JSON format) to a POJO.
 	 */
-	public static <T> T getObjectFromJsonFollowingOperandoConventions(String strJson, Class<T> classOfT)
+	protected static <T> T getObjectFromJsonFollowingOperandoConventions(String strJson, Class<T> classOfT)
 	{
 		Gson gson = getGsonOperando();
 		return gson.fromJson(strJson, classOfT);
@@ -141,7 +143,7 @@ public abstract class ClientOperandoModule
 	/**
 	 * Convert JSON (using OPERANDO's default JSON format) to a POJO.
 	 */
-	public static <T> T createObjectFromJsonFollowingOperandoConventions(String strJson, Type typeOfT)
+	protected static <T> T createObjectFromJsonFollowingOperandoConventions(String strJson, Type typeOfT)
 	{
 		Gson gson = getGsonOperando();
 		return gson.fromJson(strJson, typeOfT);
@@ -161,7 +163,7 @@ public abstract class ClientOperandoModule
 	/**
 	 * Takes in a java object, converts it to JSON, and returns an entity containing the JSON string.
 	 */
-	public static <T> Entity<String> createEntityStringJsonFromObject(T object)
+	protected static <T> Entity<String> createEntityStringJsonFromObject(T object)
 	{
 		String json = createStringJsonFollowingOperandoConventions(object);
 		return Entity.entity(json, MediaType.APPLICATION_JSON);
