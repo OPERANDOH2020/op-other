@@ -56,10 +56,14 @@
 		</dependency>
 		<dependency>
 			<groupId>com.github.tomakehurst</groupId>
-			<artifactId>wiremock-standalone</artifactId> <!-- Using standalone since getting weird errors trying to with normal jar. 
-				It seems that I'm not able to download the dependencies of the thin jar. -->
+			<artifactId>wiremock-standalone</artifactId> <!-- Using standalone since getting weird errors trying to test with normal jar. 
+				It seems that I'm not able to download the dependencies of the thin jar. Even more weirdly, my test don't work with the scope set to test... What's going on?-->
 			<version>2.1.6</version>
-			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
 		</dependency>
 	</dependencies>
 
