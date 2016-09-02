@@ -1,9 +1,7 @@
 package eu.operando;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.ws.rs.client.Invocation.Builder;
@@ -11,7 +9,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.xml.ws.http.HTTPException;
 
 import org.apache.commons.lang3.NotImplementedException;
 
@@ -65,10 +62,11 @@ public abstract class ClientOperandoModuleApi extends ClientOperandoModuleExtern
 
 	/**
 	 * Add query parameters to a web target.
+	 * 
 	 * @param target
-	 * 	the web target to add the query parameters to.
+	 *        the web target to add the query parameters to.
 	 * @param parametersOptional
-	 * 	a map from parameter names to the values against that name.  
+	 *        a map from parameter names to the values against that name.
 	 * @return
 	 */
 	private WebTarget addQueryParametersOptional(WebTarget target, MultivaluedMap<String, String> parametersOptional)
@@ -87,9 +85,9 @@ public abstract class ClientOperandoModuleApi extends ClientOperandoModuleExtern
 				// Add each parameter value as a query parameter against the parameter name.
 				String parameterValue = iteratorParameterValues.next();
 				target = target.queryParam(parameterName, parameterValue);
-			}				
+			}
 		}
-		
+
 		return target;
 	}
 
@@ -106,10 +104,10 @@ public abstract class ClientOperandoModuleApi extends ClientOperandoModuleExtern
 		else
 		{
 			throw new NotImplementedException("RG returned a response with status code "
-					+ statusCode
-					+ ", and there is no handling for this status code. Consider updating "
-					+ ClientOperandoModuleApi.class
-					+ " to handle this status code.");
+				+ statusCode
+				+ ", and there is no handling for this status code. Consider updating "
+				+ ClientOperandoModuleApi.class
+				+ " to handle this status code.");
 		}
 	}
 
