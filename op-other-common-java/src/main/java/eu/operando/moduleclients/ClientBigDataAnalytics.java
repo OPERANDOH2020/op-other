@@ -4,7 +4,7 @@ import javax.ws.rs.HttpMethod;
 
 public class ClientBigDataAnalytics extends ClientOperandoModule
 {
-	private static final String PATH_INTERNAL_OPERANDO_CORE_BIGDATA = "/operando/core/bigdata";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_BIGDATA = PATH_OPERANDO_CORE + "/bigdata";
 	public static final String ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID = PATH_INTERNAL_OPERANDO_CORE_BIGDATA + "/reports/%d";
 	
 	public ClientBigDataAnalytics(String originBigDataAnalytics)

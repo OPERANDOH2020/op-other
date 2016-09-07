@@ -17,7 +17,7 @@ import eu.operando.api.model.PrivacySetting;
 
 public class ClientOspEnforcement extends ClientOperandoModule
 {
-	private static final String PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT = "/operando/core/osp_enforcement";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT = PATH_OPERANDO_CORE + "/osp_enforcement";
 	private static final String ENDPOINT_OSP_ENFORCEMENT_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT + "/regulations";
 	private static final String ENDPOINT_OSP_ENFORCEMENT_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_OSP_ENFORCEMENT_REGULATIONS + "/{reg_id}";
 	public static final String ENDPOINT_OSP_ENFORCEMENT_PRIVACY_SETTINGS_VARIABLE_OSP_ID = PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT + "/osps/%d/privacy_settings";

@@ -15,7 +15,7 @@ import eu.operando.api.model.PrivacyRegulationInput;
 import eu.operando.api.model.DtoPrivacyRegulation.PrivateInformationTypeEnum;
 import eu.operando.api.model.DtoPrivacyRegulation.RequiredConsentEnum;
 
-public class ClientPolicyDbTests extends ClientTests
+public class ClientPolicyDbTests extends ClientOperandoModuleTests
 {
 	// Variables to test
 	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = "/operando/core/policies_db";

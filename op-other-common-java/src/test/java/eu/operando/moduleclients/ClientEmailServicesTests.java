@@ -9,7 +9,7 @@ import org.junit.Test;
 import eu.operando.api.model.Attachment;
 import eu.operando.api.model.EmailNotification;
 
-public class ClientEmailServicesTests extends ClientTests
+public class ClientEmailServicesTests extends ClientOperandoModuleTests
 {
 	// Variables to test.
 	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES = "/operando/interfaces/email_services";

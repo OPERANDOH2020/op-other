@@ -8,12 +8,12 @@ import javax.ws.rs.core.Response.Status;
 
 import org.junit.Test;
 
-public class ClientAuthenticationServiceTests extends ClientTests
+public class ClientAuthenticationServiceTests extends ClientOperandoModuleTests
 {
 	// Variables independent of tests.
-	private static final String BASE_PATH_AUTHENTICATION_API = "/authentication"; // TODO - waiting on UPRC to change to match.
+	private static final String BASE_PATH_AUTHENTICATION_API = "/operando/interfaces/authentication";
 	private static final String ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION =
-			BASE_PATH_AUTHENTICATION_API + "/tickets/service_ticket/%s/validation"; // TODO - this is liable to change and should be checked.
+			BASE_PATH_AUTHENTICATION_API + "/tickets/service_ticket/%s/validation";
 
 	// Dummy variables to assist testing.
 	private static final String SERVICE_TICKET = "qwerty1234";

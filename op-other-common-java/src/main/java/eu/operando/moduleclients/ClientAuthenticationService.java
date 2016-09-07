@@ -6,7 +6,7 @@ import javax.ws.rs.core.Response.Status;
 
 public class ClientAuthenticationService extends ClientOperandoModule
 {
-	private static final String BASE_PATH_AUTHENTICATION_API = "/authentication";
+	private static final String BASE_PATH_AUTHENTICATION_API = PATH_OPERANDO_INTERFACES + "/authentication";
 	private static final String ENDPOINT_AUTHENTICATION_API_SERVICE_TICKETS_VARIABLE_TICKET_VALIDATION =
 			BASE_PATH_AUTHENTICATION_API + "/tickets/service_ticket/%s/validation";
 

@@ -6,7 +6,7 @@ import eu.operando.api.model.LogOperando;
 
 public class ClientLogDb extends ClientOperandoModule
 {
-	private static final String PATH_INTERNAL_OPERANDO_CORE_LOG_DB = "/operando/core/log_db";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_LOG_DB = PATH_OPERANDO_CORE + "/log_db";
 	private static final String ENDPOINT_LOG_DB_LOG = PATH_INTERNAL_OPERANDO_CORE_LOG_DB + "/log";
 
 	public ClientLogDb(String originLogDb)

@@ -28,7 +28,6 @@ public abstract class DtoPrivacyRegulation
 	 */
 	public DtoPrivacyRegulation()
 	{
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

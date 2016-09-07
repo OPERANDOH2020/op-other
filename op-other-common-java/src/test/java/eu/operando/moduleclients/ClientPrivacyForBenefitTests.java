@@ -14,7 +14,7 @@ import org.junit.Test;
 import eu.operando.api.model.PfbDeal;
 import eu.operando.api.model.PfbOffer;
 
-public class ClientPrivacyForBenefitTests extends ClientTests
+public class ClientPrivacyForBenefitTests extends ClientOperandoModuleTests
 {
 	private static final String PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT = "/operando/core/privacy_for_benefit";
 	public static final String ENDPOINT_PRIVACY_FOR_BENEFIT_DEALS_VARIABLE_DEAL_ID = PATH_INTERNAL_OPERANDO_CORE_PRIVACY_FOR_BENEFIT + "/deals/%d";

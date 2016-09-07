@@ -4,7 +4,7 @@ import javax.ws.rs.HttpMethod;
 
 import org.junit.Test;
 
-public class ClientBigDataAnalyticsTests extends ClientTests
+public class ClientBigDataAnalyticsTests extends ClientOperandoModuleTests
 {
 	private static final String PATH_INTERNAL_OPERANDO_CORE_BIGDATA = "/operando/core/bigdata";
 	public static final String ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID = PATH_INTERNAL_OPERANDO_CORE_BIGDATA + "/reports/%d";

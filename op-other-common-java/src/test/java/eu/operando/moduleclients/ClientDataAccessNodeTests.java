@@ -3,7 +3,7 @@ package eu.operando.moduleclients;
 import static org.junit.Assert.fail;
 import org.junit.Test;
 
-public class ClientDataAccessNodeTests extends ClientTests
+public class ClientDataAccessNodeTests extends ClientOperandoModuleTests
 {
 	private ClientDataAccessNode client = new ClientDataAccessNode(ORIGIN_WIREMOCK);
 	

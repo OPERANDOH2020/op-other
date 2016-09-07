@@ -8,7 +8,7 @@ import eu.operando.api.model.PrivacyRegulation;
 
 public class ClientPolicyComputation extends ClientOperandoModule
 {
-	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION = "/operando/core/policy_computation";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION = PATH_OPERANDO_CORE + "/policy_computation";
 	private static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION + "/regulations";
 	private static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_COMPUTATION_REGULATIONS + "/{reg_id}";
 	

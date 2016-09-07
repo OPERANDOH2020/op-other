@@ -13,7 +13,7 @@ import eu.operando.api.model.PrivacyRegulationInput;
 import eu.operando.api.model.DtoPrivacyRegulation.PrivateInformationTypeEnum;
 import eu.operando.api.model.DtoPrivacyRegulation.RequiredConsentEnum;
 
-public class ClientPolicyComputationTests extends ClientTests
+public class ClientPolicyComputationTests extends ClientOperandoModuleTests
 {
 	// Variables to be tested.
 	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION = "/operando/core/policy_computation";

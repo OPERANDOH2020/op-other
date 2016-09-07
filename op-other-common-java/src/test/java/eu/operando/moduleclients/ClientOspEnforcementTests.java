@@ -21,7 +21,7 @@ import eu.operando.api.model.PrivacySetting;
 import eu.operando.api.model.DtoPrivacyRegulation.PrivateInformationTypeEnum;
 import eu.operando.api.model.DtoPrivacyRegulation.RequiredConsentEnum;
 
-public class ClientOspEnforcementTests extends ClientTests
+public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 {
 	// Variables to be tested.
 	private static final String PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT = "/operando/core/osp_enforcement";

@@ -15,7 +15,7 @@ import eu.operando.api.model.PrivacySetting;
 
 public class ClientUserDeviceEnforcement extends ClientOperandoModule
 {
-	private static final String PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT = "/operando/core/device_enforcement";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT = PATH_OPERANDO_CORE + "/device_enforcement";
 	public static final String ENDPOINT_USER_DEVICE_ENFORCEMENT_PRIVACY_SETTINGS = PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT + "/privacy_settings";
 
 	public ClientUserDeviceEnforcement(String originUserDeviceEnforcement)

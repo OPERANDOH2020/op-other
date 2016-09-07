@@ -14,7 +14,7 @@ import eu.operando.api.model.ReportOperando;
 
 public class ClientReportGenerator extends ClientOperandoModule
 {
-	private static final String PATH_INTERNAL_OPERANDO_WEBUI_REPORTS = "/operando/webui/reports";
+	private static final String PATH_INTERNAL_OPERANDO_WEBUI_REPORTS = PATH_OPERANDO_WEBUI + "/reports";
 	private static final String ENDPOINT_REPORT_GENERATOR_REPORTS = PATH_INTERNAL_OPERANDO_WEBUI_REPORTS + "/reports";
 
 	// Query parameter names
@@ -51,7 +51,6 @@ public class ClientReportGenerator extends ClientOperandoModule
 		int statusCode = response.getStatus();
 		if (statusCode == Status.OK.getStatusCode())
 		{
-			// TODO - need to know how a report is represented.
 			return null;
 		}
 		else

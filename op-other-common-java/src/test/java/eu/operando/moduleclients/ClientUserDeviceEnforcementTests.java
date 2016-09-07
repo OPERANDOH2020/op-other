@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import eu.operando.api.model.PrivacySetting;
 
-public class ClientUserDeviceEnforcementTests extends ClientTests
+public class ClientUserDeviceEnforcementTests extends ClientOperandoModuleTests
 {
 	private static final String PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT = "/operando/core/device_enforcement";
 	public static final String ENDPOINT_USER_DEVICE_ENFORCEMENT_PRIVACY_SETTINGS = PATH_INTERNAL_OPERANDO_CORE_DEVICE_ENFORCEMENT + "/privacy_settings";

@@ -9,7 +9,7 @@ import eu.operando.api.model.EmailNotification;
 
 public class ClientEmailServices extends ClientOperandoModule
 {
-	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES = "/operando/interfaces/email_services";
+	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES = PATH_OPERANDO_INTERFACES + "/email_services";
 	private static final String ENDPOINT_EMAIL_SERVICES_EMAIL_NOTIFICATION = PATH_INTERNAL_OPERANDO_INTERFACES_EMAIL_SERVICES + "/email_notification";
 	
 	public ClientEmailServices(String originEmailServices)

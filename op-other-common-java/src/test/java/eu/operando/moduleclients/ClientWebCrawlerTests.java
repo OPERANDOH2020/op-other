@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import eu.operando.api.model.PrivacyPolicy;
 
-public class ClientWebCrawlerTests extends ClientTests
+public class ClientWebCrawlerTests extends ClientOperandoModuleTests
 {
 	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES = "/operando/interfaces/web_services";
 	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_POLICIES = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPPrivacyTerms";

@@ -14,7 +14,7 @@ import eu.operando.api.model.PrivacyRegulationInput;
 
 public class ClientPolicyDb extends ClientOperandoModule
 {
-	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = "/operando/core/policies_db";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = PATH_OPERANDO_CORE + "/policies_db";
 	private static final String ENDPOINT_POLICY_DB_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB + "/regulations";
 	private static final String ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_DB_REGULATIONS + "/{reg_id}";
 

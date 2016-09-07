@@ -13,7 +13,7 @@ import org.junit.Test;
 import eu.operando.OperandoCommunicationException;
 import eu.operando.OperandoCommunicationException.CommunicationError;
 
-public class ClientReportGeneratorTests extends ClientTests
+public class ClientReportGeneratorTests extends ClientOperandoModuleTests
 {
 	private static final String PATH_INTERNAL_OPERANDO_WEBUI_REPORTS = "/operando/webui/reports";
 	private static final String ENDPOINT_REPORT_GENERATOR_REPORTS = PATH_INTERNAL_OPERANDO_WEBUI_REPORTS + "/reports";
@@ -61,7 +61,7 @@ public class ClientReportGeneratorTests extends ClientTests
 	@Test
 	public void testGetReport_OkFromReportGenerator_ReportInterpretedCorreclty()
 	{
-		// TODO - this is yet to be implemented.
+		// TODO - this is yet to be implemented; need to know how a report is represented.
 		fail();
 	}
 

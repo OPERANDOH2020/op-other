@@ -25,6 +25,12 @@ import wiremock.org.apache.commons.lang3.NotImplementedException;
 
 public abstract class ClientOperandoModule
 {
+	private static final String PATH_OPERANDO = "/operando";
+	protected static final String PATH_OPERANDO_CORE = PATH_OPERANDO + "/core";
+	protected static final String PATH_OPERANDO_INTERFACES = PATH_OPERANDO + "/interfaces";
+	protected static final String PATH_OPERANDO_PDR = PATH_OPERANDO + "/pdr";
+	protected static final String PATH_OPERANDO_WEBUI = PATH_OPERANDO + "/webui";
+	
 	private Client client = ClientBuilder.newClient();
 	private String originOfTarget = "";
 
