@@ -11,15 +11,14 @@ import javax.ws.rs.HttpMethod;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.http.HttpException;
 import org.glassfish.jersey.internal.util.collection.MultivaluedStringMap;
 import org.junit.Test;
 
+import eu.operando.api.model.DtoPrivacyRegulation.PrivateInformationTypeEnum;
+import eu.operando.api.model.DtoPrivacyRegulation.RequiredConsentEnum;
 import eu.operando.api.model.PrivacyRegulation;
 import eu.operando.api.model.PrivacyRegulationInput;
 import eu.operando.api.model.PrivacySetting;
-import eu.operando.api.model.DtoPrivacyRegulation.PrivateInformationTypeEnum;
-import eu.operando.api.model.DtoPrivacyRegulation.RequiredConsentEnum;
 
 public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 {
@@ -47,7 +46,7 @@ public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 	private ClientOspEnforcement client = new ClientOspEnforcement(ORIGIN_WIREMOCK);
 
 	@Test
-	public void testSendNewRegulationToOspEnforcement_CorrectHttpRequest() throws HttpException
+	public void testSendNewRegulationToOspEnforcement_CorrectHttpRequest()
 	{
 		// Exercise
 		client.sendNewRegulationToOspEnforcement(REGULATION);
@@ -57,7 +56,7 @@ public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testSendNewRegulationToOspEnforcement_FailureFromPolicyComputation_FalseReturned() throws HttpException
+	public void testSendNewRegulationToOspEnforcement_FailureFromPolicyComputation_FalseReturned()
 	{
 		// Set up
 		stub(HttpMethod.POST, ENDPOINT_OSP_ENFORCEMENT_REGULATIONS, "", Status.NOT_FOUND);
@@ -70,7 +69,7 @@ public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testSendNewRegulationToOspEnforcement_SuccessFromPolicyComputation_TrueReturned() throws HttpException
+	public void testSendNewRegulationToOspEnforcement_SuccessFromPolicyComputation_TrueReturned()
 	{
 		// Set up
 		stub(HttpMethod.POST, ENDPOINT_OSP_ENFORCEMENT_REGULATIONS, "", Status.ACCEPTED);
@@ -83,7 +82,7 @@ public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testSendExistingRegulationToOspEnforcement_CorrectHttpRequest() throws HttpException
+	public void testSendExistingRegulationToOspEnforcement_CorrectHttpRequest()
 	{
 		// Exercise
 		client.sendExistingRegulationToOspEnforcement(REGULATION);
@@ -93,7 +92,7 @@ public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testSendExistingRegulationToOspEnforcement_FailureFromPolicyComputation_FalseReturned() throws HttpException
+	public void testSendExistingRegulationToOspEnforcement_FailureFromPolicyComputation_FalseReturned()
 	{
 		// Set up
 		stub(HttpMethod.PUT, ENDPOINT_EXISTING_REGULATION_WITH_REG_ID, "", Status.NOT_FOUND);
@@ -106,7 +105,7 @@ public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testSendExistingRegulationToOspEnforcement_SuccessFromPolicyComputation_TrueReturned() throws HttpException
+	public void testSendExistingRegulationToOspEnforcement_SuccessFromPolicyComputation_TrueReturned()
 	{
 		// Set up
 		stub(HttpMethod.PUT, ENDPOINT_EXISTING_REGULATION_WITH_REG_ID, "", Status.ACCEPTED);

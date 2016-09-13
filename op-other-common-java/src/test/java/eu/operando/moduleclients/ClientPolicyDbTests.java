@@ -6,14 +6,13 @@ import javax.ws.rs.HttpMethod;
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.http.HttpException;
 import org.junit.Test;
 
 import eu.operando.OperandoCommunicationException;
-import eu.operando.api.model.PrivacyRegulation;
-import eu.operando.api.model.PrivacyRegulationInput;
 import eu.operando.api.model.DtoPrivacyRegulation.PrivateInformationTypeEnum;
 import eu.operando.api.model.DtoPrivacyRegulation.RequiredConsentEnum;
+import eu.operando.api.model.PrivacyRegulation;
+import eu.operando.api.model.PrivacyRegulationInput;
 
 public class ClientPolicyDbTests extends ClientOperandoModuleTests
 {

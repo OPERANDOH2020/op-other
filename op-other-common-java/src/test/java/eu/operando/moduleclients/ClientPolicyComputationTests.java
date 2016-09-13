@@ -5,13 +5,12 @@ import static org.junit.Assert.assertEquals;
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.http.HttpException;
 import org.junit.Test;
 
-import eu.operando.api.model.PrivacyRegulation;
-import eu.operando.api.model.PrivacyRegulationInput;
 import eu.operando.api.model.DtoPrivacyRegulation.PrivateInformationTypeEnum;
 import eu.operando.api.model.DtoPrivacyRegulation.RequiredConsentEnum;
+import eu.operando.api.model.PrivacyRegulation;
+import eu.operando.api.model.PrivacyRegulationInput;
 
 public class ClientPolicyComputationTests extends ClientOperandoModuleTests
 {
@@ -30,7 +29,7 @@ public class ClientPolicyComputationTests extends ClientOperandoModuleTests
 	private ClientPolicyComputation client = new ClientPolicyComputation(ORIGIN_WIREMOCK);
 
 	@Test
-	public void testSendNewRegulationToPolicyComputation_CorrectHttpRequest() throws HttpException
+	public void testSendNewRegulationToPolicyComputation_CorrectHttpRequest()
 	{
 		// Exercise
 		client.sendNewRegulationToPolicyComputation(REGULATION);
@@ -40,7 +39,7 @@ public class ClientPolicyComputationTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testSendNewRegulationToPolicyComputation_FailureFromPolicyComputation_FalseReturned() throws HttpException
+	public void testSendNewRegulationToPolicyComputation_FailureFromPolicyComputation_FalseReturned()
 	{
 		// Set up
 		stub(HttpMethod.POST, ENDPOINT_POLICY_COMPUTATION_REGULATIONS, "", Status.NOT_FOUND);
@@ -53,7 +52,7 @@ public class ClientPolicyComputationTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testSendNewRegulationToPolicyComputation_SuccessFromPolicyComputation_TrueReturned() throws HttpException
+	public void testSendNewRegulationToPolicyComputation_SuccessFromPolicyComputation_TrueReturned()
 	{
 		// Set up
 		stub(HttpMethod.POST, ENDPOINT_POLICY_COMPUTATION_REGULATIONS, "", Status.ACCEPTED);
@@ -66,7 +65,7 @@ public class ClientPolicyComputationTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testSendExistingRegulationToPolicyComputation_CorrectHttpRequest() throws HttpException
+	public void testSendExistingRegulationToPolicyComputation_CorrectHttpRequest()
 	{
 		// Exercise
 		client.sendExistingRegulationToPolicyComputation(REGULATION);
@@ -76,7 +75,7 @@ public class ClientPolicyComputationTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testSendExistingRegulationToPolicyComputation_FailureFromPolicyComputation_FalseReturned() throws HttpException
+	public void testSendExistingRegulationToPolicyComputation_FailureFromPolicyComputation_FalseReturned()
 	{
 		// Set up
 		stub(HttpMethod.PUT, ENDPOINT_EXISTING_REGULATION_WITH_REG_ID, "", Status.NOT_FOUND);
@@ -89,7 +88,7 @@ public class ClientPolicyComputationTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testSendExistingRegulationToPolicyComputation_SuccessFromPolicyComputation_TrueReturned() throws HttpException
+	public void testSendExistingRegulationToPolicyComputation_SuccessFromPolicyComputation_TrueReturned()
 	{
 		// Set up
 		stub(HttpMethod.PUT, ENDPOINT_EXISTING_REGULATION_WITH_REG_ID, "", Status.ACCEPTED);
