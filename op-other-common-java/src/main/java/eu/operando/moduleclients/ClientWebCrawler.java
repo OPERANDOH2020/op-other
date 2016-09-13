@@ -13,8 +13,8 @@ import eu.operando.api.model.PrivacyPolicy;
 public class ClientWebCrawler extends ClientOperandoModule
 {
 	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES = PATH_OPERANDO_INTERFACES + "/web_services";
-	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_POLICIES = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPPrivacyTerms";
-	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_OPTIONS = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPSettings";
+	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_POLICIES = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/OSPPrivacyTerms";
+	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_OPTIONS = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/OSPPrivacySettings";
 	
 	public ClientWebCrawler(String originWebCrawler)
 	{

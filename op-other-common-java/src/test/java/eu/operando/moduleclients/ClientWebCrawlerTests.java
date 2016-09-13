@@ -15,8 +15,8 @@ import eu.operando.api.model.PrivacyPolicy;
 public class ClientWebCrawlerTests extends ClientOperandoModuleTests
 {
 	private static final String PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES = "/operando/interfaces/web_services";
-	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_POLICIES = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPPrivacyTerms";
-	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_OPTIONS = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/GetOSPSettings";
+	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_POLICIES = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/OSPPrivacyTerms";
+	public static final String ENDPOINT_WEB_SERVICES_PRIVACY_OPTIONS = PATH_INTERNAL_OPERANDO_INTERFACES_WEB_SERVICES + "/OSPPrivacySettings";
 	
 	private ClientWebCrawler client = new ClientWebCrawler(ORIGIN_WIREMOCK);
 	
@@ -37,16 +37,15 @@ public class ClientWebCrawlerTests extends ClientOperandoModuleTests
 	{
 		//Set up
 		Vector<PrivacyPolicy> policiesExpected = new Vector<PrivacyPolicy>();
-		policiesExpected.add(new PrivacyPolicy(1, "some text"));
-		policiesExpected.add(new PrivacyPolicy(2, "some other text"));
+		policiesExpected.add(new PrivacyPolicy("Osp1", "some html"));
+		policiesExpected.add(new PrivacyPolicy("Osp2", "some more html"));
 		stub(HttpMethod.GET, ENDPOINT_WEB_SERVICES_PRIVACY_POLICIES, policiesExpected);
 		
 		//Exercise
 		Vector<PrivacyPolicy> policiesActual = client.getOspPrivacyPolicies();
 		
 		//Verify
-		//TODO - this fails at the moment because equals has not been overridden for privacy policy. It should be as we'll use it in the production code (WatchdogApplication) later. 
-		assertThat("The policies returned from the web crawler were incorrectly interpreted by the WatchdogClient", policiesActual, is(equalTo(policiesExpected)));
+		assertThat("The policies returned from the web crawler were incorrectly interpreted by the Client", policiesActual, is(equalTo(policiesExpected)));
 	}
 	@Test
 	public void testGetOspPrivacyOptions_CorrectHttpRequest()
