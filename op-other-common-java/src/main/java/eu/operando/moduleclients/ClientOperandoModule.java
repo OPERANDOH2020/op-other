@@ -21,7 +21,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import wiremock.org.apache.commons.lang3.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 
 public abstract class ClientOperandoModule
 {
