@@ -13,6 +13,7 @@ public class OperandoCommunicationException extends Exception
 	{
 		REQUESTED_RESOURCE_NOT_FOUND,
 		ERROR_FROM_OTHER_MODULE,
+		PROBLEM_INTERPRETING_RESPONSE_FROM_OTHER_MODULE,
 		OTHER
 	}
 

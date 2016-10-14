@@ -10,6 +10,15 @@ public final class Utils
 	{
 		throw new AssertionError("This class should not be instantiated; it is a Util class.");
 	}
+	
+	/**
+	 * Returns the value of the property from PROPERTIES_FILE with name equal to propertyName parsed as a boolean.
+	 */
+	public static boolean loadPropertyBool(String filename, String propertyName)
+	{
+		String propertyStr = loadPropertyString(filename, propertyName);
+		return Boolean.parseBoolean(propertyStr);
+	}
 
 	/**
 	 * Returns the value of the property from PROPERTIES_FILE with name equal to propertyName parsed as an int.

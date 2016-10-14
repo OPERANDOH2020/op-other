@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses
 ({
-	ClientAuthenticationServiceTests.class,
+	ClientAuthenticationApiOperandoServiceTests.class,
 	ClientBigDataAnalyticsTests.class,
 	ClientDataAccessNodeTests.class,
 	ClientEmailServicesTests.class,

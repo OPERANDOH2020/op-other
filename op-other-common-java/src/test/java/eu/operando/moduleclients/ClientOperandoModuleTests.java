@@ -1,6 +1,7 @@
 package eu.operando.moduleclients;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.deleteRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
@@ -21,6 +22,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.glassfish.jersey.internal.util.collection.MultivaluedStringMap;
 import org.junit.Rule;
 
@@ -28,6 +30,7 @@ import com.github.tomakehurst.wiremock.client.RemoteMappingBuilder;
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.github.tomakehurst.wiremock.matching.RequestPatternBuilder;
+import com.github.tomakehurst.wiremock.matching.StringValuePattern;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -75,7 +78,7 @@ public class ClientOperandoModuleTests
 		stub(httpMethod, endpoint, strJsonBody, status);
 	}
 
-	public void stub(String httpMethod, String endpoint, String strJsonBody, Status status)
+	public void stub(String httpMethod, String endpoint, String strBody, Status status)
 	{
 		// Check validity of parameters.
 		checkValidHttpMethod(httpMethod);
@@ -94,10 +97,10 @@ public class ClientOperandoModuleTests
 
 		// Build up the stub response.
 		ResponseDefinitionBuilder response = aResponse();
-		if (!strJsonBody.isEmpty())
+		if (!strBody.isEmpty())
 		{
 			response.withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
-			response.withBody(strJsonBody);
+			response.withBody(strBody);
 		}
 		if (status != null)
 		{
@@ -118,17 +121,22 @@ public class ClientOperandoModuleTests
 		verifyCorrectHttpRequest(httpMethod, endpoint, null);
 	}
 
-	public void verifyCorrectHttpRequest(String httpMethod, String endpoint, Object objectInBodyAsJson)
+	public void verifyCorrectHttpRequest(String httpMethod, String endpoint, Object objectInBody)
 	{
-		verifyCorrectHttpRequest(httpMethod, endpoint, new MultivaluedStringMap(), objectInBodyAsJson);
+		verifyCorrectHttpRequest(httpMethod, endpoint, new MultivaluedStringMap(), new MultivaluedStringMap(), objectInBody, false);
 	}
 
 	public void verifyCorrectHttpRequestWithQueryParams(String httpMethod, String endpoint, MultivaluedMap<String, String> queryParametersExpected)
 	{
-		verifyCorrectHttpRequest(httpMethod, endpoint, queryParametersExpected, null);
+		verifyCorrectHttpRequest(httpMethod, endpoint, new MultivaluedStringMap(), queryParametersExpected, null, false);
 	}
 
-	public void verifyCorrectHttpRequest(String httpMethod, String endpoint, MultivaluedMap<String, String> queryParametersExpected, Object objectInBodyAsJson)
+	public void verifyCorrectHttpRequest(String httpMethod, String endpoint, MultivaluedMap<String, String> headersExpected, MultivaluedMap<String, String> queryParametersExpected, Object objectInBody)
+	{
+		verifyCorrectHttpRequest(httpMethod, endpoint, headersExpected, queryParametersExpected, objectInBody, false);
+	}
+
+	public void verifyCorrectHttpRequest(String httpMethod, String endpoint, MultivaluedMap<String, String> headersExpected, MultivaluedMap<String, String> queryParametersExpected, Object objectInBody, boolean alreadyJsonEncoded)
 	{
 		checkValidHttpMethod(httpMethod);
 
@@ -142,14 +150,30 @@ public class ClientOperandoModuleTests
 		{
 			requestPatternBuilder = putRequestedFor(urlPathEqualTo(endpoint));
 		}
+		else if (httpMethod.equals(HttpMethod.DELETE))
+		{
+			requestPatternBuilder = deleteRequestedFor(urlPathEqualTo(endpoint));
+		}
 
+		// correct headers
+		addHeadersOrQueryParameters(requestPatternBuilder, headersExpected, true);
+		
 		// correct queries
-		addQueries(requestPatternBuilder, queryParametersExpected);
+		addHeadersOrQueryParameters(requestPatternBuilder, queryParametersExpected, false);
 
 		// correct body; sometimes want an empty body.
-		if (objectInBodyAsJson != null)
+		if (objectInBody != null)
 		{
-			String stringJson = createStringJsonFollowingOperandoConventions(objectInBodyAsJson);
+			String stringJson = "";
+			if (alreadyJsonEncoded)
+			{
+				stringJson = (String) objectInBody;
+			}
+			else
+			{
+				stringJson = createStringJsonFollowingOperandoConventions(objectInBody);
+			}
+			
 			requestPatternBuilder.withRequestBody(equalToJson(stringJson));
 		}
 
@@ -158,20 +182,30 @@ public class ClientOperandoModuleTests
 	}
 
 	/**
-	 * Add queries from hashmap.
+	 * Add headers or query params to the expected request pattern.
+	 * @param areHeaders
+	 * 	true if adding headers, false if adding query params.
 	 */
-	private void addQueries(RequestPatternBuilder requestPatternBuilder, MultivaluedMap<String, String> queryParametersExpected)
+	private void addHeadersOrQueryParameters(RequestPatternBuilder requestPatternBuilder, MultivaluedMap<String, String> expected, boolean areHeaders)
 	{
-		Set<String> keySet = queryParametersExpected.keySet();
+		Set<String> keySet = expected.keySet();
 		Iterator<String> iterator = keySet.iterator();
 		while (iterator.hasNext())
 		{
 			String key = iterator.next();
-			List<String> values = queryParametersExpected.get(key);
+			List<String> values = expected.get(key);
 			for (int i = 0; i < values.size(); i++)
 			{
 				String value = values.get(i);
-				requestPatternBuilder.withQueryParam(key, equalTo(value));
+				StringValuePattern equalToValue = equalTo(value);
+				if (areHeaders)
+				{
+					requestPatternBuilder.withHeader(key, equalToValue);
+				}
+				else
+				{
+					requestPatternBuilder.withQueryParam(key, equalToValue);
+				}
 			}
 		}
 	}
@@ -181,9 +215,9 @@ public class ClientOperandoModuleTests
 	 */
 	private void checkValidHttpMethod(String httpMethod)
 	{
-		if (!httpMethod.equals(HttpMethod.GET) && !httpMethod.equals(HttpMethod.POST) && !httpMethod.equals(HttpMethod.PUT))
+		if (!httpMethod.equals(HttpMethod.GET) && !httpMethod.equals(HttpMethod.POST) && !httpMethod.equals(HttpMethod.PUT) && !httpMethod.equals(HttpMethod.DELETE))
 		{
-			throw new IllegalArgumentException("invalid HTTP verb");
+			throw new NotImplementedException("eu.operando.moduleclients.ClientOperandoModuleTests.verifyCorrectHttpRequest has not been implemented for the HTTP method " + httpMethod);
 		}
 	}
 

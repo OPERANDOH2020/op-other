@@ -1,27 +1,31 @@
 package eu.operando.moduleclients;
 
 import java.lang.reflect.Type;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.glassfish.jersey.internal.util.collection.MultivaluedStringMap;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import org.apache.commons.lang3.NotImplementedException;
 
 public abstract class ClientOperandoModule
 {
@@ -30,13 +34,75 @@ public abstract class ClientOperandoModule
 	protected static final String PATH_OPERANDO_INTERFACES = PATH_OPERANDO + "/interfaces";
 	protected static final String PATH_OPERANDO_PDR = PATH_OPERANDO + "/pdr";
 	protected static final String PATH_OPERANDO_WEBUI = PATH_OPERANDO + "/webui";
-	
-	private Client client = ClientBuilder.newClient();
+
+	private Client client = initClient(); //TODO - for integration testing. Remove.
+	//private Client client = ClientBuilder.newClient(); 
 	private String originOfTarget = "";
+	private boolean encodeObjectBodyAsJson = true;
 
 	protected ClientOperandoModule(String originOfTarget)
 	{
 		this.originOfTarget = originOfTarget;
+	}
+	
+	protected ClientOperandoModule(String originOfTarget, boolean objectAlreadyEncodedAsJson)
+	{
+		this.originOfTarget = originOfTarget;
+		this.encodeObjectBodyAsJson = !objectAlreadyEncodedAsJson;
+	}
+
+	//TODO - for integration testing. Remove.
+	private Client initClient()
+	{
+		/*KeyStore keystore = null;
+		String password = "oper@ndo";
+		try
+		{
+			//String filename = System.getProperty("java.home") + 
+			String filename = "C:/Program Files/Java/jre1.8.0_91".replace('/', File.separatorChar) + 
+			        "/lib/security/cacerts+UPRC_self-signed".replace('/', File.separatorChar);
+			FileInputStream is = new FileInputStream(filename);
+			keystore = KeyStore.getInstance(KeyStore.getDefaultType());
+			keystore.load(is, password.toCharArray());
+		}
+		catch (KeyStoreException | NoSuchAlgorithmException | CertificateException | IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+		return client = ClientBuilder.newBuilder().keyStore(keystore, password).build();*/
+		TrustManager[] trustManager = new X509TrustManager[] { new X509TrustManager() {
+
+		    @Override
+		    public X509Certificate[] getAcceptedIssuers() {
+		        return null;
+		    }
+
+		    @Override
+		    public void checkClientTrusted(X509Certificate[] certs, String authType) {
+
+		    }
+
+		    @Override
+		    public void checkServerTrusted(X509Certificate[] certs, String authType) {
+
+		    }
+		}};
+
+		SSLContext sslContext = null;
+		try
+		{
+			sslContext = SSLContext.getInstance("SSL");
+			sslContext.init(null, trustManager, null);
+		}
+		catch (NoSuchAlgorithmException | KeyManagementException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Client client = ClientBuilder.newBuilder().sslContext(sslContext).build();
+		return client;
 	}
 
 	protected Response sendRequest(String httpMethod, String endpoint)
@@ -49,12 +115,18 @@ public abstract class ClientOperandoModule
 		return sendRequest(httpMethod, endpoint, null, queryParams);
 	}
 
-	protected Response sendRequest(String httpMethod, String endpoint, Object objectInBodyAsJson)
+	protected Response sendRequest(String httpMethod, String endpoint, Object objectInBody)
 	{
-		return sendRequest(httpMethod, endpoint, objectInBodyAsJson, new MultivaluedStringMap());
+		return sendRequest(httpMethod, endpoint, objectInBody, new MultivaluedStringMap());
 	}
 
-	protected Response sendRequest(String httpMethod, String endpoint, Object objectInBodyAsJson, MultivaluedMap<String, String> queryParams)
+	protected Response sendRequest(String httpMethod, String endpoint, Object objectInBody, MultivaluedMap<String, String> queryParams)
+	{
+		return sendRequest(httpMethod, endpoint, null, objectInBody, queryParams);
+	}
+
+	protected Response sendRequest(String httpMethod, String endpoint, MultivaluedMap<String, ? extends Object> headers, Object objectInBody,
+			MultivaluedMap<String, String> queryParams)
 	{
 		Response response;
 
@@ -65,24 +137,31 @@ public abstract class ClientOperandoModule
 
 		// Send the request.
 		Builder requestBuilder = target.request();
+
+		requestBuilder.headers((MultivaluedMap<String, Object>) headers);
+
+		Entity<String> createEntityStringJson = createEntityStringJson(objectInBody);
 		switch (httpMethod)
 		{
 			case HttpMethod.GET:
 				response = requestBuilder.get();
 				break;
 			case HttpMethod.POST:
-				if (objectInBodyAsJson != null)
+				if (objectInBody != null)
 				{
-					response = requestBuilder.post(createEntityStringJson(objectInBodyAsJson));
+					response = requestBuilder.post(createEntityStringJson);
 				}
 				else
 				{
 					// This is a pretty horrible workaround to post with an empty body. See https://java.net/jira/browse/JERSEY-2370.
-					response = requestBuilder.post(Entity.entity(null, "foo/bar"));					
+					response = requestBuilder.post(Entity.entity(null, "foo/bar"));
 				}
 				break;
 			case HttpMethod.PUT:
-				response = requestBuilder.put(createEntityStringJson(objectInBodyAsJson));
+				response = requestBuilder.put(createEntityStringJson);
+				break;
+			case HttpMethod.DELETE:
+				response = requestBuilder.delete();
 				break;
 			default:
 				throw new NotImplementedException("eu.operando.moduleclients.ClientOp.sendRequest has not been implemented for the HTTP method " + httpMethod);
@@ -143,10 +222,18 @@ public abstract class ClientOperandoModule
 	/**
 	 * Takes in a java object, converts it to JSON, and returns an entity containing the JSON string.
 	 */
-	private static <T> Entity<String> createEntityStringJson(T object)
+	private Entity<String> createEntityStringJson(Object object)
 	{
-		String json = createStringJsonFollowingOperandoConventions(object);
-		return Entity.entity(json, MediaType.APPLICATION_JSON);
+		String json = ""; 
+		if (encodeObjectBodyAsJson)
+		{
+			json = createStringJsonFollowingOperandoConventions(object);
+		}
+		else
+		{
+			json = (String) object;
+		}
+		return Entity.json(json);
 	}
 
 	/**

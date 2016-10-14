@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <properties>
+    <property name="name">OPERANDO</property>
+    
+    <!--
+      Use the %M flag to log the method name but this is reported to be slow.
+    -->
+    <property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} %M - %msg%n</property>
+  </properties>
+
+  <appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="${pattern}" />
+    </Console>
+    <RollingFile name="RollingFile" fileName="logs/${name}.log"
+      filePattern="logs/$${date:yyyy-MM}/${name}-%d{yyyy-MM-dd}-%i.log.gz">
+      <PatternLayout>
+        <pattern>${pattern}</pattern>
+      </PatternLayout>
+      <Policies>
+        <!-- Rotated everyday -->
+        <TimeBasedTriggeringPolicy />
+        
+        <!-- Or every 100 MB -->
+        <SizeBasedTriggeringPolicy size="100 MB" />
+      </Policies>
+    </RollingFile>
+  </appenders>
+
+  <loggers>
+    <!-- levels available: trace, debug, info, warn, error, fatal, off -->
+    <root level="trace">
+      <!-- To console -->
+      <appender-ref ref="Console" />
+       
+      <!-- To a rotated file -->
+      <appender-ref ref="RollingFile" />
+    </root>
+  </loggers>
+</configuration>
