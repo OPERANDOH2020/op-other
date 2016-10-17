@@ -35,8 +35,7 @@ public abstract class ClientOperandoModule
 	protected static final String PATH_OPERANDO_PDR = PATH_OPERANDO + "/pdr";
 	protected static final String PATH_OPERANDO_WEBUI = PATH_OPERANDO + "/webui";
 
-	private Client client = initClient(); //TODO - for integration testing. Remove.
-	//private Client client = ClientBuilder.newClient(); 
+	private Client client = initClient();
 	private String originOfTarget = "";
 	private boolean encodeObjectBodyAsJson = true;
 
@@ -51,57 +50,9 @@ public abstract class ClientOperandoModule
 		this.encodeObjectBodyAsJson = !objectAlreadyEncodedAsJson;
 	}
 
-	//TODO - for integration testing. Remove.
 	private Client initClient()
 	{
-		/*KeyStore keystore = null;
-		String password = "oper@ndo";
-		try
-		{
-			//String filename = System.getProperty("java.home") + 
-			String filename = "C:/Program Files/Java/jre1.8.0_91".replace('/', File.separatorChar) + 
-			        "/lib/security/cacerts+UPRC_self-signed".replace('/', File.separatorChar);
-			FileInputStream is = new FileInputStream(filename);
-			keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-			keystore.load(is, password.toCharArray());
-		}
-		catch (KeyStoreException | NoSuchAlgorithmException | CertificateException | IOException e)
-		{
-			e.printStackTrace();
-		}
-		
-		return client = ClientBuilder.newBuilder().keyStore(keystore, password).build();*/
-		TrustManager[] trustManager = new X509TrustManager[] { new X509TrustManager() {
-
-		    @Override
-		    public X509Certificate[] getAcceptedIssuers() {
-		        return null;
-		    }
-
-		    @Override
-		    public void checkClientTrusted(X509Certificate[] certs, String authType) {
-
-		    }
-
-		    @Override
-		    public void checkServerTrusted(X509Certificate[] certs, String authType) {
-
-		    }
-		}};
-
-		SSLContext sslContext = null;
-		try
-		{
-			sslContext = SSLContext.getInstance("SSL");
-			sslContext.init(null, trustManager, null);
-		}
-		catch (NoSuchAlgorithmException | KeyManagementException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Client client = ClientBuilder.newBuilder().sslContext(sslContext).build();
+		Client client = ClientBuilder.newClient();
 		return client;
 	}
 
