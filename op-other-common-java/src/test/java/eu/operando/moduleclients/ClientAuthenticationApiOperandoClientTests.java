@@ -1,16 +1,12 @@
 package eu.operando.moduleclients;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.when;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import eu.operando.CredentialsOperando;
 import eu.operando.OperandoAuthenticationException;
 
 public class ClientAuthenticationApiOperandoClientTests

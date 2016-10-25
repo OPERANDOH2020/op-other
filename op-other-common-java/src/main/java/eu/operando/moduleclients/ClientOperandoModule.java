@@ -1,16 +1,10 @@
 package eu.operando.moduleclients;
 
 import java.lang.reflect.Type;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -172,6 +166,8 @@ public abstract class ClientOperandoModule
 
 	/**
 	 * Takes in a java object, converts it to JSON, and returns an entity containing the JSON string.
+	 * 
+	 * TODO - make safer - not obvious that !encodeObjectBodyAsJson => object instanceof String
 	 */
 	private Entity<String> createEntityStringJson(Object object)
 	{
