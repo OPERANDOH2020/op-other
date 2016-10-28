@@ -24,6 +24,7 @@ import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.glassfish.jersey.internal.util.collection.MultivaluedStringMap;
+import org.junit.Ignore;
 import org.junit.Rule;
 
 import com.github.tomakehurst.wiremock.client.RemoteMappingBuilder;
@@ -35,6 +36,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+@Ignore // This class contains helper methods for tests, not tests itself. TODO - make a helper class rather than superclass?
 public class ClientOperandoModuleTests
 {
 	private static final String PREFIX_HTTP = "http://";

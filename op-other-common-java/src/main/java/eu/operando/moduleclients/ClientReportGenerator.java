@@ -10,7 +10,6 @@ import org.glassfish.jersey.internal.util.collection.MultivaluedStringMap;
 
 import eu.operando.OperandoCommunicationException;
 import eu.operando.OperandoCommunicationException.CommunicationError;
-import eu.operando.api.model.ReportOperando;
 
 public class ClientReportGenerator extends ClientOperandoModule
 {
@@ -39,7 +38,7 @@ public class ClientReportGenerator extends ClientOperandoModule
 	 * @throws OperandoCommunicationException
 	 *         if for some reason a report cannot be returned.
 	 */
-	public ReportOperando getReport(String reportId, String format, MultivaluedMap<String, String> parametersOptional) throws OperandoCommunicationException
+	public String getReport(String reportId, String format, MultivaluedMap<String, String> parametersOptional) throws OperandoCommunicationException
 	{
 		// Send the request.
 		MultivaluedStringMap queryParams = new MultivaluedStringMap(parametersOptional);
@@ -51,7 +50,7 @@ public class ClientReportGenerator extends ClientOperandoModule
 		int statusCode = response.getStatus();
 		if (statusCode == Status.OK.getStatusCode())
 		{
-			return null;
+			return response.readEntity(String.class);
 		}
 		else
 		{

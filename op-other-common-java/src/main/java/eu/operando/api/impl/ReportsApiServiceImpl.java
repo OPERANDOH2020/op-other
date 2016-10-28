@@ -1,6 +1,5 @@
 package eu.operando.api.impl;
 
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -8,7 +7,6 @@ import javax.ws.rs.core.Response.Status;
 import eu.operando.OperandoCommunicationException;
 import eu.operando.OperandoCommunicationException.CommunicationError;
 import eu.operando.api.ReportsApiService;
-import eu.operando.api.model.ReportOperando;
 import eu.operando.moduleclients.ClientAuthenticationApiOperandoService;
 import eu.operando.moduleclients.ClientReportGenerator;
 
@@ -29,14 +27,14 @@ public class ReportsApiServiceImpl extends ReportsApiService
 	public Response reportsGetReport(String serviceTicket, String reportId, String format, MultivaluedMap<String, String> parametersOptional)
 	{
 		Status statusToReturn = null;
-		ReportOperando reportToReturn = null;
+		String encodeReportToReturn = "";
 
 		try
 		{
 			boolean ospAuthenticated = clientAuthenticationService.isOspAuthenticatedForRequestedService(serviceTicket, SERVICE_ID_GET_REPORT);
 			if (ospAuthenticated)
 			{
-				reportToReturn = clientReportGenerator.getReport(reportId, format, parametersOptional);
+				encodeReportToReturn = clientReportGenerator.getReport(reportId, format, parametersOptional);
 				statusToReturn = Status.OK;
 			}
 			else
@@ -50,9 +48,8 @@ public class ReportsApiServiceImpl extends ReportsApiService
 			statusToReturn = determineStatusToReturnFromOperandoCommunicationException(ex);
 		}
 
-		Entity<ReportOperando> entityToReturn = Entity.json(reportToReturn);
 		return Response.status(statusToReturn)
-			.entity(entityToReturn)
+			.entity(encodeReportToReturn)
 			.build();
 	}
 

@@ -31,7 +31,8 @@ public class ClientDataAccessNodeTests extends ClientOperandoModuleTests
 	
 	// Dummy variables to assist testing.
 	private static final String ID_OSP_USER = "123456";
-	private static final String PATH_PLUS = "/path?param=value";
+	private static final String PATH_PLUS = "path?param=value";
+	private static final String ENDPOINT = "/" + PATH_PLUS;
 	private static final String SERVICE_TICKET_FOR_DAN = "ST-DAN-GK";
 	private MultivaluedMap<String, String> mapHeaders = new MultivaluedStringMap();
 	
@@ -86,7 +87,7 @@ public class ClientDataAccessNodeTests extends ClientOperandoModuleTests
 		client.sendRequest(ID_OSP_USER, PATH_PLUS, httpMethod, mapHeaders, body);
 
 		// Verify - slightly abusing endpoint vs. queryParameter parameters, but this seems acceptable in this case.
-		verifyCorrectHttpRequest(httpMethod, PATH_PLUS, headersShouldSend, new MultivaluedStringMap(), body, true);
+		verifyCorrectHttpRequest(httpMethod, ENDPOINT, headersShouldSend, new MultivaluedStringMap(), body, true);
 	}
 	
 	@Test(expected = OperandoAuthenticationException.class)

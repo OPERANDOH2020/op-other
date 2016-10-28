@@ -8,6 +8,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response.Status;
 
 import org.glassfish.jersey.internal.util.collection.MultivaluedStringMap;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.operando.OperandoCommunicationException;
@@ -15,6 +16,7 @@ import eu.operando.OperandoCommunicationException.CommunicationError;
 
 public class ClientReportGeneratorTests extends ClientOperandoModuleTests
 {
+	private static final String ENCODED_REPORT = "encoded report";
 	private static final String PATH_INTERNAL_OPERANDO_WEBUI_REPORTS = "/operando/webui/reports";
 	private static final String ENDPOINT_REPORT_GENERATOR_REPORTS = PATH_INTERNAL_OPERANDO_WEBUI_REPORTS + "/reports";
 
@@ -59,10 +61,17 @@ public class ClientReportGeneratorTests extends ClientOperandoModuleTests
 	}
 
 	@Test
-	public void testGetReport_OkFromReportGenerator_ReportInterpretedCorreclty()
+	public void testGetReport_OkFromReportGenerator_ReportInterpretedCorreclty() throws OperandoCommunicationException
 	{
+		// Set up
+		stub(HttpMethod.GET, ENDPOINT_REPORT_GENERATOR_REPORTS, ENCODED_REPORT, Status.OK);
+
+		// Exercise
+		MultivaluedMap<String, String> parametersOptional = determineParametersOptional(0);
+		String reportFromRg = client.getReport(REPORT_ID, FORMAT, parametersOptional);		
+		
 		// TODO - this is yet to be implemented; need to know how a report is represented.
-		fail();
+		assertEquals(ENCODED_REPORT, reportFromRg);
 	}
 
 	private void testGetReport_CorrectHttpRequest(int numberOfOptionalParameters) throws OperandoCommunicationException
@@ -75,7 +84,6 @@ public class ClientReportGeneratorTests extends ClientOperandoModuleTests
 		client.getReport(REPORT_ID, FORMAT, parametersOptional);
 
 		// Verify
-		// HashMap<String, String> queryParametersExpected = determineQueryParametersExpected(numberOfOptionalParameters);
 		MultivaluedMap<String, String> queryParametersExpected = new MultivaluedStringMap(parametersOptional);
 		queryParametersExpected.putSingle("_reportID", REPORT_ID);
 		queryParametersExpected.putSingle("_format", FORMAT);

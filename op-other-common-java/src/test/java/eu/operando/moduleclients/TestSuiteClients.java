@@ -6,6 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses
 ({
+	ClientAuthenticationApiOperandoClientTests.class,
 	ClientAuthenticationApiOperandoServiceTests.class,
 	ClientBigDataAnalyticsTests.class,
 	ClientDataAccessNodeTests.class,
