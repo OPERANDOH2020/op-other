@@ -18,7 +18,7 @@ public class ClientAuthenticationApiOperandoService extends ClientOperandoModule
 	private static final Logger LOGGER = LogManager.getLogger(ClientAuthenticationApiOperandoService.class);
 	
 	// HTTP request constants
-	private static final String ENDPOINT_AUTHENTICATION_API_VALIDATE_TICKET_VARIABLE_SERVICE_TICKET = "/authentication/aapi/tickets/{st}/validate";
+	private static final String ENDPOINT_AUTHENTICATION_API_VALIDATE_TICKET_VARIABLE_SERVICE_TICKET = "/aapi/tickets/{st}/validate";
 	private static final String QUERY_PARAMETER_NAME_SERVICE = "serviceId";
 
 	public ClientAuthenticationApiOperandoService(String originAuthenticationService)

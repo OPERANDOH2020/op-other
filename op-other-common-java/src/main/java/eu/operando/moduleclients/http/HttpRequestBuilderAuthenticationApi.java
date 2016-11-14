@@ -11,8 +11,8 @@ import eu.operando.moduleclients.RequestBuilderAuthenticationApi;
 public class HttpRequestBuilderAuthenticationApi extends ClientOperandoModule
 												implements RequestBuilderAuthenticationApi
 {
-	private static final String ENDPOINT_AUTHENTICATION_AAPI_TICKETS = "authentication/aapi/tickets";
-	private static final String ENDPOINT_SERVICE_TICKETS_VARIABLE_ID = "/authentication/aapi/tickets/{tgt}";
+	private static final String ENDPOINT_AUTHENTICATION_AAPI_TICKETS = "/aapi/tickets";
+	private static final String ENDPOINT_SERVICE_TICKETS_VARIABLE_ID = "/aapi/tickets/{tgt}";
 	
 	private CredentialsOperando credentials = null;
 
