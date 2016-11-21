@@ -15,8 +15,8 @@ import eu.operando.moduleclients.ClientOperandoModuleTests;
 public class HttpRequestBuilderAuthenticationApiTests extends ClientOperandoModuleTests
 {
 	// Variables to test.
-	private static final String ENDPOINT_TICKET_GRANTING_TICKETS = "/authentication/aapi/tickets"; // TODO - the actual values might be different.
-	private static final String ENDPOINT_SERVICE_TICKETS_VARIABLE_ID = "/authentication/aapi/tickets/{tgt}";
+	private static final String ENDPOINT_TICKET_GRANTING_TICKETS = "/aapi/tickets"; // TODO - the actual values might be different.
+	private static final String ENDPOINT_SERVICE_TICKETS_VARIABLE_ID = "/aapi/tickets/{tgt}";
 	
 	// Dummy variables to assist testing.
 	private static final String TICKET_GRANTING_TICKET = "TGT";

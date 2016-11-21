@@ -75,6 +75,10 @@ public class ClientAuthenticationApiOperandoService extends ClientOperandoModule
 				throw new OperandoCommunicationException(CommunicationError.PROBLEM_INTERPRETING_RESPONSE_FROM_OTHER_MODULE);
 			}
 		}
+		else if (statusCodeResponse == Status.BAD_REQUEST.getStatusCode())
+		{
+			wrapper = new AuthenticationWrapper(false, null);
+		}
 		else
 		{
 			LOGGER.error("Request to Authentication Service was not successful. Status code: " + statusCodeResponse + ", response body: '" + bodyResponse + "'.");

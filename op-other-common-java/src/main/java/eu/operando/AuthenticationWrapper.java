@@ -73,14 +73,12 @@ public class AuthenticationWrapper
 		boolean xmlAsExpected = false;
 
 		NodeList nodesSuccess = document.getElementsByTagNameNS(XML_NAMESPACE_OPERANDO_CAS, XML_TAG_NAME_INDICATING_VALID_TICKET);
-		NodeList nodesFailure = document.getElementsByTagNameNS(XML_NAMESPACE_OPERANDO_CAS, XML_TAG_NAME_INDICATING_INVALID_TICKET);
 		NodeList nodesUser = document.getElementsByTagNameNS(XML_NAMESPACE_OPERANDO_CAS, XML_TAG_NAME_USER);
 
 		int numberOfSuccessNodes = nodesSuccess.getLength();
-		int numberOfFailureNodes = nodesFailure.getLength();
 		int numberOfUserNodes = nodesUser.getLength();
 
-		if (numberOfSuccessNodes + numberOfFailureNodes == 1 && numberOfSuccessNodes == numberOfUserNodes)
+		if (numberOfSuccessNodes == 1 && numberOfUserNodes == 1)
 		{
 			xmlAsExpected = true;
 		}

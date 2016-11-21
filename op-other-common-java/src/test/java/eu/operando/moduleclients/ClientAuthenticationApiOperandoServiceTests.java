@@ -16,18 +16,12 @@ import eu.operando.OperandoCommunicationException;
 public class ClientAuthenticationApiOperandoServiceTests extends ClientOperandoModuleTests
 {
 	// Variables to be tested.
-	private static final String ENDPOINT_AUTHENTICATION_API_VALIDATE_TICKET_VARIABLE_SERVICE_TICKET = "/authentication/aapi/tickets/{st}/validate";
+	private static final String ENDPOINT_AUTHENTICATION_API_VALIDATE_TICKET_VARIABLE_SERVICE_TICKET = "/aapi/tickets/{st}/validate";
 	private static final String QUERY_PARAMETER_NAME_SERVICE = "serviceId";
-	private static final String QUERY_PARAMETER_NAME_TICKET = "ticket";
 	private static final String XML_RESPONSE_SUCCESS_VARIABLE_USER = "<cas:serviceResponse xmlns:cas=\"http://www.yale.edu/tp/cas\">"
 			 + "\n\t<cas:authenticationSuccess>"
 			 + "\n\t\t<cas:user>%s</cas:user>"
 			 + "\n\t</cas:authenticationSuccess>"
-			 + "\n</cas:serviceResponse>";
-	private static final String XML_RESPONSE_FAILURE_VARIABLE_SERVICE_TICKET = "<cas:serviceResponse xmlns:cas=\"http://www.yale.edu/tp/cas\">"
-			 + "\n\t<cas:authenticationFailure code=\"INVALID_TICKET\">"
-			 + "\n\t\tTicket '%s' not recognized"
-			 + "\n\t</cas:authenticationFailure>"
 			 + "\n</cas:serviceResponse>";
 
 	// Dummy variables to assist testing.
@@ -36,7 +30,6 @@ public class ClientAuthenticationApiOperandoServiceTests extends ClientOperandoM
 	private static final String SERVICE_ID = "ID";
 	private static final String USERNAME = "operando";
 	private static final String XML_RESPONSE_SUCCESS_EXAMPLE = String.format(XML_RESPONSE_SUCCESS_VARIABLE_USER, USERNAME);
-	private static final String XML_RESPONSE_FAILURE_EXAMPLE = String.format(XML_RESPONSE_FAILURE_VARIABLE_SERVICE_TICKET, SERVICE_TICKET);
 
 	private ClientAuthenticationApiOperandoService client = new ClientAuthenticationApiOperandoService(ORIGIN_WIREMOCK);
 
@@ -72,7 +65,7 @@ public class ClientAuthenticationApiOperandoServiceTests extends ClientOperandoM
 	public void testIsOspAuthenticated_HandleInvalidTicketCorrectly() throws OperandoCommunicationException
 	{
 		// Set up
-		stub(HttpMethod.GET, ENDPOINT_AUTHENTICATION_API_VALIDATE_TICKET_EXAMPLE, XML_RESPONSE_FAILURE_EXAMPLE, Status.OK);
+		stub(HttpMethod.GET, ENDPOINT_AUTHENTICATION_API_VALIDATE_TICKET_EXAMPLE, "", Status.BAD_REQUEST);
 
 		// Exercise
 		boolean validTicket = client.isOspAuthenticatedForRequestedService(SERVICE_TICKET, SERVICE_ID);
@@ -116,7 +109,7 @@ public class ClientAuthenticationApiOperandoServiceTests extends ClientOperandoM
 	public void testRequestAuthenticationDetails_HandleInvalidTicketCorrectly() throws OperandoCommunicationException
 	{
 		// Set up
-		stub(HttpMethod.GET, ENDPOINT_AUTHENTICATION_API_VALIDATE_TICKET_EXAMPLE, XML_RESPONSE_FAILURE_EXAMPLE, Status.OK);
+		stub(HttpMethod.GET, ENDPOINT_AUTHENTICATION_API_VALIDATE_TICKET_EXAMPLE, "", Status.BAD_REQUEST);
 		
 		// Exercise
 		AuthenticationWrapper wrapper = client.requestAuthenticationDetails(SERVICE_TICKET, SERVICE_ID);
