@@ -15,8 +15,7 @@ public class ComplianceReport {
 		this.policy = policy;
 	}
 	
-	@ApiModelProperty(value = "")
-	@JsonProperty("privacy_policy")
+	@JsonProperty("privacypolicy")
 	public PrivacyPolicy getPrivacyPolicy(){
 		return policy;
 	}

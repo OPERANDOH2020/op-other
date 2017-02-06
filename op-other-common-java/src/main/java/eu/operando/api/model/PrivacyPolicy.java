@@ -1,70 +1,116 @@
 package eu.operando.api.model;
 
+import java.util.Objects;
+import java.util.Vector;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.annotations.ApiModel;
+
+// TODO correct this string
+@ApiModel(description = "tbd")
 public class PrivacyPolicy
 {
-	private String id = "";
-	private String terms = "";
-
-	public PrivacyPolicy(String id, String terms)
-	{
+	public PrivacyPolicy(String id, Vector<AccessPolicy> accessPolicies){
 		this.id = id;
-		this.terms = terms;		
+		this.accessPolicies = accessPolicies;
 	}
-
-	public String getId()
-	{
+	
+	@JsonProperty("osp_policy_id")
+	public String getId(){
 		return id;
 	}
-
-	public void setId(String id)
-	{
-		this.id = id;
+	
+	@JsonProperty("policies")
+	public Vector<AccessPolicy> getAccessPolicies(){
+		return accessPolicies;
 	}
-
-	public String getTerms()
-	{
-		return terms;
-	}
-
-	public void setTerms(String terms)
-	{
-		this.terms = terms;
-	}
-
+	
+	private String id;
+	
+	private Vector<AccessPolicy> accessPolicies;
+	
 	@Override
-	public int hashCode()
+	public boolean equals(Object o)
 	{
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((terms == null) ? 0 : terms.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj)
-	{
-		if (this == obj)
+		if (this == o)
+		{
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PrivacyPolicy other = (PrivacyPolicy) obj;
-		if (id == null)
-		{
-			if (other.id != null)
-				return false;
 		}
-		else if (!id.equals(other.id))
-			return false;
-		if (terms == null)
+		if (o == null || getClass() != o.getClass())
 		{
-			if (other.terms != null)
-				return false;
-		}
-		else if (!terms.equals(other.terms))
 			return false;
-		return true;
+		}
+		PrivacyPolicy privacyPolicy = (PrivacyPolicy) o;
+		boolean match = Objects.equals(id, privacyPolicy.id) 
+			&& Objects.equals(accessPolicies.size(), privacyPolicy.accessPolicies.size());
+		for(int i = 0; i < accessPolicies.size() && match; i++){
+			match = Objects.equals(accessPolicies.elementAt(i), privacyPolicy.accessPolicies.elementAt(i));
+		}
+		return match;
 	}
+	
+	public static class AccessPolicy{
+		public AccessPolicy(String reasonId, String dataUser, String dataSubjectType, String dataType, String reason){
+			this.reasonId = reasonId;
+			this.dataUser = dataUser;
+			this.dataSubjectType = dataSubjectType;
+			this.dataType = dataType;
+			this.reason = reason;
+		}
+		
+		@JsonProperty("reasonid")
+		public String getId(){
+			return reasonId;
+		}
+		
+		@JsonProperty("datauser")
+		public String getDataUser(){
+			return dataUser;
+		}
+		
+		@JsonProperty("datasubjecttype")
+		public String getDataSubjectType(){
+			return dataSubjectType;
+		}
+		
+		@JsonProperty("datatype")
+		public String getDataType(){
+			return dataType;
+		}
+		
+		@JsonProperty("reason")
+		public String getReason(){
+			return reason;
+		}
+		
+		private String reasonId;
+		
+		private String dataUser;
+		
+		private String dataSubjectType;
+		
+		private String dataType;
+		
+		private String reason;
+		
+		@Override
+		public boolean equals(Object o)
+		{
+			if (this == o)
+			{
+				return true;
+			}
+			if (o == null || getClass() != o.getClass())
+			{
+				return false;
+			}
+			AccessPolicy accessPolicy = (AccessPolicy) o;
+			return Objects.equals(reasonId, accessPolicy.reasonId)
+					&& Objects.equals(dataUser, accessPolicy.dataUser)
+					&& Objects.equals(dataSubjectType, accessPolicy.dataSubjectType)
+					&& Objects.equals(dataType, accessPolicy.dataType)
+					&& Objects.equals(reason, accessPolicy.reason);
+		}
+	};
 }

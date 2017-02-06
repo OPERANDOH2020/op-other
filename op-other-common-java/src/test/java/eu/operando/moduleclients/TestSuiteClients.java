@@ -17,8 +17,7 @@ import org.junit.runners.Suite;
 	ClientPolicyDbTests.class,
 	ClientPrivacyForBenefitTests.class,
 	ClientReportGeneratorTests.class,
-	ClientUserDeviceEnforcementTests.class,
-	ClientWebCrawlerTests.class
+	ClientUserDeviceEnforcementTests.class
 })
 public class TestSuiteClients
 {

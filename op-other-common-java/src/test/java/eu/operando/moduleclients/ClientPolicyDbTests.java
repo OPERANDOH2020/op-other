@@ -1,6 +1,12 @@
 package eu.operando.moduleclients;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Vector;
 
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.core.Response.Status;
@@ -11,6 +17,8 @@ import org.junit.Test;
 import eu.operando.OperandoCommunicationException;
 import eu.operando.api.model.DtoPrivacyRegulation.PrivateInformationTypeEnum;
 import eu.operando.api.model.DtoPrivacyRegulation.RequiredConsentEnum;
+import eu.operando.api.model.PrivacyPolicy;
+import eu.operando.api.model.PrivacyPolicy.AccessPolicy;
 import eu.operando.api.model.PrivacyRegulation;
 import eu.operando.api.model.PrivacyRegulationInput;
 
@@ -18,16 +26,61 @@ public class ClientPolicyDbTests extends ClientOperandoModuleTests
 {
 	// Variables to test
 	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = "/operando/core/policies_db";
+	private static final String ENDPOINT_POLICY_DB_PRIVACY_POLICY_VARIABLE_OSP_ID = PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB + "/OSP/{osp_id}/privacy-policy";
 	private static final String ENDPOINT_POLICY_DB_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB + "/regulations";
 	private static final String ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_DB_REGULATIONS + "/{reg_id}";
 
 	// Dummy variables to assist testing.
+	private static final String OSP_ID_TO_SEND = "1";
+	private static final Vector<PrivacyPolicy.AccessPolicy> ACCESS_POLICIES = new Vector<>(Arrays.asList(
+			new AccessPolicy("2", "Doctor", "Patient", "Medical Data", "Medical Reasons")
+	));
+	private static final PrivacyPolicy POLICY_RETURNED_FROM_PDB = new PrivacyPolicy("2", ACCESS_POLICIES);
 	private static final PrivacyRegulation REGULATION_TO_SEND =
 			new PrivacyRegulation("1", "sector", "source", PrivateInformationTypeEnum.BEHAVIOURAL, "action", RequiredConsentEnum.IN);
 	private static final PrivacyRegulation REGULATION_RETURNED_FROM_PDB = REGULATION_TO_SEND;
-
 	private ClientPolicyDb client = new ClientPolicyDb(ORIGIN_WIREMOCK);
 
+	@Test
+	public void testGetPrivacyPolicyOnPolicyDb_CorrectHttpRequest() throws OperandoCommunicationException{
+		// Set up
+		String endpoint = ENDPOINT_POLICY_DB_PRIVACY_POLICY_VARIABLE_OSP_ID.replace("{osp_id}", OSP_ID_TO_SEND);
+		String httpMethod = HttpMethod.GET;
+		stub(httpMethod, endpoint, POLICY_RETURNED_FROM_PDB);
+
+		// Exercise
+		client.getPrivacyPolicyForOsp(OSP_ID_TO_SEND);
+
+		// Verify
+		verifyCorrectHttpRequest(httpMethod, endpoint);
+	}
+	
+	@Test(expected = OperandoCommunicationException.class)
+	public void testGetPrivacyPolicyOnPolicyDb_FailedGet_HttpExceptionThrown() throws OperandoCommunicationException{
+		// Set up
+		String endpoint = ENDPOINT_POLICY_DB_PRIVACY_POLICY_VARIABLE_OSP_ID.replace("{osp_id}", OSP_ID_TO_SEND);
+		String httpMethod = HttpMethod.GET;
+		stub(httpMethod, endpoint, "", Status.INTERNAL_SERVER_ERROR);
+
+		// Exercise
+		client.getPrivacyPolicyForOsp(OSP_ID_TO_SEND);
+	}
+	
+	@Test
+	public void testGetPrivacyPolicyOnPolicyDb_SuccessfulGet_ResponseBodyInterpretedCorrectly() throws OperandoCommunicationException{
+		// Set up
+		String endpoint = ENDPOINT_POLICY_DB_PRIVACY_POLICY_VARIABLE_OSP_ID.replace("{osp_id}", OSP_ID_TO_SEND);
+		String httpMethod = HttpMethod.GET;
+		stub(httpMethod, endpoint, POLICY_RETURNED_FROM_PDB);
+
+		// Exercise
+		PrivacyPolicy policyReturnedFromClient = client.getPrivacyPolicyForOsp(OSP_ID_TO_SEND);
+
+		// Verify
+		assertEquals("The client did not correctly interpret the returned JSON",
+			POLICY_RETURNED_FROM_PDB, policyReturnedFromClient);
+	}
+	
 	@Test
 	public void testCreateNewRegulationOnPolicyDb_CorrectHttpRequest() throws OperandoCommunicationException
 	{
