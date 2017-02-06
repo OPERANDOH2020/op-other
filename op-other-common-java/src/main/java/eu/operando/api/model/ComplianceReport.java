@@ -1,5 +1,24 @@
 package eu.operando.api.model;
 
-public class ComplianceReport {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+// TODO correct this string
+@ApiModel(description = "A report on an OSP's compliance with whatever it is")
+public class ComplianceReport {
+	
+	private PrivacyPolicy policy;
+	
+	public ComplianceReport(PrivacyPolicy policy){
+		this.policy = policy;
+	}
+	
+	@ApiModelProperty(value = "")
+	@JsonProperty("privacy_policy")
+	public PrivacyPolicy getPrivacyPolicy(){
+		return policy;
+	}
+	
 }

@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response.Status;
 import eu.operando.HttpUtils;
 import eu.operando.OperandoCommunicationException;
 import eu.operando.OperandoCommunicationException.CommunicationError;
+import eu.operando.api.model.PrivacyPolicy;
 import eu.operando.api.model.PrivacyRegulation;
 import eu.operando.api.model.PrivacyRegulationInput;
 
@@ -19,6 +20,11 @@ public class ClientPolicyDb extends ClientOperandoModule
 	public ClientPolicyDb(String originPolicyDb)
 	{
 		super(originPolicyDb);
+	}
+	
+	public PrivacyPolicy getPrivacyPolicyForOsp(String ospId) throws OperandoCommunicationException
+	{
+		return null;
 	}
 
 	public PrivacyRegulation createNewRegulationOnPolicyDb(PrivacyRegulationInput privacyReulationInput) throws OperandoCommunicationException
