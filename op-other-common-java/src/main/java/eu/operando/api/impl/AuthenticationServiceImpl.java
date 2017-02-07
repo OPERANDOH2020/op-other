@@ -1,5 +1,6 @@
 package eu.operando.api.impl;
 
+import eu.operando.AuthenticationWrapper;
 import eu.operando.OperandoCommunicationException;
 import eu.operando.api.AuthenticationService;
 import eu.operando.api.factories.AuthenticationServiceFactory;
@@ -17,6 +18,12 @@ public class AuthenticationServiceImpl extends AuthenticationServiceFactory impl
 	public boolean isAuthenticatedForService(String serviceTicket, String serviceId)
 			throws OperandoCommunicationException {
 		return clientAuthenticationService.isOspAuthenticatedForRequestedService(serviceTicket, serviceId);
+	}
+
+	@Override
+	public AuthenticationWrapper requestAuthenticationDetails(String serviceTicket, String serviceId)
+			throws OperandoCommunicationException {
+		return clientAuthenticationService.requestAuthenticationDetails(serviceTicket, serviceId);
 	}
 
 }

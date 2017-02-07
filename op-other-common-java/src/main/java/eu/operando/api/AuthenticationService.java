@@ -1,5 +1,6 @@
 package eu.operando.api;
 
+import eu.operando.AuthenticationWrapper;
 import eu.operando.OperandoCommunicationException;
 
 public interface AuthenticationService {
@@ -13,4 +14,16 @@ public interface AuthenticationService {
 	 * @throws OperandoCommunicationException 
 	 */
 	boolean isAuthenticatedForService(String serviceTicket, String serviceId) throws OperandoCommunicationException;
+	
+	/**
+	 * Ask the authentication service for details of the caller's authentication.
+	 * @param serviceTicket
+	 * 	the ticket provided by the caller.
+	 * @param serviceId
+	 * 	the ID of the requested service.
+	 * @return
+	 * 	A wrapper representing the details of the caller's authentication for this service. Null if there is an issue (e.g. HTTP error or error with parsing). 
+	 * @throws OperandoCommunicationException 
+	 */
+	AuthenticationWrapper requestAuthenticationDetails(String serviceTicket, String serviceId) throws OperandoCommunicationException;
 }
