@@ -1,6 +1,7 @@
 package eu.operando.moduleclients;
 
-import javax.ws.rs.HttpMethod;
+import eu.operando.OperandoCommunicationException;
+import eu.operando.api.model.AnalyticsReport;
 
 public class ClientBigDataAnalytics extends ClientOperandoModule
 {
@@ -12,9 +13,8 @@ public class ClientBigDataAnalytics extends ClientOperandoModule
 		super(originBigDataAnalytics);
 	}
 
-	public void getBdaReport(int reportId)
-	{
-		String endpoint = String.format(ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID, reportId);
-		sendRequest(HttpMethod.GET, endpoint);
+	// TODO implementation
+	public AnalyticsReport getBdaReport(String jobId, String userId) throws OperandoCommunicationException{
+		return null;
 	}
 }

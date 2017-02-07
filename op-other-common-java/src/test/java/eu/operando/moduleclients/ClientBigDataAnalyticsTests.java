@@ -1,5 +1,7 @@
 package eu.operando.moduleclients;
 
+import static org.junit.Assert.fail;
+
 import javax.ws.rs.HttpMethod;
 
 import org.junit.Test;
@@ -14,14 +16,15 @@ public class ClientBigDataAnalyticsTests extends ClientOperandoModuleTests
 	@Test
 	public void testGetBdaReport_CorrectHttpRequest()
 	{
-		// Set Up
-		int ospId = 1;
-
-		// Exercise
-		client.getBdaReport(ospId);
-
-		// Verify
-		String endpoint = String.format(ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID, ospId);
-		verifyCorrectHttpRequest(HttpMethod.GET, endpoint);
+		fail("class not ready for testing");
+//		// Set Up
+//		int ospId = 1;
+//
+//		// Exercise
+//		client.getBdaReport(ospId);
+//
+//		// Verify
+//		String endpoint = String.format(ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID, ospId);
+//		verifyCorrectHttpRequest(HttpMethod.GET, endpoint);
 	}
 }
