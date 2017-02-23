@@ -66,7 +66,12 @@ public class ClientPolicyDb extends ClientOperandoModule
 		boolean responseSuccessful = HttpUtils.statusCodeIsInFamily(statusCodeResponse, Status.Family.SUCCESSFUL);
 		if (!responseSuccessful)
 		{
-			throw new OperandoCommunicationException(CommunicationError.OTHER, "A response from the PDB had status code: " + statusCodeResponse);
+			CommunicationError communicationError = CommunicationError.OTHER;
+			if (statusCodeResponse == Status.NOT_FOUND.getStatusCode())
+			{
+				communicationError = CommunicationError.REQUESTED_RESOURCE_NOT_FOUND;
+			}
+			throw new OperandoCommunicationException(communicationError, "A response from the PDB had status code: " + statusCodeResponse);
 		}
 
 		String strJson = response.readEntity(String.class);

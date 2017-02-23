@@ -2,6 +2,7 @@ package eu.operando.api;
 
 import eu.operando.AuthenticationWrapper;
 import eu.operando.OperandoCommunicationException;
+import eu.operando.UnableToGetDataException;
 
 public interface AuthenticationService {
 	/**
@@ -11,9 +12,9 @@ public interface AuthenticationService {
 	 *        the service ticket to be validated.
 	 * @param serviceId
 	 * @return whether the caller is allowed to access the requested service.
-	 * @throws OperandoCommunicationException 
+	 * @throws UnableToGetDataException 
 	 */
-	boolean isAuthenticatedForService(String serviceTicket, String serviceId) throws OperandoCommunicationException;
+	boolean isAuthenticatedForService(String serviceTicket, String serviceId) throws UnableToGetDataException;
 	
 	/**
 	 * Ask the authentication service for details of the caller's authentication.
@@ -23,7 +24,7 @@ public interface AuthenticationService {
 	 * 	the ID of the requested service.
 	 * @return
 	 * 	A wrapper representing the details of the caller's authentication for this service. Null if there is an issue (e.g. HTTP error or error with parsing). 
-	 * @throws OperandoCommunicationException 
+	 * @throws UnableToGetDataException 
 	 */
-	AuthenticationWrapper requestAuthenticationDetails(String serviceTicket, String serviceId) throws OperandoCommunicationException;
+	AuthenticationWrapper requestAuthenticationDetails(String serviceTicket, String serviceId) throws UnableToGetDataException;
 }
