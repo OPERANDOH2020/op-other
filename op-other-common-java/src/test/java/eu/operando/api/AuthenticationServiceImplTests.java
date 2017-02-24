@@ -124,7 +124,7 @@ public class AuthenticationServiceImplTests
 		implementation.requestAuthenticationDetails("A123", "B987");
 	}
 
-	private void setUpRequestDetials(boolean ticketIsValid, String userId) throws OperandoCommunicationException, UnableToGetDataException
+	private void setUpRequestDetials(boolean ticketIsValid, String userId) throws OperandoCommunicationException
 	{
 		when(mockClient.requestAuthenticationDetails(anyString(), anyString())).thenReturn(new AuthenticationWrapper(ticketIsValid, userId));
 	}
