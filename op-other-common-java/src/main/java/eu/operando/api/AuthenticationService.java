@@ -1,7 +1,6 @@
 package eu.operando.api;
 
 import eu.operando.AuthenticationWrapper;
-import eu.operando.OperandoCommunicationException;
 import eu.operando.UnableToGetDataException;
 
 public interface AuthenticationService {

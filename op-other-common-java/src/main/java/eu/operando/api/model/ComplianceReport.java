@@ -3,7 +3,6 @@ package eu.operando.api.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 // TODO correct this string
 @ApiModel(description = "A report on an OSP's compliance with whatever it is")
