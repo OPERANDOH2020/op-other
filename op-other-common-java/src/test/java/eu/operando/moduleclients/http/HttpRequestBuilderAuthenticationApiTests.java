@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.core.Response.Status;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import eu.operando.CredentialsOperando;

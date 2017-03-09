@@ -14,7 +14,6 @@ public class AuthenticationWrapper
 
 	// XML constants
 	private static final String XML_NAMESPACE_OPERANDO_CAS = "http://www.yale.edu/tp/cas";
-	private static final String XML_TAG_NAME_INDICATING_INVALID_TICKET = "authenticationFailure";
 	private static final String XML_TAG_NAME_INDICATING_VALID_TICKET = "authenticationSuccess";
 	private static final String XML_TAG_NAME_USER = "user";
 

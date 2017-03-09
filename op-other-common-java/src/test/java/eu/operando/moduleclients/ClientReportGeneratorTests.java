@@ -8,7 +8,6 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response.Status;
 
 import org.glassfish.jersey.internal.util.collection.MultivaluedStringMap;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.operando.OperandoCommunicationException;
