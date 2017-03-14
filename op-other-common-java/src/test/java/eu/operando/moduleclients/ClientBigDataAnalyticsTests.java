@@ -21,6 +21,8 @@ public class ClientBigDataAnalyticsTests extends ClientOperandoModuleTests
 	public static final String ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID = 
 		PATH_INTERNAL_OPERANDO_CORE_BIGDATA + "/jobs/{job_id}/reports/latest";
 	
+	private static final String SERVICE_ID_BIG_DATA_ANALYTICS = "GET/osp/bda/jobs/.*/reports";
+	
 	private ClientAuthenticationApiOperandoClient mockClientAuthenticationApiOperandoClient = Mockito.mock(ClientAuthenticationApiOperandoClient.class);
 	private ClientBigDataAnalytics client = new ClientBigDataAnalytics(ORIGIN_WIREMOCK, mockClientAuthenticationApiOperandoClient);
 	
@@ -30,7 +32,7 @@ public class ClientBigDataAnalyticsTests extends ClientOperandoModuleTests
 		// Set up
 		String jobId = "C456";
 		String serviceTicket = "abcd";
-		when(mockClientAuthenticationApiOperandoClient.requestServiceTicket(anyString())).thenReturn(serviceTicket);
+		when(mockClientAuthenticationApiOperandoClient.requestServiceTicket(SERVICE_ID_BIG_DATA_ANALYTICS)).thenReturn(serviceTicket);
 		String userId = "D000";
 		MultivaluedStringMap headerParametersExpected = new MultivaluedStringMap();
 		headerParametersExpected.add("psp-user", userId);
