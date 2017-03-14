@@ -18,7 +18,7 @@ public class ClientBigDataAnalytics extends ClientOperandoModule
 	public static final String ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID = 
 		PATH_INTERNAL_OPERANDO_CORE_BIGDATA + "/jobs/{job-id}/reports/latest";
 	
-	private static final String SERVICE_ID_BIG_DATA_ANALYTICS = "";
+	private static final String SERVICE_ID_BIG_DATA_ANALYTICS = "GET/osp/bda/jobs/.*/reports";
 	
 	private ClientAuthenticationApiOperandoClient clientAuthenticationApi = null;
 	
