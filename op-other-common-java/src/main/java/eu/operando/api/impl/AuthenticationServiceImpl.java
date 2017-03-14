@@ -20,6 +20,9 @@ public class AuthenticationServiceImpl extends AuthenticationServiceFactory impl
 	@Override
 	public boolean isAuthenticatedForService(String serviceTicket, String serviceId) throws UnableToGetDataException
 	{
+		if(serviceTicket == null || serviceId == null){
+			return false;
+		}
 		try
 		{
 			AuthenticationWrapper authenticationDetails = clientAuthenticationService.requestAuthenticationDetails(serviceTicket, serviceId);

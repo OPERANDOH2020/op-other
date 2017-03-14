@@ -20,7 +20,7 @@ public class AuthenticationServiceFactory {
 		
 		//TODO remove when no longer needed
 		final Logger LOGGER = LogManager.getLogger(AuthenticationService.class);
-		LOGGER.info("AuthenticationService started with base url: ", originAuthenticationApi);
+		LOGGER.info("AuthenticationService started with base url: " + originAuthenticationApi);
 		
 		// Create the clients based on the properties file.
 		ClientAuthenticationApiOperandoService clientAuthenticationService = 
