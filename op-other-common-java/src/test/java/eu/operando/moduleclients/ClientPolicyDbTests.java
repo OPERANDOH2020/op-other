@@ -24,7 +24,7 @@ import eu.operando.api.model.PrivacyRegulationInput;
 public class ClientPolicyDbTests extends ClientOperandoModuleTests
 {
 	// Variables to test
-	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = "/operando/core/policies_db";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = "/operando/core/pdb";
 	private static final String ENDPOINT_POLICY_DB_PRIVACY_POLICY_VARIABLE_OSP_ID = PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB + "/OSP/{osp_id}/privacy-policy";
 	private static final String ENDPOINT_POLICY_DB_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB + "/regulations";
 	private static final String ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_DB_REGULATIONS + "/{reg_id}";

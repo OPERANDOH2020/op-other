@@ -13,7 +13,7 @@ import eu.operando.api.model.PrivacyRegulationInput;
 
 public class ClientPolicyDb extends ClientOperandoModule
 {
-	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = PATH_OPERANDO_CORE + "/policies_db";
+	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB = PATH_OPERANDO_CORE + "/pdb";
 	private static final String ENDPOINT_POLICY_DB_OSP_VARIABLE_OSP_ID_PRIVACY_POLICY = PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB + "/OSP/{osp_id}/privacy-policy";
 	private static final String ENDPOINT_POLICY_DB_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_POLICIES_DB + "/regulations";
 	private static final String ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_DB_REGULATIONS + "/{reg_id}";
