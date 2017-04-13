@@ -1,0 +1,52 @@
+version: '2'
+services:
+  aapi:
+    depends_on:
+      - dnsmasq
+      - cas
+    dns: 172.16.101.101
+    image: registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.aapi.server:ALPHA
+    networks:
+      - operando
+    ports:
+      - "8135:8080"
+  cas:
+    depends_on:
+      - dnsmasq
+      - openldap
+    dns: 172.16.101.101
+    image: registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.cas.server:ALPHA
+    networks:
+      - operando
+    ports:
+      - "8101:8080"
+      - "8105:8443"
+  dnsmasq:
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - LOCAL_IP=192.168.99.177 # this should be the IP address of the machine hosting Docker Server
+    image: registry.devops.operando.esilab.org:5000/operando/eu.operando.dnsmasq.server:ALPHA
+    networks:
+      operando:
+        ipv4_address: 172.16.101.101
+  openldap:
+    depends_on:
+      - dnsmasq
+    dns: 172.16.101.101
+    image: registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.openldap.server:ALPHA
+    networks:
+      - operando
+    ports:
+      - "389:389"
+      - "686:686"
+
+networks:
+  # We have our own operando network so that we can specify the dnsmasq container as the DNS server (this relies on knowing the IP of the DNS server, and to assign a static IP we have to specify the network ourselves).
+  operando:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.101.0/24
+          gateway: 172.16.101.1

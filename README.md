@@ -12,3 +12,6 @@ A repository to keep track of the dependencies which are required for testing. S
 * Gatekeeper
 * Regulator API
 * OSP API
+
+## docker-compose
+Contains a docker-compose script. With Docker installed, this script will download Docker images of the necessary OPERANDO modules, install them, configure them to communicate with each other, and run the platform.
