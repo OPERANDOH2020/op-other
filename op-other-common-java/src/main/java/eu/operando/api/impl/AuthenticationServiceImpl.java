@@ -38,6 +38,9 @@ public class AuthenticationServiceImpl extends AuthenticationServiceFactory impl
 	@Override
 	public AuthenticationWrapper requestAuthenticationDetails(String serviceTicket, String serviceId) throws UnableToGetDataException
 	{
+		if(serviceTicket == null || serviceId == null){
+			return new AuthenticationWrapper(false, null);
+		}
 		try
 		{
 			return clientAuthenticationService.requestAuthenticationDetails(serviceTicket, serviceId);
