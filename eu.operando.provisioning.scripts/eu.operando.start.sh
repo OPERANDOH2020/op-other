@@ -29,7 +29,7 @@ sudo docker run -d -p 8135:8080 --name eu.operando.interfaces.aapi.server --dns 
 
 sudo docker run -d -p 8090:8080 --name eu.operando.core.ldb.server -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_dan" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.ldb.server:ALPHA
 
-sudo docker run -d -p 3306:3306 --name eu.operando.int.core.mysql.server --cap-add=NET_ADMIN -e "LOCAL_IP=$LOCAL_IP" registry.devops.operando.esilab.org:5000/operando/eu.operando.dnsmasq.server:ALPHA
+sudo docker run -d -p 3306:3306 --name eu.operando.int.core.mysql.server --cap-add=NET_ADMIN -e "LOCAL_IP=$LOCAL_IP" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mysql.server:ALPHA
 
 sudo docker run -d -p 27017:27017 --name eu.operando.core.mongo.server registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
 
