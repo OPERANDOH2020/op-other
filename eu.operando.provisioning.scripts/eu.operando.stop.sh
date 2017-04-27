@@ -1,9 +1,4 @@
-sudo docker rm dnsmasq -f
-sudo docker rm openldap -f
-sudo docker rm cas -f
-sudo docker rm aapi -f
-
-
-
-
-
+docker rm aapi
+docker rm cas
+docker rm openldap
+docker rm dnsmasq
