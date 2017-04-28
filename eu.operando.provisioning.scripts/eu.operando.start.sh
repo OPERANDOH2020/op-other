@@ -25,11 +25,11 @@ sudo docker run -d -p 3306:3306 --name eu.operando.core.mysql.server --dns $DNS_
 
 sudo docker run -d -p 27017:27017 --name eu.operando.core.mongo.server --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
 
-sleep 15  
-
 sudo docker run -d -p 389:389 -p 636:636 --name eu.operando.core.as.openldap.server --dns $DNS_IP -e LDAP_DOMAIN=nodomain -e LDAP_ORGANISATION=nodomain -e HOSTNAME=integration.operando.dmz.lab.esilab.org -e LDAP_TLS_VERIFY_CLIENT=allow registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.openldap.server:ALPHA
 
 sudo docker run -d -p 8101:8080 -p 8105:8443 --name eu.operando.core.as.cas.server --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.cas.server:ALPHA
+
+sleep 15  
 
 sudo docker run -d -p 8135:8080 --name eu.operando.interfaces.aapi.server --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.aapi.server:ALPHA
 
