@@ -23,5 +23,6 @@ sudo docker rm eu.operando.core.as.cas.server -f
 sudo docker rm eu.operando.core.as.openldap.server -f
 sudo docker rm eu.operando.dnsmasq.server -f
 sudo docker rm eu.operando.webui.rg.birt.server -f
+sudo docker rm eu.operando.core.rm.server -f
 
 
