@@ -24,6 +24,6 @@ docker rm eu.operando.core.ldb.server.test.01 -f
 docker rm eu.operando.core.rm.server.test.01 -f
 docker rm eu.operando.core.ae.server.test.01 -f
 docker rm eu.operando.core.pdb.server.test.01 -f
-docker rm eu.operando.core.yellowpages.server.test.01 -f
+docker rm eu.operando.demo.yellowpages.server.test.01 -f
 
 
