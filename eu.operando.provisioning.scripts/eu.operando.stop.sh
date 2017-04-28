@@ -16,7 +16,7 @@ sudo docker rm eu.operando.pdr.rpm.server -f
 sudo docker rm eu.operando.pdr.gk.server -f
 sudo docker rm eu.operando.pdr.dan.server -f
 sudo docker rm eu.operando.core.mongo.server -f
-sudo docker rm eu.operando.int.core.mysql.server -f
+sudo docker rm eu.operando.core.mysql.server -f
 sudo docker rm eu.operando.core.ldb.server -f
 sudo docker rm eu.operando.interfaces.aapi.server -f
 sudo docker rm eu.operando.core.as.cas.server -f
