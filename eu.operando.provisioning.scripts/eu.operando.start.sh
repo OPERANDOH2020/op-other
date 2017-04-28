@@ -21,6 +21,10 @@ sudo docker run -d --name eu.operando.dnsmasq.server --cap-add=NET_ADMIN -e "LOC
 DNS_IP=`sudo docker exec -i -t eu.operando.dnsmasq.server hostname -i | awk -F' ' '{printf($1)}'`
 echo "The following IP will be used as DNS_IP for all operando components: $DNS_IP"
 
+sudo docker run -d -p 3306:3306 --name eu.operando.core.mysql.server --dns $DNS_IP -e "MYSQL_ROOT_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mysql.server:ALPHA
+
+sudo docker run -d -p 27017:27017 --name eu.operando.core.mongo.server --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
+
 sudo docker run -d -p 389:389 -p 636:636 --name eu.operando.core.as.openldap.server --dns $DNS_IP -e LDAP_DOMAIN=nodomain -e LDAP_ORGANISATION=nodomain -e HOSTNAME=integration.operando.dmz.lab.esilab.org -e LDAP_TLS_VERIFY_CLIENT=allow registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.openldap.server:ALPHA
 
 sudo docker run -d -p 8101:8080 -p 8105:8443 --name eu.operando.core.as.cas.server --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.cas.server:ALPHA
@@ -28,10 +32,6 @@ sudo docker run -d -p 8101:8080 -p 8105:8443 --name eu.operando.core.as.cas.serv
 sudo docker run -d -p 8135:8080 --name eu.operando.interfaces.aapi.server --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.aapi.server:ALPHA
 
 sudo docker run -d -p 8090:8080 --name eu.operando.core.ldb.server --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_logdb" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.ldb.server:ALPHA
-
-sudo docker run -d -p 3306:3306 --name eu.operando.core.mysql.server --dns $DNS_IP -e "MYSQL_ROOT_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mysql.server:ALPHA
-
-sudo docker run -d -p 27017:27017 --name eu.operando.core.mongo.server --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
 
 sudo docker run -d -p 8111:8080 --name eu.operando.pdr.dan.server --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_dan" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.pdr.dan.server:ALPHA
 
