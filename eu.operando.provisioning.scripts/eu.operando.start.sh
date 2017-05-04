@@ -1,5 +1,30 @@
 #!/bin/bash
 
+## functions
+
+#######################################
+# Returns the command string that, when 
+# executed, will return the IP address 
+# of the given network interface.
+# Arguments:
+#   $1: network interface name
+#######################################
+function get_command_string_to_get_ip_address_for_network_interface () {
+  echo "ifconfig $1 | grep \"inet addr\" | cut -d ':' -f 2 | cut -d ' ' -f 1"
+}
+
+#######################################
+# Returns the IP address of the given 
+# network interface.
+# Arguments:
+#   $1: network interface name
+#######################################
+function get_ip_address_for_network_interface () {
+  echo $(/bin/bash -c "$(get_command_string_to_get_ip_address_for_network_interface $1)")
+}
+
+## script
+
 #check ubuntu 16.04
 OS_TYPE=`cat /etc/issue | awk -F. '{printf($1)}'`
 OS_VERSION=`cat /etc/issue | awk -F. '{printf($2)}'`
@@ -11,14 +36,14 @@ else
 fi
 
 # get the local IP
-LOCAL_IP=`hostname -I | awk -F' ' '{printf($1)}'`
+LOCAL_IP=$(get_ip_address_for_network_interface "eth0")
 echo "The following IP will be used as LOCAL_IP for all operando addresses: $LOCAL_IP"
 
 # first we start dnsmasq to fake dns
 docker run -d --name dnsmasq --cap-add=NET_ADMIN -e "LOCAL_IP=$LOCAL_IP" registry.devops.operando.esilab.org:5000/operando/eu.operando.dnsmasq.server:ALPHA
 
 # get docker IP of dnsmasq
-DNS_IP=`docker exec -i -t dnsmasq hostname -i | awk -F' ' '{printf($1)}'`
+DNS_IP=$(docker exec -i -t dnsmasq /bin/sh -c "$(get_command_string_to_get_ip_address_for_network_interface eth0)")
 echo "The following IP will be used as DNS_IP for all operando components: $DNS_IP"
 
 # aapi modules
