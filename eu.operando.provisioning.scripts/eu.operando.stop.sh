@@ -1,3 +1,5 @@
+# remove DAN container
+docker rm -f dan
 # remove LDB containers
 docker rm -f ldb.search
 docker rm -f ldb
