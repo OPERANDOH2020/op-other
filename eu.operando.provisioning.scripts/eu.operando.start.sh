@@ -51,8 +51,9 @@ docker run -d -p 389:389 -p 636:636 --name openldap --dns $DNS_IP -e LDAP_DOMAIN
 docker run -d -p 8101:8080 -p 8105:8443 --name cas --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.cas.server:ALPHA
 docker run -d -p 8135:8080 --name aapi --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.aapi.server:ALPHA
 
-# MySQL
+# MySQL and Mongo DBs
 docker run -d -p 3306:3306 --name operando.mysql --dns $DNS_IP -e "MYSQL_ROOT_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mysql.server:ALPHA
+docker run -d -p 27017:27017 --name operando.mongo --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
 # we have to sleep here while MySQL starts up and creates its databases. In the future I think that this should be replaced by mounting a pre-exisitng DB.
 sleep 30
 
@@ -62,3 +63,6 @@ docker run -d -p 8091:8080 --name ldb.search --dns $DNS_IP -e "MYSQL_DB_HOST=mys
 
 # DAN
 docker run -d -p 8111:8080 --name dan --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_dan" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.pdr.dan.server:ALPHA
+
+# PDB
+docker run -d -p 8096:8080 --name pdb --dns $DNS_IP -e "MONGO_HOST=mongo.integration.operando.lan.esilab.org" -e "MONGO_PORT=27017" -e "LDB_ENDPOINT=http://ldb.integration.operando.lan.esilab.org:8090/operando/core/ldb" -e "AAPI_ENDPOINT=http://aapi.integration.operando.lan.esilab.org:8135/operando/interfaces/aapi" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.pdb.server:ALPHA
