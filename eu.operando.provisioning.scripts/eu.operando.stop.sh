@@ -1,21 +1,11 @@
-# stop LDB containers
-docker stop ldb.search
-docker stop ldb
-docker stop operando.mysql
-# stop AAPI containers
-docker stop aapi
-docker stop cas
-docker stop openldap
-# stop DNS container
-docker stop dnsmasq
-
 # remove LDB containers
-docker rm ldb.search
-docker rm ldb
-docker rm operando.mysql
+docker rm -f ldb.search
+docker rm -f ldb
+# remove MySQL container
+docker rm -f operando.mysql
 # remove AAPI containers
-docker rm aapi
-docker rm cas
-docker rm openldap
+docker rm -f aapi
+docker rm -f cas
+docker rm -f openldap
 # remove DNS container
-docker rm dnsmasq
+docker rm -f dnsmasq
