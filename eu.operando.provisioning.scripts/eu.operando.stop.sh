@@ -1,3 +1,5 @@
+# remove pc container
+docker rm -f pc
 # remove pdb container
 docker rm -f pdb
 # remove DAN container

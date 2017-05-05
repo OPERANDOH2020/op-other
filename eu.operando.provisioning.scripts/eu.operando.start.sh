@@ -66,3 +66,7 @@ docker run -d -p 8111:8080 --name dan --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.inte
 
 # PDB
 docker run -d -p 8096:8080 --name pdb --dns $DNS_IP -e "MONGO_HOST=mongo.integration.operando.lan.esilab.org" -e "MONGO_PORT=27017" -e "LDB_ENDPOINT=http://ldb.integration.operando.lan.esilab.org:8090/operando/core/ldb" -e "AAPI_ENDPOINT=http://aapi.integration.operando.lan.esilab.org:8135/operando/interfaces/aapi" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.pdb.server:ALPHA
+
+#PC
+docker run -d -p 8095:8080 --name pc --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.pc.server:ALPHA
+
