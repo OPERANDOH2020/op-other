@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.ws.rs.HttpMethod;
+import javax.ws.rs.ProcessingException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -86,6 +87,7 @@ public abstract class ClientOperandoModule
 		requestBuilder.headers((MultivaluedMap<String, Object>) headers);
 
 		Entity<String> createEntityStringJson = createEntityStringJson(objectInBody);
+		try{
 		switch (httpMethod)
 		{
 			case HttpMethod.GET:
@@ -110,6 +112,10 @@ public abstract class ClientOperandoModule
 				break;
 			default:
 				throw new NotImplementedException("eu.operando.moduleclients.ClientOp.sendRequest has not been implemented for the HTTP method " + httpMethod);
+		}
+		}
+		catch(ProcessingException ex){
+			throw new ProcessingException("URI was " + originOfTarget + " / " + endpoint, ex);
 		}
 
 		return response;
