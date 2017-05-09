@@ -1,3 +1,5 @@
+# remove webui
+docker rm -f webui
 # remove pc container
 docker rm -f pc
 # remove pdb container
