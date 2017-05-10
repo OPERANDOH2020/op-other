@@ -1,21 +1,40 @@
+#!/bin/bash
+
+source eu.operando.utils.sh
+if [[ $? != 0 ]]; then
+	echo "Couldn't locate utils! Exiting...";
+	exit -1;
+fi
+
+source eu.operando.config.sh
+if [[ $? != 0 ]]; then
+	echo "Couldn't locate config! Exiting...";
+	exit -1;
+fi
+
+## script
+
 # remove webui
-docker rm -f webui
+$SUDO docker rm -f webui
 # remove pc container
-docker rm -f pc
+$SUDO docker rm -f pc
 # remove pdb container
-docker rm -f pdb
+$SUDO docker rm -f pdb
 # remove DAN container
-docker rm -f dan
+$SUDO docker rm -f dan
 # remove LDB containers
-docker rm -f ldb.search
-docker rm -f ldb
+$SUDO docker rm -f ldb.search
+$SUDO docker rm -f ldb
 # remove Mongo container
-docker rm -f operando.mongo
+$SUDO docker rm -f operando.mongo
 # remove MySQL container
-docker rm -f operando.mysql
+$SUDO docker rm -f operando.mysql
 # remove AAPI containers
-docker rm -f aapi
-docker rm -f cas
-docker rm -f openldap
+$SUDO docker rm -f aapi
+$SUDO docker rm -f cas
+$SUDO docker rm -f openldap
 # remove DNS container
-docker rm -f dnsmasq
+$SUDO docker rm -f dnsmasq
+
+_title "SUCCESS"
+_wait_enter
