@@ -46,11 +46,11 @@ function wait_service_online() {
   _info "Waiting for $1 to be online..."
   ONLINE=false
   while [ $ONLINE == false ]; do
-    OUT=$(docker run --rm --link $1:$1 byrnedo/alpine-curl -sS -I http://$1:$2/$3)
+    HTTP_CODE=$(docker run --rm --link $1:$1 byrnedo/alpine-curl -sS --output /dev/null --silent --write-out "%{http_code}" "http://$1:$2/$3")
     RET=$?
     if [ "$RET" -eq "0" ]; then
-      HTTP_CODE=`echo $OUT | awk '{printf($2)}'`;
-      if [ $HTTP_CODE -eq "200" ]; then
+      _info "GET http://$1:$2/$3\treturned $HTTP_CODE"
+      if [ "$HTTP_CODE" -lt 300 ]; then
         _info "Connection to $1 ok";
       else
         _warn "Could enstablish connection with $1, but http code returned was $HTTP_CODE"
@@ -104,7 +104,8 @@ fi
 LOCAL_IP=$(get_ip_address_for_network_interface "${NET_INTERFACE}")
 _info "The following IP will be used as LOCAL_IP for all operando addresses: $LOCAL_IP"
 
-if [ $PERSISTENCE ]; then
+if $PERSISTENCE; then
+  _info "Preparing volume directory: $VOLUMES"
   mkdir -p $VOLUMES
 fi
 
@@ -131,6 +132,7 @@ wait_service_online cas 8080
 
 _title "DEPLOY: aapi"
 docker run -d -p 8135:8080 --name aapi --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.aapi.server:ALPHA
+wait_service_online aapi 8080 operando/interfaces/aapi/aapi/user/getOspList
 
 # MySQL and Mongo DBs
 if $PERSISTENCE; then
@@ -153,9 +155,11 @@ fi
 # LDB
 _title "DEPLOY: ldb"
 docker run -d -p 8090:8080 --name ldb --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_logdb" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.ldb.server:ALPHA
+wait_service_online ldb 8080
 
-_title "DEPLOY: ldb"
+_title "DEPLOY: ldb.search"
 docker run -d -p 8091:8080 --name ldb.search --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_logdb" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.ldb.search.server:ALPHA
+wait_service_online ldb.search 8080 "operando/core/ldbsearch/log/search?logType=notification&affectedUserId=stringoperando/core/ldbsearch/log/search?logType=notification&affectedUserId=string"
 
 # DAN
 _title "DEPLOY: dan"
@@ -172,7 +176,6 @@ docker run -d -p 8095:8080 --name pc --dns $DNS_IP registry.devops.operando.esil
 # Web UI
 _title "DEPLOY: webui"
 docker run -d -p 8121:8084 --name webui --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.console.server:ALPHA
-
 
 _title "SUCCESS"
 _wait_enter
