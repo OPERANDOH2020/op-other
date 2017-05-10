@@ -117,7 +117,7 @@ DNS_IP=$(docker exec -i -t dnsmasq /bin/sh -c "$(get_command_string_to_get_ip_ad
 _info "The following IP will be used as DNS_IP for all operando components: $DNS_IP"
 
 # AAPI
-if [ $PERSISTENCE ]; then
+if $PERSISTENCE; then
   _title "DEPLOY: openldap WITH persistance"
   docker run -d -p 389:389 -p 636:636 --name openldap --dns $DNS_IP -v $VOLUMES/ldap/data:/var/lib/ldap -v $VOLUMES/ldap/config:/etc/ldap/slapd.d -e LDAP_DOMAIN=nodomain -e LDAP_ORGANISATION=nodomain -e HOSTNAME=integration.operando.dmz.lab.esilab.org -e LDAP_TLS_VERIFY_CLIENT=allow registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.openldap.server:ALPHA
 else
@@ -133,7 +133,7 @@ _title "DEPLOY: aapi"
 docker run -d -p 8135:8080 --name aapi --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.aapi.server:ALPHA
 
 # MySQL and Mongo DBs
-if [ $PERSISTENCE ]; then
+if $PERSISTENCE; then
   _title "DEPLOY: mysql WITH persistance"
   docker run -d -p 3306:3306 --name operando.mysql --dns $DNS_IP -v $VOLUMES/mysql:/var/lib/mysql  -e "MYSQL_ROOT_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mysql.server:ALPHA
   wait_mysql_online operando.mysql root root operando_logdb

@@ -26,7 +26,7 @@ function _title {
 	printf "${GREEN}$1 ${NC}\n";
 }
 function _wait_enter {
-  if [ INTERACTIVE ]; then
+  if $INTERACTIVE; then
   	printf "${YELLOW}Press [ENTER] to continue${NC}\n";
   	read -p "" empty
   fi
