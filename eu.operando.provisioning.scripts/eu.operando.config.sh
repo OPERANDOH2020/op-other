@@ -3,7 +3,8 @@
 ## globals
 
 NET_INTERFACE="docker0";
-PERSISTANCE=false;
+PERSISTENCE=false;
+INTERACTIVE=true;
 VOLUMES="/volumes/operando";
 
 ## system
