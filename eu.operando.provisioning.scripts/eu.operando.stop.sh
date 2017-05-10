@@ -14,6 +14,9 @@ fi
 
 ## script
 
+# remove gatekeeper
+docker rm -f rm
+docker rm -f gk
 # remove webui
 docker rm -f webui
 # remove pc container
