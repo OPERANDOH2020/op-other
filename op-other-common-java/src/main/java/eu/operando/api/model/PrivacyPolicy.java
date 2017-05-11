@@ -12,23 +12,23 @@ import io.swagger.annotations.ApiModel;
 public class PrivacyPolicy
 {
 	public PrivacyPolicy(String id, Vector<AccessPolicy> accessPolicies){
-		this.id = id;
-		this.accessPolicies = accessPolicies;
+		this.ospPolicyId = id;
+		this.policies = accessPolicies;
 	}
 	
 	@JsonProperty("osp_policy_id")
 	public String getId(){
-		return id;
+		return ospPolicyId;
 	}
 	
 	@JsonProperty("policies")
 	public Vector<AccessPolicy> getAccessPolicies(){
-		return accessPolicies;
+		return policies;
 	}
 	
-	private String id;
+	private String ospPolicyId;
 	
-	private Vector<AccessPolicy> accessPolicies;
+	private Vector<AccessPolicy> policies;
 	
 	@Override
 	public boolean equals(Object o)
@@ -42,41 +42,41 @@ public class PrivacyPolicy
 			return false;
 		}
 		PrivacyPolicy privacyPolicy = (PrivacyPolicy) o;
-		boolean match = Objects.equals(id, privacyPolicy.id) 
-			&& Objects.equals(accessPolicies.size(), privacyPolicy.accessPolicies.size());
-		for(int i = 0; i < accessPolicies.size() && match; i++){
-			match = Objects.equals(accessPolicies.elementAt(i), privacyPolicy.accessPolicies.elementAt(i));
+		boolean match = Objects.equals(ospPolicyId, privacyPolicy.ospPolicyId) 
+			&& Objects.equals(policies.size(), privacyPolicy.policies.size());
+		for(int i = 0; i < policies.size() && match; i++){
+			match = Objects.equals(policies.elementAt(i), privacyPolicy.policies.elementAt(i));
 		}
 		return match;
 	}
 	
 	public static class AccessPolicy{
 		public AccessPolicy(String reasonId, String dataUser, String dataSubjectType, String dataType, String reason){
-			this.reasonId = reasonId;
-			this.dataUser = dataUser;
-			this.dataSubjectType = dataSubjectType;
-			this.dataType = dataType;
+			this.reasonid = reasonId;
+			this.datauser = dataUser;
+			this.datasubjecttype = dataSubjectType;
+			this.datatype = dataType;
 			this.reason = reason;
 		}
 		
 		@JsonProperty("reasonid")
 		public String getId(){
-			return reasonId;
+			return reasonid;
 		}
 		
 		@JsonProperty("datauser")
 		public String getDataUser(){
-			return dataUser;
+			return datauser;
 		}
 		
 		@JsonProperty("datasubjecttype")
 		public String getDataSubjectType(){
-			return dataSubjectType;
+			return datasubjecttype;
 		}
 		
 		@JsonProperty("datatype")
 		public String getDataType(){
-			return dataType;
+			return datatype;
 		}
 		
 		@JsonProperty("reason")
@@ -84,13 +84,13 @@ public class PrivacyPolicy
 			return reason;
 		}
 		
-		private String reasonId;
+		private String reasonid;
 		
-		private String dataUser;
+		private String datauser;
 		
-		private String dataSubjectType;
+		private String datasubjecttype;
 		
-		private String dataType;
+		private String datatype;
 		
 		private String reason;
 		
@@ -106,10 +106,10 @@ public class PrivacyPolicy
 				return false;
 			}
 			AccessPolicy accessPolicy = (AccessPolicy) o;
-			return Objects.equals(reasonId, accessPolicy.reasonId)
-					&& Objects.equals(dataUser, accessPolicy.dataUser)
-					&& Objects.equals(dataSubjectType, accessPolicy.dataSubjectType)
-					&& Objects.equals(dataType, accessPolicy.dataType)
+			return Objects.equals(reasonid, accessPolicy.reasonid)
+					&& Objects.equals(datauser, accessPolicy.datauser)
+					&& Objects.equals(datasubjecttype, accessPolicy.datasubjecttype)
+					&& Objects.equals(datatype, accessPolicy.datatype)
 					&& Objects.equals(reason, accessPolicy.reason);
 		}
 	};
