@@ -1,0 +1,184 @@
+{
+    "policy_text": "ami_service",
+    "policy_url": "ami",
+    "schema": "http://www.operando.eu/OData/$metadata#GA_Patients",
+    "workflow": [
+        {
+            "requester_id": "doctorID",
+            "subject": "doctor",
+            "requested_url": "GA_Patients",
+            "action": "Access",
+            "attributes": [{}]
+        }
+        ],
+    "policies": [
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "AmiUserId",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Gender_Value",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Address_Id",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ActivationUrl",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "FirstName",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Title",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "LastName",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "dataNascita",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "odata.metadata",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ActivationDate",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Email",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "DateOfBirth",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "OtherGender",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ReferrerType_Value",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Id",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "RegistrationDate",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ConfidentialNote_Id",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "VolunteerOrganisation_Id",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "odata.metadata",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Availability_Id",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Preferences_Id",
+            "attributes": [{}]
+        },
+       {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Unsuccessful",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "UnsuccessfulReason_Id",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "false",
+            "action": "Access",
+            "resource": "Id",
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+        }
+    ]
+}
