@@ -23,6 +23,8 @@ docker rm -f webui
 docker rm -f pc
 # remove pdb container
 docker rm -f pdb
+# remove rapi container
+docker rm -f rapi
 # remove DAN container
 docker rm -f dan
 # remove LDB containers
