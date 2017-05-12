@@ -9,7 +9,7 @@
 #*  #    {Constantinos Patsakis} {UPRC}
 #*  #    {Stamatis Glykos} {UPRC}
 #*  #    {Constantinos Alexandris} {UPRC}
-#*  # Initially developed in the context of OPERANDO EU project www.operando.eu 
+#*  # Initially developed in the context of OPERANDO EU project www.operando.eu
 #*******************************************************************************/
 
 #repositoryManagers:
@@ -46,9 +46,8 @@ repositoryManagers:
   port: 80
   serviceRoot: /odata
 - name: FoodCoach
-  serviceId: foodcoach-data
+  serviceId: op-pdr/rpm/built-in
   schema: http
-  host: odata.foodcoach.operando.fcsr
+  host: operando.odata.eservices4life.org
   port: 80
-  serviceRoot: /
-
+  serviceRoot: /Weights.svc
