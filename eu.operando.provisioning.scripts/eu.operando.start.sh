@@ -205,7 +205,7 @@ _title "Register OSP USER"
 HTTP_CODE=$(curl -X POST -sS --output /dev/null --silent --write-out "%{http_code}" --header "Content-Type: application/json" --header "Accept: */*" -d @$CONFIGURATION/osp-user.json "http://$LOCAL_IP:8135/operando/interfaces/aapi/aapi/user/register")
 RET=$?
 if [ "$RET" -eq "0" ]; then
-  if [ "$HTTP_CODE" -eq "200" ]; then
+  if [ "$HTTP_CODE" -eq "201" ]; then
     _info "OSP USER has been successfully registered";
   else
     _warn "Couldn't create OSP USER, http code returned was $HTTP_CODE"
