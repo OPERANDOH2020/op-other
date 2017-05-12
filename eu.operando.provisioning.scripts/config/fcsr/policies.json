@@ -1,0 +1,23 @@
+{
+    "policy_text": "Food Coach Service",
+    "policy_url": "FoodCoach",
+    "schema": "http://operando.odata.eservices4life.org/Weights.svc/$metadata",
+    "workflow": [
+        {
+            "requester_id": "Nutritionist1",
+            "subject": "Nutritionist",
+            "requested_url": "Weight",
+            "action": "Access",
+            "attributes": [{}]
+        }
+        ],
+    "policies": [
+        {
+            "subject": "Nutritionist",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Weight",
+            "attributes": [{}]
+        }
+    ]
+}

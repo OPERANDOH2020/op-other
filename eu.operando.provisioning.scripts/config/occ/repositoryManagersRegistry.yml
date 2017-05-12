@@ -1,0 +1,47 @@
+#*******************************************************************************
+#*  # Copyright (c) 2016 {UPRC}.
+#*  # All rights reserved. This program and the accompanying materials
+#*  # are made available under the terms of the The MIT License (MIT).
+#*  # which accompanies this distribution, and is available at
+#*  # http://opensource.org/licenses/MIT
+#*
+#*  # Contributors:
+#*  #    {Constantinos Patsakis} {UPRC}
+#*  #    {Stamatis Glykos} {UPRC}
+#*  #    {Constantinos Alexandris} {UPRC}
+#*  # Initially developed in the context of OPERANDO EU project www.operando.eu
+#*******************************************************************************/
+
+#repositoryManagers:
+#- { name: built-in, serviceId: op-pdr/rpm/built-in, schema: https, host: snf-706921.vm.okeanos.grnet.gr, port: 8443, serviceRoot: /op-pdr-rpm }
+repositoryManagers:
+- name: built-in
+  serviceId: op-pdr/rpm/built-in
+  schema: http
+  host: integration.operando.esilab.org
+  port: 8112
+  serviceRoot: /operando/pdr/rpm
+- name: YellowPages
+  serviceId: op-pdr/rpm/built-in
+  schema: http
+  host: integration.operando.esilab.org
+  port: 8112
+  serviceRoot: /operando/pdr/rpm
+- name: ASLBG_IL
+  serviceId: op-pdr/rpm/built-in
+  schema: http
+  host: www.operando.eu
+  port: 80
+  serviceRoot: /odata
+- name: GASL_CDS
+  serviceId: op-pdr/rpm/built-in
+  schema: http
+  host: www.operando.eu
+  port: 80
+  serviceRoot: /odata
+- name: ASLBG_GA
+  serviceId: op-pdr/rpm/built-in
+  schema: http
+  host: www.operando.eu
+  port: 80
+  serviceRoot: /odata

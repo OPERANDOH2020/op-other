@@ -170,7 +170,7 @@ _title "DEPLOY: dan using config/repositoryManagersRegistry.yml"
 docker run -d -p 8111:8080 --name dan --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_dan" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.pdr.dan.server:ALPHA
 
 wait_service_online dan 8080 /operando/pdr/dan/ 400
-DANCONFIG=$(cat ./config/repositoryManagersRegistry.yml)
+DANCONFIG=$(cat $CONFIGURATION/repositoryManagersRegistry.yml)
 docker exec -t dan /bin/sh -c "echo \"$DANCONFIG\" > /usr/local/tomcat/webapps/operando#pdr#dan/WEB-INF/classes/repositoryManagersRegistry.yml"
 docker stop dan
 docker start dan
@@ -179,6 +179,7 @@ wait_service_online dan 8080 /operando/pdr/dan/ 400
 # PDB
 _title "DEPLOY: pdb"
 docker run -d -p 8096:8080 --name pdb --dns $DNS_IP -e "MONGO_HOST=mongo.integration.operando.lan.esilab.org" -e "MONGO_PORT=27017" -e "LDB_ENDPOINT=http://ldb.integration.operando.lan.esilab.org:8090/operando/core/ldb" -e "AAPI_ENDPOINT=http://aapi.integration.operando.lan.esilab.org:8135/operando/interfaces/aapi" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.pdb.server:ALPHA
+wait_service_online pdb 8080 / 200
 
 # PC
 _title "DEPLOY: pc"
@@ -189,11 +190,46 @@ _title "DEPLOY: webui"
 docker run -d -p 8121:8084 --name webui --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.console.server:ALPHA
 
 # RightManager RM
+_title "DEPLOY: rm"
 docker run -d -p 8102:8102 --name rm --dns $DNS_IP -e "LDB_ENDPOINT=http://ldb.integration.operando.lan.esilab.org:8090/operando/core/ldb" -e "AAPI_ENDPOINT=http://aapi.integration.operando.lan.esilab.org:8135/operando/interfaces/aapi" -e "DAN_ENDPOINT=http://dan.integration.operando.lan.esilab.org:8111/operando/pdr/dan" -e "PC_ENDPOINT=http://pc.integration.operando.lan.esilab.org:8095/operando/core/pc" -e "RM_URLPATH=operando/core/rm" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.rm.server:ALPHA
+wait_service_online rm 8102 / 301
 
 # GateKeeper
 _title "DEPLOY: gatekeeper"
 docker run -d -p 8110:8080 --name gk --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.pdr.gk.server:ALPHA
+wait_service_online gk 8080 / 200
+
+# CONFIGURATION
+_title "===> DEPLOY COMPLETED, CONFIGURE OPERANDO"
+_title "Register OSP USER"
+HTTP_CODE=$(curl -X POST -sS --output /dev/null --silent --write-out "%{http_code}" --header "Content-Type: application/json" --header "Accept: */*" -d @$CONFIGURATION/osp-user.json "http://$LOCAL_IP:8135/operando/interfaces/aapi/aapi/user/register")
+RET=$?
+if [ "$RET" -eq "0" ]; then
+  if [ "$HTTP_CODE" -eq "200" ]; then
+    _info "OSP USER has been successfully registered";
+  else
+    _warn "Couldn't create OSP USER, http code returned was $HTTP_CODE"
+    _wait_enter
+  fi
+else
+  _warn "Couldn't create OSP USER, connection failed"
+  _wait_enter
+fi
+
+_title "Register OSP POLICIES"
+HTTP_CODE=$(curl -X POST -sS --output /dev/null --silent --write-out "%{http_code}" --header "Content-Type: application/json" --header "Accept: */*" -d @$CONFIGURATION/policies.json "http://$LOCAL_IP:8096/operando/core/pdb/OSP")
+RET=$?
+if [ "$RET" -eq "0" ]; then
+  if [ "$HTTP_CODE" -eq "201" ]; then
+    _info "OSP POLICIES has been successfully registered";
+  else
+    _warn "Couldn't create OSP POLICIES, http code returned was $HTTP_CODE"
+    _wait_enter
+  fi
+else
+  _warn "Couldn't create OSP POLICIES, connection failed"
+  _wait_enter
+fi
 
 _title "SUCCESS"
 _wait_enter

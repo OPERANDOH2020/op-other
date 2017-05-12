@@ -6,6 +6,7 @@ NET_INTERFACE="docker0";
 PERSISTENCE=false;
 INTERACTIVE=true;
 VOLUMES="/volumes/operando";
+CONFIGURATION="./config/fcsr";
 
 ## system
 

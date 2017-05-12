@@ -1,0 +1,22 @@
+{
+  "optionalAttrs": [
+    {
+      "attrName": "string",
+      "attrValue": "string"
+    }
+  ],
+  "password": "FoodCoach",
+  "privacySettings": [
+    {
+      "settingName": "string",
+      "settingValue": "string"
+    }
+  ],
+  "requiredAttrs": [
+    {
+      "attrName": "role",
+      "attrValue": "OSP"
+    }
+  ],
+  "username": "FoodCoach"
+}
