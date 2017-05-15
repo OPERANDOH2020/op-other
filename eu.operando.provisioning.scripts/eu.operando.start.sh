@@ -204,6 +204,12 @@ _title "DEPLOY: gatekeeper"
 docker run -d -p 8110:8080 --name gk --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.pdr.gk.server:ALPHA
 wait_service_online gk 8080 / 200
 
+# RG
+_title "DEPLOY: rg"
+docker run -d -p 8120:8080 --name rg.birt --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_data" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.rg.birt.server:ALPHA
+docker run -d -p 8122:8084 --name rg --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.rg.server:ALPHA
+wait_service_online rg 8084 /Report/Report 401
+
 # CONFIGURATION
 _title "===> DEPLOY COMPLETED, CONFIGURE OPERANDO"
 _title "Register OSP USER"

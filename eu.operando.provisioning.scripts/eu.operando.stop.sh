@@ -14,6 +14,9 @@ fi
 
 ## script
 
+#remove rg
+docker rm -f rg
+docker rm -f rg.birt
 # remove gatekeeper
 docker rm -f rm
 docker rm -f gk
