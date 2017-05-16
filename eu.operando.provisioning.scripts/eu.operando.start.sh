@@ -181,6 +181,11 @@ _title "DEPLOY: pdb"
 docker run -d -p 8096:8080 --name pdb --dns $DNS_IP -e "MONGO_HOST=mongo.integration.operando.lan.esilab.org" -e "MONGO_PORT=27017" -e "LDB_ENDPOINT=http://ldb.integration.operando.lan.esilab.org:8090/operando/core/ldb" -e "AAPI_ENDPOINT=http://aapi.integration.operando.lan.esilab.org:8135/operando/interfaces/aapi" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.pdb.server:ALPHA
 wait_service_online pdb 8080 / 200
 
+# RAPI
+_title "DEPLOY: rapi"
+docker run -d -p 8133:8080 --name rapi --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.rapi.server:ALPHA
+wait_service_online rapi 8080 operando/interfaces/rapi/regulator/osps/anything/compliance-report 401
+
 # PC
 _title "DEPLOY: pc"
 docker run -d -p 8095:8080 --name pc --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.pc.server:ALPHA
@@ -198,6 +203,12 @@ wait_service_online rm 8102 / 301
 _title "DEPLOY: gatekeeper"
 docker run -d -p 8110:8080 --name gk --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.pdr.gk.server:ALPHA
 wait_service_online gk 8080 / 200
+
+# RG
+_title "DEPLOY: rg"
+docker run -d -p 8120:8080 --name rg.birt --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_data" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.rg.birt.server:ALPHA
+docker run -d -p 8122:8084 --name rg --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.rg.server:ALPHA
+wait_service_online rg 8084 /Report/Report 401
 
 # CONFIGURATION
 _title "===> DEPLOY COMPLETED, CONFIGURE OPERANDO"

@@ -14,6 +14,9 @@ fi
 
 ## script
 
+#remove rg
+docker rm -f rg
+docker rm -f rg.birt
 # remove gatekeeper
 docker rm -f rm
 docker rm -f gk
@@ -23,6 +26,8 @@ docker rm -f webui
 docker rm -f pc
 # remove pdb container
 docker rm -f pdb
+# remove rapi container
+docker rm -f rapi
 # remove DAN container
 docker rm -f dan
 # remove LDB containers
