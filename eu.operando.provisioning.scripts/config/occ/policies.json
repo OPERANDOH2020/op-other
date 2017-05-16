@@ -1,6 +1,6 @@
 {
     "policy_text": "ami_service",
-    "policy_url": "ami",
+    "policy_url": "Ami",
     "schema": "http://www.operando.eu/OData/$metadata#GA_Patients",
     "workflow": [
         {

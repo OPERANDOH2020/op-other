@@ -5,7 +5,7 @@
       "attrValue": "string"
     }
   ],
-  "password": "ami",
+  "password": Ami",
   "privacySettings": [
     {
       "settingName": "string",
@@ -18,5 +18,5 @@
       "attrValue": "OSP"
     }
   ],
-  "username": "ami"
+  "username": "Ami"
 }
