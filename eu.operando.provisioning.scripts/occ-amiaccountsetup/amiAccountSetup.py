@@ -7,34 +7,23 @@ import sys
 def post_user(username, password, role):
     # send user to operando
     url = config.create_user_url
+    data = {}
+    data["username"] = username
+    data["password"] = password
+        
+    data["optionalAttrs"] = []
+    userTypeAttr = {}
+    userTypeAttr["attrName"] = "user_type"
+    userTypeAttr["attrValue"] = "normal_user"
+    data["optionalAttrs"].append(userTypeAttr)            
+    
     if(role):
-        data = {
-            "username" : username,
-            "password" : password,
-            "optionalAttrs": [
-                {
-                    "attrName": "user_type",
-                    "attrValue": "normal_user"
-                }
-            ],
-            "requiredAttrs": [
-                {
-                    "attrName": "role",
-                    "attrValue": role
-                }
-            ]
-        }
-    else:
-        data = {
-            "username" : username,
-            "password" : password,
-            "optionalAttrs": [
-                {
-                    "attrName": "user_type",
-                    "attrValue": "normal_user"
-                }
-            ]
-        }
+        data["requiredAttrs"] = []
+        userTypeAttr = {}
+        userTypeAttr["attrName"] = "role"
+        userTypeAttr["attrValue"] = role
+        data["requiredAttrs"].append(userTypeAttr)
+
     response = requests.post(url, json=data, timeout=config.timeout)
     print response
     if response.status_code:
