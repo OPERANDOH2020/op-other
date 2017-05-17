@@ -3,6 +3,8 @@ import csv_readers
 from csv_readers import DataReader
 import requests
 import sys
+import json
+from OperandoException import OperandoException
 
 def create_user_dict(password, role, username):
     data = {}
@@ -42,26 +44,23 @@ def create_user(username, password, role):
 
     log_create_user_information(password, response, username)
 
-def log_get_user_privacy_policy_information(response):
-    if response.status_code:
-        print response.status_code
-        success = response.status_code == 200
-    else:
-        success = False
-    if success:
-        print "succesfully obtained default preference {0}".format(response.text)
-        return response.text
-    else:
-        print "failed to obtain default preference {0}".format(username)
-        return ""
+def find_policy_for_osp(policies, osp_id):
+    for policy in policies:
+        if policy["policy_url"] == osp_id:
+            return policy["policies"]
 
 def get_default_user_privacy_policy():
-    url = config.get_default_user_privacy_policy_url
+    url = config.get_osp_policies_url
     response = requests.get(url, timeout=config.timeout)
-    
-    return log_get_user_privacy_policy_information(response)
+    osp_policies = json.loads(response.text)
+    default_user_privacy_policy_for_osp = find_policy_for_osp(osp_policies, config.osp_id)
 
-def post_preference(username, preference):
+    if default_user_privacy_policy_for_osp:
+        return default_user_privacy_policy_for_osp
+    else:
+        raise OperandoException("Failed to get default UPPs. Returned osp_policies were" + str(osp_policies))
+
+def post_user_privacy_policy(username, preference):
     return ""
 
 ### this is the code that runs when you run this file ###
@@ -72,12 +71,12 @@ if len(args) > 1:
     input_path = args[1]
 
     data_reader = DataReader(input_path)
-    preference = get_default_user_privacy_policy()
-    if (preference):
+    default_user_privacy_policy = get_default_user_privacy_policy()
+    if (default_user_privacy_policy):
         users = data_reader.read_users()
         for user in users:
             create_user(user.id, user.password, user.role)
-            post_preference(user.id, preference)
+            post_user_privacy_policy(user.id, default_user_privacy_policy)
 else:
     print "please supply the path to a csv text file"
 print ""
