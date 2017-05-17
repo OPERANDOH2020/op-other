@@ -4,9 +4,7 @@ from csv_readers import DataReader
 import requests
 import sys
 
-def post_user(username, password, role):
-    # send user to operando
-    url = config.create_user_url
+def create_user_dict(password, role, username):
     data = {}
     data["username"] = username
     data["password"] = password
@@ -23,8 +21,9 @@ def post_user(username, password, role):
         userTypeAttr["attrName"] = "role"
         userTypeAttr["attrValue"] = role
         data["requiredAttrs"].append(userTypeAttr)
+    return data
 
-    response = requests.post(url, json=data, timeout=config.timeout)
+def log_create_user_information(password, response, username):
     print response
     if response.status_code:
         print response.status_code
@@ -36,9 +35,14 @@ def post_user(username, password, role):
     else:
         print "failed to create user {0}".format(username)
 
-def get_default_preference():
-    url = config.get_default_preference_url
-    response = requests.get(url, timeout=config.timeout)
+def create_user(username, password, role):
+    url = config.create_user_url
+    data = create_user_dict(password, role, username)
+    response = requests.post(url, json=data, timeout=config.timeout)
+
+    log_create_user_information(password, response, username)
+
+def log_get_user_privacy_policy_information(response):
     if response.status_code:
         print response.status_code
         success = response.status_code == 200
@@ -51,6 +55,12 @@ def get_default_preference():
         print "failed to obtain default preference {0}".format(username)
         return ""
 
+def get_default_user_privacy_policy():
+    url = config.get_default_user_privacy_policy_url
+    response = requests.get(url, timeout=config.timeout)
+    
+    return log_get_user_privacy_policy_information(response)
+
 def post_preference(username, preference):
     return ""
 
@@ -62,11 +72,11 @@ if len(args) > 1:
     input_path = args[1]
 
     data_reader = DataReader(input_path)
-    preference = get_default_preference()
+    preference = get_default_user_privacy_policy()
     if (preference):
         users = data_reader.read_users()
         for user in users:
-            post_user(user.id, user.password, user.role)
+            create_user(user.id, user.password, user.role)
             post_preference(user.id, preference)
 else:
     print "please supply the path to a csv text file"
