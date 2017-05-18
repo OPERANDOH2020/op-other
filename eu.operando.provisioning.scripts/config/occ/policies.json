@@ -135,14 +135,14 @@
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "Needtypes",
+            "resource": "NeedTypes",
             "attributes": [{}]
         },
         {
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "PersonalInterestTypes",
+            "resource": "PersonalIntererestTypes",
             "attributes": [{}]
         },
         {
