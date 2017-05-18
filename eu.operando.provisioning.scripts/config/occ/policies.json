@@ -16,6 +16,13 @@
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
+            "resource": "odata.metadata",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
             "resource": "Id",
             "attributes": [{}]
         },
