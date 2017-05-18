@@ -58,13 +58,6 @@
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "Person",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
             "resource": "VolunteerOrganisation_Id",
             "attributes": [{}]
         },
@@ -134,15 +127,128 @@
         {
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
-            "action": "NeedTypes",
-            "resource": "Id",
+            "action": "Access",
+            "resource": "Needtypes",
             "attributes": [{}]
         },
         {
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
-            "action": "PersonalInterestTypes",
-            "resource": "Id",
+            "action": "Access",
+            "resource": "PersonalInterestTypes",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Email",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Title",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "FirstName",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "LastName",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "DateOfBirth",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "RegistrationDate",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "AmiUserId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Address_Id",
+            "attributes": [{}]
+        }
+        ,
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Address",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "GenderType",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Gender_Value",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "OtherGender",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ActivationUrl",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ActivationDate",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ReferrerType_Value",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ReferrerType",
             "attributes": [{}]
         }
     ]
