@@ -23,189 +23,7 @@
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "Person",
-            "attributes": [{}]
-        },
-                {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "People",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Email",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Title",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "FirstName",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "LastName",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "DateOfBirth",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "RegistrationDate",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "AmiUser",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Address",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "City",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "County",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "PostCode",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Co-ordinates_Lon",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Co-ordinates_Lat",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "AddressLine1",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "AddressLine2",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "PhoneNumber",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "GenderType",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Value",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "DisplayName",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "OtherGender",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ActivationUrl",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ActivationDate",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ReferrerType",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Volunteer",
-            "attributes": [{}]
-        },
-                {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Volunteers",
+            "resource": "Availability_Id",
             "attributes": [{}]
         },
         {
@@ -219,42 +37,7 @@
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "AvailableHoursWeekly",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "DistanceToTravel",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "OtherInformation",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Availability_Afternoon",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Availability_Evening",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Availability_Morning",
+            "resource": "ConfidentialNote_Id",
             "attributes": [{}]
         },
         {
@@ -268,7 +51,21 @@
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "Content",
+            "resource": "Matches",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Person",
+            "attributes": [{}]
+        },
+        {
+            "subject": "VolunteerOrganisationAdmin",
+            "permission": "true",
+            "action": "Access",
+            "resource": "VolunteerOrganisation_Id",
             "attributes": [{}]
         },
         {
@@ -282,42 +79,7 @@
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "Name",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Url",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ColorHexCode",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Phone",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Description",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "HiddenFromPublic",
+            "resource": "Preferences_Id",
             "attributes": [{}]
         },
         {
@@ -325,41 +87,6 @@
             "permission": "true",
             "action": "Access",
             "resource": "Preference",
-            "attributes": [{}]
-        },
-                {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Preferences",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "AreaOfOccupationType",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "EmploymentStatusType",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "NeedTypes",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "PersonalIntererestTypes",
             "attributes": [{}]
         },
         {
@@ -373,28 +100,7 @@
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "VolunteerChecklistItems",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ApprovedBy",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ApprovedOn",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "VolunteerChecklistType",
+            "resource": "UnsuccessfulReason_Id",
             "attributes": [{}]
         },
         {
@@ -408,35 +114,14 @@
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "UnsuccessfulReasonType",
+            "resource": "VolunteerChecklistItems",
             "attributes": [{}]
         },
         {
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "Comments",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Reason_Value",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "VolunteerOrganisationClient",
-            "attributes": [{}]
-        },
-                {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "VolunteerOrganisationClients",
+            "resource": "TopNeed_Value",
             "attributes": [{}]
         },
         {
@@ -449,23 +134,16 @@
         {
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
-            "action": "Access",
-            "resource": "AnonymisedClientName",
+            "action": "NeedTypes",
+            "resource": "Id",
             "attributes": [{}]
         },
         {
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
-            "action": "Access",
-            "resource": "Matches",
+            "action": "PersonalInterestTypes",
+            "resource": "Id",
             "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "MatchStatusType",
-            "attributes": [{}]
-        },
+        }
     ]
 }
