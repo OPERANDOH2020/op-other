@@ -121,34 +121,6 @@
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
-            "resource": "TopNeed_Value",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "TopNeed",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "NeedTypes",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
-            "resource": "PersonalIntererestTypes",
-            "attributes": [{}]
-        },
-        {
-            "subject": "VolunteerOrganisationAdmin",
-            "permission": "true",
-            "action": "Access",
             "resource": "Email",
             "attributes": [{}]
         },
