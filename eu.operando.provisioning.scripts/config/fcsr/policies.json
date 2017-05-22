@@ -1,22 +1,70 @@
 {
     "policy_text": "Food Coach Service",
     "policy_url": "FoodCoach",
-    "schema": "http://operando.odata.eservices4life.org/Weights.svc/$metadata",
-    "workflow": [
-        {
-            "requester_id": "Nutritionist1",
-            "subject": "Nutritionist",
-            "requested_url": "Weight",
-            "action": "Access",
-            "attributes": [{}]
-        }
-        ],
+    "schema": "http://operando.odata.eservices4life.org/foodcoach/$metadata",
+    "workflow": [],
     "policies": [
         {
             "subject": "Nutritionist",
             "permission": "true",
             "action": "Access",
+            "resource": "Identity",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Nutritionist",
+            "permission": "true",
+            "action": "Access",
             "resource": "Weight",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Nutritionist",
+            "permission": "true",
+            "action": "Access",
+            "resource": "FFQ",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Researcher",
+            "permission": "false",
+            "action": "Access",
+            "resource": "Identity",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Researcher",
+            "permission": "false",
+            "action": "Access",
+            "resource": "Weight",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Researcher",
+            "permission": "true",
+            "action": "Access",
+            "resource": "FFQ",
+            "attributes": [{}]
+        },
+        {
+            "subject": "MarketShareSPA",
+            "permission": "false",
+            "action": "Access",
+            "resource": "Identity",
+            "attributes": [{}]
+        },
+        {
+            "subject": "MarketShareSPA",
+            "permission": "false",
+            "action": "Access",
+            "resource": "Weight",
+            "attributes": [{}]
+        },
+        {
+            "subject": "MarketShareSPA",
+            "permission": "false",
+            "action": "Access",
+            "resource": "FFQ",
             "attributes": [{}]
         }
     ]
