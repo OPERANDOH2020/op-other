@@ -50,4 +50,4 @@ repositoryManagers:
   schema: http
   host: operando.odata.eservices4life.org
   port: 80
-  serviceRoot: /Weights.svc
+  serviceRoot: /foodcoach
