@@ -5,12 +5,120 @@
     "workflow": [],
     "policies": [
         {
-            "subject": "Nutritionist",
+            "subject": "User",
             "permission": "true",
             "action": "Access",
-            "resource": "Identity",
+            "resource": "Weight",
             "attributes": [{}]
         },
+        {
+            "subject": "User",
+            "permission": "true",
+            "action": "Access",
+            "resource": "WeightId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "User",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Moment",
+            "attributes": [{}]
+        },
+        {
+            "subject": "User",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ID",
+            "attributes": [{}]
+        },
+        {
+            "subject": "User",
+            "permission": "true",
+            "action": "Access",
+            "resource": "FoodcoachUserId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "User",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ScaleRitualId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "User",
+            "permission": "true",
+            "action": "Access",
+            "resource": "RegistrationTimestamp",
+            "attributes": [{}]
+        },
+        {
+            "subject": "User",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Date",
+            "attributes": [{}]
+        },
+
+        {
+            "subject": "Researcher",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Weight",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Researcher",
+            "permission": "true",
+            "action": "Access",
+            "resource": "WeightId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Researcher",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Moment",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Researcher",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ID",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Researcher",
+            "permission": "true",
+            "action": "Access",
+            "resource": "FoodcoachUserId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Researcher",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ScaleRitualId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Researcher",
+            "permission": "true",
+            "action": "Access",
+            "resource": "RegistrationTimestamp",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Researcher",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Date",
+            "attributes": [{}]
+        },
+
+
         {
             "subject": "Nutritionist",
             "permission": "true",
@@ -22,35 +130,56 @@
             "subject": "Nutritionist",
             "permission": "true",
             "action": "Access",
-            "resource": "FFQ",
+            "resource": "WeightId",
             "attributes": [{}]
         },
         {
-            "subject": "Researcher",
-            "permission": "false",
-            "action": "Access",
-            "resource": "Identity",
-            "attributes": [{}]
-        },
-        {
-            "subject": "Researcher",
-            "permission": "false",
-            "action": "Access",
-            "resource": "Weight",
-            "attributes": [{}]
-        },
-        {
-            "subject": "Researcher",
+            "subject": "Nutritionist",
             "permission": "true",
             "action": "Access",
-            "resource": "FFQ",
+            "resource": "Moment",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Nutritionist",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ID",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Nutritionist",
+            "permission": "true",
+            "action": "Access",
+            "resource": "FoodcoachUserId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Nutritionist",
+            "permission": "true",
+            "action": "Access",
+            "resource": "ScaleRitualId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Nutritionist",
+            "permission": "true",
+            "action": "Access",
+            "resource": "RegistrationTimestamp",
+            "attributes": [{}]
+        },
+        {
+            "subject": "Nutritionist",
+            "permission": "true",
+            "action": "Access",
+            "resource": "Date",
             "attributes": [{}]
         },
         {
             "subject": "MarketShareSPA",
-            "permission": "false",
+            "permission": "true",
             "action": "Access",
-            "resource": "Identity",
+            "resource": "WeightId",
             "attributes": [{}]
         },
         {
@@ -64,7 +193,42 @@
             "subject": "MarketShareSPA",
             "permission": "false",
             "action": "Access",
-            "resource": "FFQ",
+            "resource": "Moment",
+            "attributes": [{}]
+        },
+        {
+            "subject": "MarketShareSPA",
+            "permission": "false",
+            "action": "Access",
+            "resource": "FoodcoachUserId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "MarketShareSPA",
+            "permission": "false",
+            "action": "Access",
+            "resource": "ScaleRitualId",
+            "attributes": [{}]
+        },
+        {
+            "subject": "MarketShareSPA",
+            "permission": "false",
+            "action": "Access",
+            "resource": "ID",
+            "attributes": [{}]
+        },
+        {
+            "subject": "MarketShareSPA",
+            "permission": "false",
+            "action": "Access",
+            "resource": "RegistrationTimestamp",
+            "attributes": [{}]
+        },
+        {
+            "subject": "MarketShareSPA",
+            "permission": "false",
+            "action": "Access",
+            "resource": "Date",
             "attributes": [{}]
         }
     ]
