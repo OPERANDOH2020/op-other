@@ -156,6 +156,9 @@ else
   _title "DEPLOY: mongodb NO persistance"
   docker run -d -p 27017:27017 --name operando.mongo --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
 fi
+# phpmyadmin
+_title "DEPLOY: phpmyadmin"
+docker run -i -t --name phpmyadmin -p 8104:80 -e "MYSQL_ROOT_PASSWORD=root" -e "PMA_HOST=mysql.integration.operando.lan.esilab.org" -e "PMA_USER=root" -e "PMA_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.phpmyadmin.server:ALPHA
 
 # LDB
 _title "DEPLOY: ldb"
