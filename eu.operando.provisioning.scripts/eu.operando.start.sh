@@ -41,6 +41,7 @@ function get_ip_address_for_network_interface () {
 #    $1: docker-name
 #    $2: port to check
 #    $3: path to check
+#    $4: expected status code in answer
 #######################################
 function wait_service_online() {
   EXPECTED=$4
