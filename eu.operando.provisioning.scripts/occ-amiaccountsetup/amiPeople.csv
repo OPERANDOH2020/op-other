@@ -139,4 +139,7 @@ ID,UserType,HasAmiAccount
 138,Client,0
 139,Client,0
 140,Client,0
-141,VO,1
+141,VL,1
+142,Volunteer,0
+143,Volunteer,0
+144,Volunteer,0

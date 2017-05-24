@@ -20,8 +20,10 @@ class DataReader(object):
                 if(line[DataReader.accountkey]):
                     # only bother giving roles to people who have ami accounts
                     type = line[DataReader.typekey]
-                    if(type == "VO"):
-                        role = "VolunteerOrganisationAdmin"
+                    if(type == "VL"):
+                        role = "volunteer_linkup"
+                    elif (type == "AGNS"):
+                        role = "abingdon_good_neigbour_scheme"
                     elif(type == "Volunteer"):
                         role = "Volunteer"
                     else:
