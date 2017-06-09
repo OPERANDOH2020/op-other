@@ -36,6 +36,7 @@ docker rm -f ldb
 # remove Mongo container
 docker rm -f operando.mongo
 # remove MySQL container
+docker rm -f phpmyadmin
 docker rm -f operando.mysql
 # remove AAPI containers
 docker rm -f aapi
