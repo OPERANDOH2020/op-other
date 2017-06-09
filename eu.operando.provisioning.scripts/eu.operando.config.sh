@@ -7,6 +7,7 @@ PERSISTENCE=false;
 INTERACTIVE=true;
 VOLUMES="/volumes/operando";
 CONFIGURATION="./config/fcsr";
+CULTURE="en";
 
 ## system
 
