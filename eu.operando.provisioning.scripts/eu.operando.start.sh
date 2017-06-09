@@ -198,7 +198,7 @@ docker run -d -p 8095:8080 --name pc --dns $DNS_IP registry.devops.operando.esil
 _title "DEPLOY: webui"
 docker run -d -p 8121:8084 --name webui --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.console.server:ALPHA
 
-docker exec -t webui /bin/sh -c "sed -i -e 's/uiCulture=it/uiCulture=$CULTURE/g _PublishedWebsites/Operando-AdministrationConsole/Web.config"
+docker exec -t webui /bin/sh -c "sed -i -e 's/uiCulture=\"it\"/uiCulture=\"$CULTURE\"/g' _PublishedWebsites/Operando-AdministrationConsole/Web.config"
 docker stop webui
 docker start webui
 
