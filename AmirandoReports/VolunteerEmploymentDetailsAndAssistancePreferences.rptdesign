@@ -1158,7 +1158,9 @@ GROUP BY nt.DisplayName]]></xml-property>
                                 <property name="allowExport">true</property>
                             </structure>
                         </list-property>
-                        <column id="118"/>
+                        <column id="118">
+                            <property name="width">80%</property>
+                        </column>
                         <column id="119"/>
                         <header>
                             <row id="109">
@@ -1190,6 +1192,7 @@ GROUP BY nt.DisplayName]]></xml-property>
                                     </cell>
                                     <cell id="132">
                                         <data id="137">
+                                            <property name="textAlign">center</property>
                                             <property name="resultSetColumn">Aggregation</property>
                                         </data>
                                     </cell>
@@ -2157,6 +2160,7 @@ GROUP BY nt.DisplayName]]></xml-property>
                                     </cell>
                                     <cell id="35">
                                         <data id="41">
+                                            <property name="textAlign">center</property>
                                             <property name="resultSetColumn">AreaOfOccupationCount</property>
                                         </data>
                                     </cell>
@@ -2226,7 +2230,7 @@ GROUP BY nt.DisplayName]]></xml-property>
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Chart Title</Value>
+          <Value>Proportion of Volunteers Willing to Assist with each Need Type</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -2506,6 +2510,7 @@ GROUP BY nt.DisplayName]]></xml-property>
             <horizontalAlignment>Center</horizontalAlignment>
             <verticalAlignment>Center</verticalAlignment>
           </Alignment>
+          <Rotation>0.0</Rotation>
         </Font>
       </Caption>
       <Background xsi:type="attribute:ColorDefinition">
@@ -2545,6 +2550,7 @@ GROUP BY nt.DisplayName]]></xml-property>
               <horizontalAlignment>Center</horizontalAlignment>
               <verticalAlignment>Center</verticalAlignment>
             </Alignment>
+            <Rotation>90.0</Rotation>
           </Font>
         </Caption>
         <Background xsi:type="attribute:ColorDefinition">
