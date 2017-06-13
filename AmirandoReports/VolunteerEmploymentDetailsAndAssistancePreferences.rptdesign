@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">odaDriverClass</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">odaURL</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">odaUser</property>
+            <property name="id">11</property>
+            <expression name="value" type="javascript">importPackage(Packages.java.lang);&#13;
+System.getenv("BIRT_USERNAME");</expression>
+        </structure>
+        <structure>
+            <property name="name">odaAutoCommit</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">odaIsolationMode</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">odaPassword</property>
+            <property name="id">11</property>
+            <expression name="value" type="javascript">importPackage(Packages.java.lang);&#13;
+System.getenv("BIRT_PASSWORD");</expression>
+        </structure>
+        <structure>
+            <property name="name">odaJndiName</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileName</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileStorePath</property>
+            <property name="id">11</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="AmiSqlDb" id="11">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+            <property name="odaURL">jdbc:sqlserver://localhost;databaseName=Ami</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="VolunteerEmploymentDetails" id="12">
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">VolunteerId</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">EmploymentStaus</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">AreaOfOccupation</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">AmiSqlDb</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">VolunteerId</property>
+                    <property name="nativeName">VolunteerId</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">EmploymentStaus</property>
+                    <property name="nativeName">EmploymentStaus</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">AreaOfOccupation</property>
+                    <property name="nativeName">AreaOfOccupation</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT v.Id AS VolunteerId, est.DisplayName AS EmploymentStaus, aoot.DisplayName AS AreaOfOccupation
+FROM Volunteer v, Preferences p, AreaOfOccupationType AS aoot, EmploymentStatusType est
+WHERE v.Preferences_Id = p.ID 
+AND p.AreaOfOccupation_Value = aoot.Value
+AND p.EmploymentStatus_Value = est.Value]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="4">
+            <property name="width">100%</property>
+            <column id="5">
+                <property name="width">60%</property>
+            </column>
+            <column id="6">
+                <property name="width">40%</property>
+            </column>
+            <row id="7">
+                <cell id="8"/>
+                <cell id="9">
+                    <table id="13">
+                        <property name="dataSet">VolunteerEmploymentDetails</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">AreaOfOccupation</property>
+                                <text-property name="displayName">AreaOfOccupation</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">AreaOfOccupationCount</property>
+                                <text-property name="displayName">AreaOfOccupationCount</text-property>
+                                <property name="dataType">integer</property>
+                                <simple-property-list name="aggregateOn">
+                                    <value>AreaOfOccupationGroup</value>
+                                </simple-property-list>
+                                <property name="aggregateFunction">COUNT</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["AreaOfOccupation"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="26">
+                            <property name="width">80%</property>
+                        </column>
+                        <column id="28"/>
+                        <header>
+                            <row id="14">
+                                <cell id="15">
+                                    <label id="29">
+                                        <text-property name="text">Area Of Occupation</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="17">
+                                    <label id="43">
+                                        <text-property name="text">Number Of Volunteers</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <group id="31">
+                            <property name="groupName">AreaOfOccupationGroup</property>
+                            <expression name="keyExpr" type="javascript">row["AreaOfOccupation"]</expression>
+                            <structure name="toc">
+                                <expression name="expressionValue" type="javascript">row["AreaOfOccupation"]</expression>
+                            </structure>
+                            <property name="hideDetail">false</property>
+                            <header>
+                                <row id="32">
+                                    <cell id="33">
+                                        <data id="40">
+                                            <property name="resultSetColumn">AreaOfOccupation</property>
+                                        </data>
+                                    </cell>
+                                    <cell id="35">
+                                        <data id="41">
+                                            <property name="resultSetColumn">AreaOfOccupationCount</property>
+                                        </data>
+                                    </cell>
+                                </row>
+                            </header>
+                            <footer>
+                                <row id="36">
+                                    <cell id="37"/>
+                                    <cell id="39"/>
+                                </row>
+                            </footer>
+                        </group>
+                        <detail>
+                            <row id="18">
+                                <cell id="19"/>
+                                <cell id="21"/>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="22">
+                                <cell id="23"/>
+                                <cell id="25"/>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+        </grid>
+    </body>
+</report>
