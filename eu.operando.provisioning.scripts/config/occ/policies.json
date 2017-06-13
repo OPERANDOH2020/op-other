@@ -31,14 +31,14 @@
             "permission": "true",
             "action": "Access",
             "resource": "Availability",
-            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+            "attributes": [{}]
         },
         {
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
             "resource": "ConfidentialNote",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "VolunteerOrganisationAdmin",
@@ -52,28 +52,28 @@
             "permission": "true",
             "action": "Access",
             "resource": "Preference",
-            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+            "attributes": [{}]
         },
         {
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
             "resource": "Unsuccessful",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
             "resource": "VolunteerUnsuccessfulReason",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "VolunteerOrganisationAdmin",
             "permission": "true",
             "action": "Access",
             "resource": "VolunteerChecklistItems",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "VolunteerOrganisationAdmin",
@@ -115,7 +115,7 @@
             "permission": "true",
             "action": "Access",
             "resource": "Address",
-            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
+            "attributes": [{}]
         }
     ]
 }
