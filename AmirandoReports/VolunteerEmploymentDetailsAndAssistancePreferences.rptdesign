@@ -399,6 +399,11 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
         <style name="TableEntry" id="394">
             <property name="fontFamily">sans-serif</property>
         </style>
+        <style name="TitleStyle" id="395">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">x-large</property>
+            <property name="fontWeight">bolder</property>
+        </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
@@ -429,6 +434,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                             <property name="height">20%</property>
                             <cell id="288">
                                 <label name="ReportTitle" id="294">
+                                    <property name="style">TitleStyle</property>
                                     <property name="fontSize">18pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="textUnderline">none</property>
