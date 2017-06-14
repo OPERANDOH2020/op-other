@@ -396,9 +396,14 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
             <row id="281">
                 <cell id="282">
                     <grid id="283">
-                        <column id="284"/>
+                        <column id="284">
+                            <property name="suppressDuplicates">true</property>
+                            <property name="width">25%</property>
+                        </column>
                         <column id="285"/>
-                        <column id="286"/>
+                        <column id="286">
+                            <property name="width">25%</property>
+                        </column>
                         <row id="287">
                             <property name="height">50pt</property>
                             <cell id="288">
@@ -408,7 +413,15 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                     <expression name="uri" type="constant">http://www.operando.eu/immagini/logo/logo2.png</expression>
                                 </image>
                             </cell>
-                            <cell id="289"/>
+                            <cell id="289">
+                                <label name="ReportTitle" id="294">
+                                    <property name="fontSize">18pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="textUnderline">none</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Ami Volunteer Breakdown Report</text-property>
+                                </label>
+                            </cell>
                             <cell id="290">
                                 <property name="textAlign">right</property>
                                 <image id="292">
