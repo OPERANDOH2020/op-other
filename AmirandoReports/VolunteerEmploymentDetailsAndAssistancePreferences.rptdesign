@@ -389,6 +389,16 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
             <property name="textOverline">none</property>
             <property name="textUnderline">none</property>
         </style>
+        <style name="TableHeader" id="393">
+            <property name="backgroundColor">#FFA500</property>
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">medium</property>
+            <property name="fontWeight">bold</property>
+            <property name="fontStyle">normal</property>
+        </style>
+        <style name="TableEntry" id="394">
+            <property name="fontFamily">sans-serif</property>
+        </style>
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
@@ -1387,18 +1397,24 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                         </structure>
                                     </list-property>
                                     <column id="118">
-                                        <property name="width">80%</property>
+                                        <property name="width">50%</property>
                                     </column>
                                     <column id="119"/>
                                     <header>
                                         <row id="109">
                                             <cell id="110">
+                                                <property name="textAlign">left</property>
                                                 <label id="120">
+                                                    <property name="style">TableHeader</property>
+                                                    <property name="textAlign">center</property>
                                                     <text-property name="text">Employment Status</text-property>
                                                 </label>
                                             </cell>
                                             <cell id="111">
+                                                <property name="textAlign">left</property>
                                                 <label id="138">
+                                                    <property name="style">TableHeader</property>
+                                                    <property name="textAlign">center</property>
                                                     <text-property name="text">Number of Volunteers</text-property>
                                                 </label>
                                             </cell>
@@ -1414,13 +1430,17 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                         <header>
                                             <row id="130">
                                                 <cell id="131">
+                                                    <property name="textAlign">left</property>
                                                     <data id="136">
+                                                        <property name="style">TableEntry</property>
                                                         <property name="resultSetColumn">EmploymentStatus</property>
                                                     </data>
                                                 </cell>
                                                 <cell id="132">
+                                                    <property name="textAlign">left</property>
                                                     <data id="137">
-                                                        <property name="textAlign">center</property>
+                                                        <property name="style">TableEntry</property>
+                                                        <property name="textAlign">right</property>
                                                         <property name="resultSetColumn">Aggregation</property>
                                                     </data>
                                                 </cell>
@@ -1428,21 +1448,33 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                         </header>
                                         <footer>
                                             <row id="133">
-                                                <cell id="134"/>
-                                                <cell id="135"/>
+                                                <cell id="134">
+                                                    <property name="textAlign">left</property>
+                                                </cell>
+                                                <cell id="135">
+                                                    <property name="textAlign">left</property>
+                                                </cell>
                                             </row>
                                         </footer>
                                     </group>
                                     <detail>
                                         <row id="112">
-                                            <cell id="113"/>
-                                            <cell id="114"/>
+                                            <cell id="113">
+                                                <property name="textAlign">left</property>
+                                            </cell>
+                                            <cell id="114">
+                                                <property name="textAlign">left</property>
+                                            </cell>
                                         </row>
                                     </detail>
                                     <footer>
                                         <row id="115">
-                                            <cell id="116"/>
-                                            <cell id="117"/>
+                                            <cell id="116">
+                                                <property name="textAlign">left</property>
+                                            </cell>
+                                            <cell id="117">
+                                                <property name="textAlign">left</property>
+                                            </cell>
                                         </row>
                                     </footer>
                                 </table>
@@ -2344,6 +2376,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                         <row id="329">
                             <cell id="330">
                                 <table id="13">
+                                    <property name="textAlign">left</property>
                                     <property name="width">100%</property>
                                     <property name="dataSet">VolunteerEmploymentDetails</property>
                                     <list-property name="boundDataColumns">
@@ -2371,18 +2404,22 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                         </structure>
                                     </list-property>
                                     <column id="26">
-                                        <property name="width">80%</property>
+                                        <property name="width">50%</property>
                                     </column>
                                     <column id="28"/>
                                     <header>
                                         <row id="14">
                                             <cell id="15">
                                                 <label id="29">
+                                                    <property name="style">TableHeader</property>
+                                                    <property name="textAlign">center</property>
                                                     <text-property name="text">Area Of Occupation</text-property>
                                                 </label>
                                             </cell>
                                             <cell id="17">
                                                 <label id="43">
+                                                    <property name="style">TableHeader</property>
+                                                    <property name="textAlign">center</property>
                                                     <text-property name="text">Number Of Volunteers</text-property>
                                                 </label>
                                             </cell>
@@ -2399,12 +2436,14 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                             <row id="32">
                                                 <cell id="33">
                                                     <data id="40">
+                                                        <property name="style">TableEntry</property>
                                                         <property name="resultSetColumn">AreaOfOccupation</property>
                                                     </data>
                                                 </cell>
                                                 <cell id="35">
                                                     <data id="41">
-                                                        <property name="textAlign">center</property>
+                                                        <property name="style">TableEntry</property>
+                                                        <property name="textAlign">right</property>
                                                         <property name="resultSetColumn">AreaOfOccupationCount</property>
                                                     </data>
                                                 </cell>
@@ -3605,6 +3644,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                         <row id="360">
                             <cell id="361">
                                 <table id="362">
+                                    <property name="textAlign">left</property>
                                     <property name="dataSet">VolunteerNeedsWillingToHelpWith</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
@@ -3626,11 +3666,15 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                         <row id="363">
                                             <cell id="364">
                                                 <label id="386">
+                                                    <property name="style">TableHeader</property>
+                                                    <property name="textAlign">center</property>
                                                     <text-property name="text">Requirement</text-property>
                                                 </label>
                                             </cell>
                                             <cell id="365">
                                                 <label id="388">
+                                                    <property name="style">TableHeader</property>
+                                                    <property name="textAlign">center</property>
                                                     <text-property name="text">Percentage of Volunteers Willing to Help</text-property>
                                                 </label>
                                             </cell>
@@ -3640,11 +3684,14 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                         <row id="366">
                                             <cell id="367">
                                                 <data id="387">
+                                                    <property name="style">TableEntry</property>
                                                     <property name="resultSetColumn">NeedWillingToHelpWith</property>
                                                 </data>
                                             </cell>
                                             <cell id="368">
                                                 <data id="389">
+                                                    <property name="style">TableEntry</property>
+                                                    <property name="textAlign">right</property>
                                                     <property name="resultSetColumn">PercentageOfVolunteersWillingToHelp</property>
                                                 </data>
                                             </cell>
