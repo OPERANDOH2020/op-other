@@ -2438,8 +2438,12 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
             <row id="7">
                 <property name="pageBreakAfter">always</property>
                 <cell id="8">
-                    <extended-item extensionName="Chart" id="256">
-                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:data="http://www.birt.eclipse.org/ChartModelData" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
+                    <grid id="356">
+                        <column id="357"/>
+                        <row id="358">
+                            <cell id="359">
+                                <extended-item extensionName="Chart" id="256">
+                                    <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:data="http://www.birt.eclipse.org/ChartModelData" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.6.1</Version>
   <Type>Bar Chart</Type>
   <SubType>Side-by-side</SubType>
@@ -3561,33 +3565,93 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
   </Rotation>
 </model:ChartWithAxes>
 ]]></xml-property>
-                        <property name="outputFormat">SVG</property>
-                        <property name="inheritColumns">false</property>
-                        <property name="pageBreakAfter">auto</property>
-                        <property name="height">280pt</property>
-                        <property name="width">100%</property>
-                        <property name="dataSet">VolunteerNeedsWillingToHelpWith</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">NeedWillingToHelpWith</property>
-                                <text-property name="displayName">NeedWillingToHelpWith</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["NeedWillingToHelpWith"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">NumberOfVolunteersWillingToHelp</property>
-                                <text-property name="displayName">NumberOfVolunteersWillingToHelp</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["NumberOfVolunteersWillingToHelp"]</expression>
-                                <property name="dataType">integer</property>
-                            </structure>
-                            <structure>
-                                <property name="name">PercentageOfVolunteersWillingToHelp</property>
-                                <text-property name="displayName">PercentageOfVolunteersWillingToHelp</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["PercentageOfVolunteersWillingToHelp"]</expression>
-                                <property name="dataType">integer</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
+                                    <property name="outputFormat">SVG</property>
+                                    <property name="inheritColumns">false</property>
+                                    <property name="pageBreakAfter">auto</property>
+                                    <property name="height">280pt</property>
+                                    <property name="width">100%</property>
+                                    <property name="dataSet">VolunteerNeedsWillingToHelpWith</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">NeedWillingToHelpWith</property>
+                                            <text-property name="displayName">NeedWillingToHelpWith</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["NeedWillingToHelpWith"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">NumberOfVolunteersWillingToHelp</property>
+                                            <text-property name="displayName">NumberOfVolunteersWillingToHelp</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["NumberOfVolunteersWillingToHelp"]</expression>
+                                            <property name="dataType">integer</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">PercentageOfVolunteersWillingToHelp</property>
+                                            <text-property name="displayName">PercentageOfVolunteersWillingToHelp</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["PercentageOfVolunteersWillingToHelp"]</expression>
+                                            <property name="dataType">integer</property>
+                                        </structure>
+                                    </list-property>
+                                </extended-item>
+                            </cell>
+                        </row>
+                        <row id="360">
+                            <cell id="361">
+                                <table id="362">
+                                    <property name="dataSet">VolunteerNeedsWillingToHelpWith</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">NeedWillingToHelpWith</property>
+                                            <text-property name="displayName">NeedWillingToHelpWith</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["NeedWillingToHelpWith"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">PercentageOfVolunteersWillingToHelp</property>
+                                            <text-property name="displayName">PercentageOfVolunteersWillingToHelp</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["PercentageOfVolunteersWillingToHelp"]</expression>
+                                            <property name="dataType">integer</property>
+                                        </structure>
+                                    </list-property>
+                                    <column id="372"/>
+                                    <column id="373"/>
+                                    <header>
+                                        <row id="363">
+                                            <cell id="364">
+                                                <label id="386">
+                                                    <text-property name="text">Need Willing to Help With</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="365">
+                                                <label id="388">
+                                                    <text-property name="text">Percentage of Volunteers Willing to Help</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </header>
+                                    <detail>
+                                        <row id="366">
+                                            <cell id="367">
+                                                <data id="387">
+                                                    <property name="resultSetColumn">NeedWillingToHelpWith</property>
+                                                </data>
+                                            </cell>
+                                            <cell id="368">
+                                                <data id="389">
+                                                    <property name="resultSetColumn">PercentageOfVolunteersWillingToHelp</property>
+                                                </data>
+                                            </cell>
+                                        </row>
+                                    </detail>
+                                    <footer>
+                                        <row id="369">
+                                            <cell id="370"/>
+                                            <cell id="371"/>
+                                        </row>
+                                    </footer>
+                                </table>
+                            </cell>
+                        </row>
+                    </grid>
                 </cell>
             </row>
             <row id="258">
