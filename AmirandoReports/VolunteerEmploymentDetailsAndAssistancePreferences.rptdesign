@@ -396,24 +396,15 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
             <row id="281">
                 <cell id="282">
                     <grid id="283">
+                        <property name="pageBreakAfter">always</property>
+                        <property name="height">0.8333333333333334in</property>
                         <column id="284">
                             <property name="suppressDuplicates">true</property>
-                            <property name="width">25%</property>
-                        </column>
-                        <column id="285"/>
-                        <column id="286">
-                            <property name="width">25%</property>
+                            <property name="width">100%</property>
                         </column>
                         <row id="287">
-                            <property name="height">50pt</property>
+                            <property name="height">20%</property>
                             <cell id="288">
-                                <image id="291">
-                                    <property name="height">50pt</property>
-                                    <property name="source">url</property>
-                                    <expression name="uri" type="constant">http://www.operando.eu/immagini/logo/logo2.png</expression>
-                                </image>
-                            </cell>
-                            <cell id="289">
                                 <label name="ReportTitle" id="294">
                                     <property name="fontSize">18pt</property>
                                     <property name="fontWeight">bold</property>
@@ -422,13 +413,33 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                     <text-property name="text">Ami Volunteer Breakdown Report</text-property>
                                 </label>
                             </cell>
-                            <cell id="290">
-                                <property name="textAlign">right</property>
-                                <image id="292">
-                                    <property name="height">50pt</property>
-                                    <property name="source">url</property>
-                                    <expression name="uri" type="constant">https://www.withami.co.uk/Assets/Images/ami-logo-pink.png</expression>
-                                </image>
+                        </row>
+                        <row id="341">
+                            <property name="height">80%</property>
+                            <cell id="342">
+                                <property name="textAlign">center</property>
+                                <grid id="349">
+                                    <column id="350"/>
+                                    <column id="351"/>
+                                    <row id="352">
+                                        <cell id="353">
+                                            <property name="textAlign">right</property>
+                                            <image id="292">
+                                                <property name="height">50pt</property>
+                                                <property name="source">url</property>
+                                                <expression name="uri" type="constant">https://www.withami.co.uk/Assets/Images/ami-logo-pink.png</expression>
+                                            </image>
+                                        </cell>
+                                        <cell id="354">
+                                            <property name="textAlign">left</property>
+                                            <image id="291">
+                                                <property name="height">50pt</property>
+                                                <property name="source">url</property>
+                                                <expression name="uri" type="constant">http://www.operando.eu/immagini/logo/logo2.png</expression>
+                                            </image>
+                                        </cell>
+                                    </row>
+                                </grid>
                             </cell>
                         </row>
                     </grid>
