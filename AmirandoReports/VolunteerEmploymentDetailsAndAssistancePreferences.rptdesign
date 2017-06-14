@@ -435,16 +435,21 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                 </cell>
             </row>
             <row id="295">
+                <property name="pageBreakAfter">always</property>
                 <cell id="296">
-                    <label id="297">
-                        <text-property name="text">Breakdown by Employment Status</text-property>
-                    </label>
-                </cell>
-            </row>
-            <row id="52">
-                <cell id="53">
-                    <extended-item extensionName="Chart" id="140">
-                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
+                    <grid id="315">
+                        <column id="316"/>
+                        <row id="317">
+                            <cell id="318">
+                                <label id="297">
+                                    <text-property name="text">Breakdown by Employment Status</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                        <row id="319">
+                            <cell id="320">
+                                <extended-item extensionName="Chart" id="140">
+                                    <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.6.1</Version>
   <Type>Pie Chart</Type>
   <SubType>Standard</SubType>
@@ -1297,136 +1302,144 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
   </SeriesDefinitions>
 </model:ChartWithoutAxes>
 ]]></xml-property>
-                        <property name="outputFormat">SVG</property>
-                        <property name="inheritColumns">false</property>
-                        <property name="height">290pt</property>
-                        <property name="width">100%</property>
-                        <property name="dataSet">VolunteerEmploymentDetails</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">VolunteerId</property>
-                                <text-property name="displayName">VolunteerId</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["VolunteerId"]</expression>
-                                <property name="dataType">integer</property>
-                            </structure>
-                            <structure>
-                                <property name="name">EmploymentStatus</property>
-                                <text-property name="displayName">EmploymentStatus</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["EmploymentStatus"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">AreaOfOccupation</property>
-                                <text-property name="displayName">AreaOfOccupation</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
-                </cell>
-            </row>
-            <row id="49">
-                <cell id="50">
-                    <table id="108">
-                        <property name="width">100%</property>
-                        <property name="dataSet">VolunteerEmploymentDetails</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">EmploymentStatus</property>
-                                <text-property name="displayName">EmploymentStatus</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["EmploymentStatus"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">Aggregation</property>
-                                <text-property name="displayName">EmploymentStatusCount</text-property>
-                                <property name="dataType">integer</property>
-                                <simple-property-list name="aggregateOn">
-                                    <value>EmplymentStatusGroup</value>
-                                </simple-property-list>
-                                <property name="aggregateFunction">COUNT</property>
-                                <list-property name="arguments">
-                                    <structure>
-                                        <property name="name">Expression</property>
-                                        <expression name="value" type="javascript">row["EmploymentStatus"]</expression>
-                                    </structure>
-                                </list-property>
-                                <property name="allowExport">true</property>
-                            </structure>
-                        </list-property>
-                        <column id="118">
-                            <property name="width">80%</property>
-                        </column>
-                        <column id="119"/>
-                        <header>
-                            <row id="109">
-                                <cell id="110">
-                                    <label id="120">
-                                        <text-property name="text">Employment Status</text-property>
-                                    </label>
-                                </cell>
-                                <cell id="111">
-                                    <label id="138">
-                                        <text-property name="text">Number of Volunteers</text-property>
-                                    </label>
-                                </cell>
-                            </row>
-                        </header>
-                        <group id="129">
-                            <property name="groupName">EmplymentStatusGroup</property>
-                            <expression name="keyExpr" type="javascript">row["EmploymentStatus"]</expression>
-                            <structure name="toc">
-                                <expression name="expressionValue" type="javascript">row["EmploymentStatus"]</expression>
-                            </structure>
-                            <property name="hideDetail">false</property>
-                            <header>
-                                <row id="130">
-                                    <cell id="131">
-                                        <data id="136">
-                                            <property name="resultSetColumn">EmploymentStatus</property>
-                                        </data>
-                                    </cell>
-                                    <cell id="132">
-                                        <data id="137">
-                                            <property name="textAlign">center</property>
-                                            <property name="resultSetColumn">Aggregation</property>
-                                        </data>
-                                    </cell>
-                                </row>
-                            </header>
-                            <footer>
-                                <row id="133">
-                                    <cell id="134"/>
-                                    <cell id="135"/>
-                                </row>
-                            </footer>
-                        </group>
-                        <detail>
-                            <row id="112">
-                                <cell id="113"/>
-                                <cell id="114"/>
-                            </row>
-                        </detail>
-                        <footer>
-                            <row id="115">
-                                <cell id="116"/>
-                                <cell id="117"/>
-                            </row>
-                        </footer>
-                    </table>
+                                    <property name="outputFormat">SVG</property>
+                                    <property name="inheritColumns">false</property>
+                                    <property name="height">290pt</property>
+                                    <property name="width">100%</property>
+                                    <property name="dataSet">VolunteerEmploymentDetails</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">VolunteerId</property>
+                                            <text-property name="displayName">VolunteerId</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["VolunteerId"]</expression>
+                                            <property name="dataType">integer</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">EmploymentStatus</property>
+                                            <text-property name="displayName">EmploymentStatus</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["EmploymentStatus"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">AreaOfOccupation</property>
+                                            <text-property name="displayName">AreaOfOccupation</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                </extended-item>
+                            </cell>
+                        </row>
+                        <row id="321">
+                            <cell id="322">
+                                <table id="108">
+                                    <property name="width">100%</property>
+                                    <property name="dataSet">VolunteerEmploymentDetails</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">EmploymentStatus</property>
+                                            <text-property name="displayName">EmploymentStatus</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["EmploymentStatus"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">Aggregation</property>
+                                            <text-property name="displayName">EmploymentStatusCount</text-property>
+                                            <property name="dataType">integer</property>
+                                            <simple-property-list name="aggregateOn">
+                                                <value>EmplymentStatusGroup</value>
+                                            </simple-property-list>
+                                            <property name="aggregateFunction">COUNT</property>
+                                            <list-property name="arguments">
+                                                <structure>
+                                                    <property name="name">Expression</property>
+                                                    <expression name="value" type="javascript">row["EmploymentStatus"]</expression>
+                                                </structure>
+                                            </list-property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <column id="118">
+                                        <property name="width">80%</property>
+                                    </column>
+                                    <column id="119"/>
+                                    <header>
+                                        <row id="109">
+                                            <cell id="110">
+                                                <label id="120">
+                                                    <text-property name="text">Employment Status</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="111">
+                                                <label id="138">
+                                                    <text-property name="text">Number of Volunteers</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </header>
+                                    <group id="129">
+                                        <property name="groupName">EmplymentStatusGroup</property>
+                                        <expression name="keyExpr" type="javascript">row["EmploymentStatus"]</expression>
+                                        <structure name="toc">
+                                            <expression name="expressionValue" type="javascript">row["EmploymentStatus"]</expression>
+                                        </structure>
+                                        <property name="hideDetail">false</property>
+                                        <header>
+                                            <row id="130">
+                                                <cell id="131">
+                                                    <data id="136">
+                                                        <property name="resultSetColumn">EmploymentStatus</property>
+                                                    </data>
+                                                </cell>
+                                                <cell id="132">
+                                                    <data id="137">
+                                                        <property name="textAlign">center</property>
+                                                        <property name="resultSetColumn">Aggregation</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                        </header>
+                                        <footer>
+                                            <row id="133">
+                                                <cell id="134"/>
+                                                <cell id="135"/>
+                                            </row>
+                                        </footer>
+                                    </group>
+                                    <detail>
+                                        <row id="112">
+                                            <cell id="113"/>
+                                            <cell id="114"/>
+                                        </row>
+                                    </detail>
+                                    <footer>
+                                        <row id="115">
+                                            <cell id="116"/>
+                                            <cell id="117"/>
+                                        </row>
+                                    </footer>
+                                </table>
+                            </cell>
+                        </row>
+                    </grid>
                 </cell>
             </row>
             <row id="298">
+                <property name="pageBreakAfter">always</property>
                 <cell id="299">
-                    <label id="300">
-                        <text-property name="text">Breakdown by Area of Occupation</text-property>
-                    </label>
-                </cell>
-            </row>
-            <row id="7">
-                <cell id="8">
-                    <extended-item extensionName="Chart" id="44">
-                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
+                    <grid id="323">
+                        <column id="324"/>
+                        <row id="325">
+                            <cell id="326">
+                                <label id="300">
+                                    <text-property name="text">Breakdown by Area of Occupation</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                        <row id="327">
+                            <cell id="328">
+                                <extended-item extensionName="Chart" id="44">
+                                    <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.6.1</Version>
   <Type>Pie Chart</Type>
   <SubType>Standard</SubType>
@@ -2278,124 +2291,125 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
   </SeriesDefinitions>
 </model:ChartWithoutAxes>
 ]]></xml-property>
-                        <property name="outputFormat">SVG</property>
-                        <property name="inheritColumns">false</property>
-                        <property name="height">290pt</property>
-                        <property name="width">100%</property>
-                        <property name="dataSet">VolunteerEmploymentDetails</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">VolunteerId</property>
-                                <text-property name="displayName">VolunteerId</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["VolunteerId"]</expression>
-                                <property name="dataType">integer</property>
-                            </structure>
-                            <structure>
-                                <property name="name">AreaOfOccupation</property>
-                                <text-property name="displayName">AreaOfOccupation</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                        </list-property>
-                    </extended-item>
+                                    <property name="outputFormat">SVG</property>
+                                    <property name="inheritColumns">false</property>
+                                    <property name="height">290pt</property>
+                                    <property name="width">100%</property>
+                                    <property name="dataSet">VolunteerEmploymentDetails</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">VolunteerId</property>
+                                            <text-property name="displayName">VolunteerId</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["VolunteerId"]</expression>
+                                            <property name="dataType">integer</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">AreaOfOccupation</property>
+                                            <text-property name="displayName">AreaOfOccupation</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                    </list-property>
+                                </extended-item>
+                            </cell>
+                        </row>
+                        <row id="329">
+                            <cell id="330">
+                                <table id="13">
+                                    <property name="width">100%</property>
+                                    <property name="dataSet">VolunteerEmploymentDetails</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">AreaOfOccupation</property>
+                                            <text-property name="displayName">AreaOfOccupation</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
+                                            <property name="dataType">string</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">AreaOfOccupationCount</property>
+                                            <text-property name="displayName">AreaOfOccupationCount</text-property>
+                                            <property name="dataType">integer</property>
+                                            <simple-property-list name="aggregateOn">
+                                                <value>AreaOfOccupationGroup</value>
+                                            </simple-property-list>
+                                            <property name="aggregateFunction">COUNT</property>
+                                            <list-property name="arguments">
+                                                <structure>
+                                                    <property name="name">Expression</property>
+                                                    <expression name="value" type="javascript">row["AreaOfOccupation"]</expression>
+                                                </structure>
+                                            </list-property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <column id="26">
+                                        <property name="width">80%</property>
+                                    </column>
+                                    <column id="28"/>
+                                    <header>
+                                        <row id="14">
+                                            <cell id="15">
+                                                <label id="29">
+                                                    <text-property name="text">Area Of Occupation</text-property>
+                                                </label>
+                                            </cell>
+                                            <cell id="17">
+                                                <label id="43">
+                                                    <text-property name="text">Number Of Volunteers</text-property>
+                                                </label>
+                                            </cell>
+                                        </row>
+                                    </header>
+                                    <group id="31">
+                                        <property name="groupName">AreaOfOccupationGroup</property>
+                                        <expression name="keyExpr" type="javascript">row["AreaOfOccupation"]</expression>
+                                        <structure name="toc">
+                                            <expression name="expressionValue" type="javascript">row["AreaOfOccupation"]</expression>
+                                        </structure>
+                                        <property name="hideDetail">false</property>
+                                        <header>
+                                            <row id="32">
+                                                <cell id="33">
+                                                    <data id="40">
+                                                        <property name="resultSetColumn">AreaOfOccupation</property>
+                                                    </data>
+                                                </cell>
+                                                <cell id="35">
+                                                    <data id="41">
+                                                        <property name="textAlign">center</property>
+                                                        <property name="resultSetColumn">AreaOfOccupationCount</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                        </header>
+                                        <footer>
+                                            <row id="36">
+                                                <cell id="37"/>
+                                                <cell id="39"/>
+                                            </row>
+                                        </footer>
+                                    </group>
+                                    <detail>
+                                        <row id="18">
+                                            <cell id="19"/>
+                                            <cell id="21"/>
+                                        </row>
+                                    </detail>
+                                    <footer>
+                                        <row id="22">
+                                            <cell id="23"/>
+                                            <cell id="25"/>
+                                        </row>
+                                    </footer>
+                                </table>
+                            </cell>
+                        </row>
+                    </grid>
                 </cell>
             </row>
-            <row id="45">
-                <cell id="46">
-                    <table id="13">
-                        <property name="width">100%</property>
-                        <property name="dataSet">VolunteerEmploymentDetails</property>
-                        <list-property name="boundDataColumns">
-                            <structure>
-                                <property name="name">AreaOfOccupation</property>
-                                <text-property name="displayName">AreaOfOccupation</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
-                                <property name="dataType">string</property>
-                            </structure>
-                            <structure>
-                                <property name="name">AreaOfOccupationCount</property>
-                                <text-property name="displayName">AreaOfOccupationCount</text-property>
-                                <property name="dataType">integer</property>
-                                <simple-property-list name="aggregateOn">
-                                    <value>AreaOfOccupationGroup</value>
-                                </simple-property-list>
-                                <property name="aggregateFunction">COUNT</property>
-                                <list-property name="arguments">
-                                    <structure>
-                                        <property name="name">Expression</property>
-                                        <expression name="value" type="javascript">row["AreaOfOccupation"]</expression>
-                                    </structure>
-                                </list-property>
-                                <property name="allowExport">true</property>
-                            </structure>
-                        </list-property>
-                        <column id="26">
-                            <property name="width">80%</property>
-                        </column>
-                        <column id="28"/>
-                        <header>
-                            <row id="14">
-                                <cell id="15">
-                                    <label id="29">
-                                        <text-property name="text">Area Of Occupation</text-property>
-                                    </label>
-                                </cell>
-                                <cell id="17">
-                                    <label id="43">
-                                        <text-property name="text">Number Of Volunteers</text-property>
-                                    </label>
-                                </cell>
-                            </row>
-                        </header>
-                        <group id="31">
-                            <property name="groupName">AreaOfOccupationGroup</property>
-                            <expression name="keyExpr" type="javascript">row["AreaOfOccupation"]</expression>
-                            <structure name="toc">
-                                <expression name="expressionValue" type="javascript">row["AreaOfOccupation"]</expression>
-                            </structure>
-                            <property name="hideDetail">false</property>
-                            <header>
-                                <row id="32">
-                                    <cell id="33">
-                                        <data id="40">
-                                            <property name="resultSetColumn">AreaOfOccupation</property>
-                                        </data>
-                                    </cell>
-                                    <cell id="35">
-                                        <data id="41">
-                                            <property name="textAlign">center</property>
-                                            <property name="resultSetColumn">AreaOfOccupationCount</property>
-                                        </data>
-                                    </cell>
-                                </row>
-                            </header>
-                            <footer>
-                                <row id="36">
-                                    <cell id="37"/>
-                                    <cell id="39"/>
-                                </row>
-                            </footer>
-                        </group>
-                        <detail>
-                            <row id="18">
-                                <cell id="19"/>
-                                <cell id="21"/>
-                            </row>
-                        </detail>
-                        <footer>
-                            <row id="22">
-                                <cell id="23"/>
-                                <cell id="25"/>
-                            </row>
-                        </footer>
-                    </table>
-                </cell>
-            </row>
-            <row id="248">
-                <cell id="249"/>
-            </row>
-            <row id="250">
-                <cell id="251">
+            <row id="7">
+                <property name="pageBreakAfter">always</property>
+                <cell id="8">
                     <extended-item extensionName="Chart" id="256">
                         <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:data="http://www.birt.eclipse.org/ChartModelData" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.6.1</Version>
@@ -3521,6 +3535,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
 ]]></xml-property>
                         <property name="outputFormat">SVG</property>
                         <property name="inheritColumns">false</property>
+                        <property name="pageBreakAfter">auto</property>
                         <property name="height">290pt</property>
                         <property name="width">100%</property>
                         <property name="dataSet">VolunteerNeedsWillingToHelpWith</property>
@@ -3546,9 +3561,6 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                         </list-property>
                     </extended-item>
                 </cell>
-            </row>
-            <row id="252">
-                <cell id="253"/>
             </row>
             <row id="258">
                 <cell id="259">
@@ -3590,32 +3602,35 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                             <header>
                                 <row id="274">
                                     <cell id="275">
-                                        <grid id="303">
-                                            <column id="304"/>
-                                            <column id="305"/>
-                                            <row id="306">
-                                                <cell id="307">
-                                                    <label id="302">
-                                                        <property name="textAlign">right</property>
-                                                        <text-property name="text">Breakdown of Volunteers Willing to Help with</text-property>
-                                                    </label>
-                                                </cell>
-                                                <cell id="308">
-                                                    <data id="278">
-                                                        <property name="textAlign">left</property>
-                                                        <property name="resultSetColumn">NeedWillingToHelpWith</property>
-                                                    </data>
+                                        <grid id="309">
+                                            <property name="pageBreakAfter">always</property>
+                                            <column id="310"/>
+                                            <row id="339">
+                                                <cell id="340">
+                                                    <grid id="303">
+                                                        <column id="304"/>
+                                                        <column id="305"/>
+                                                        <row id="306">
+                                                            <cell id="307">
+                                                                <label id="302">
+                                                                    <property name="textAlign">right</property>
+                                                                    <text-property name="text">Breakdown of Volunteers Willing to Help with</text-property>
+                                                                </label>
+                                                            </cell>
+                                                            <cell id="308">
+                                                                <data id="278">
+                                                                    <property name="textAlign">left</property>
+                                                                    <property name="resultSetColumn">NeedWillingToHelpWith</property>
+                                                                </data>
+                                                            </cell>
+                                                        </row>
+                                                    </grid>
                                                 </cell>
                                             </row>
-                                        </grid>
-                                    </cell>
-                                </row>
-                            </header>
-                            <footer>
-                                <row id="276">
-                                    <cell id="277">
-                                        <extended-item extensionName="Chart" id="280">
-                                            <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
+                                            <row id="311">
+                                                <cell id="312">
+                                                    <extended-item extensionName="Chart" id="280">
+                                                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.6.1</Version>
   <Type>Pie Chart</Type>
   <SubType>Standard</SubType>
@@ -4467,44 +4482,48 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
   </SeriesDefinitions>
 </model:ChartWithoutAxes>
 ]]></xml-property>
-                                            <property name="outputFormat">SVG</property>
-                                            <list-property name="filter">
-                                                <structure>
-                                                    <property name="operator">eq</property>
-                                                    <expression name="expr" type="javascript">row["NeedWillingToHelpWith"]</expression>
-                                                    <simple-property-list name="value1">
-                                                        <value>row._outer["NeedWillingToHelpWith"]</value>
-                                                    </simple-property-list>
-                                                    <property name="updateAggregation">true</property>
-                                                </structure>
-                                            </list-property>
-                                            <property name="inheritColumns">false</property>
-                                            <property name="height">290pt</property>
-                                            <property name="width">100%</property>
-                                            <property name="dataSet">NeedsVsEmploymentStatusAndAreaOfOccupation</property>
-                                            <list-property name="boundDataColumns">
-                                                <structure>
-                                                    <property name="name">NeedWillingToHelpWith</property>
-                                                    <text-property name="displayName">NeedWillingToHelpWith</text-property>
-                                                    <expression name="expression" type="javascript">dataSetRow["NeedWillingToHelpWith"]</expression>
-                                                    <property name="dataType">string</property>
-                                                </structure>
-                                                <structure>
-                                                    <property name="name">EmploymentStatus</property>
-                                                    <text-property name="displayName">EmploymentStatus</text-property>
-                                                    <expression name="expression" type="javascript">dataSetRow["EmploymentStatus"]</expression>
-                                                    <property name="dataType">string</property>
-                                                </structure>
-                                                <structure>
-                                                    <property name="name">AreaOfOccupation</property>
-                                                    <text-property name="displayName">AreaOfOccupation</text-property>
-                                                    <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
-                                                    <property name="dataType">string</property>
-                                                </structure>
-                                            </list-property>
-                                        </extended-item>
-                                        <extended-item extensionName="Chart" id="279">
-                                            <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
+                                                        <property name="outputFormat">SVG</property>
+                                                        <list-property name="filter">
+                                                            <structure>
+                                                                <property name="operator">eq</property>
+                                                                <expression name="expr" type="javascript">row["NeedWillingToHelpWith"]</expression>
+                                                                <simple-property-list name="value1">
+                                                                    <value>row._outer["NeedWillingToHelpWith"]</value>
+                                                                </simple-property-list>
+                                                                <property name="updateAggregation">true</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="inheritColumns">false</property>
+                                                        <property name="height">290pt</property>
+                                                        <property name="width">100%</property>
+                                                        <property name="dataSet">NeedsVsEmploymentStatusAndAreaOfOccupation</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">NeedWillingToHelpWith</property>
+                                                                <text-property name="displayName">NeedWillingToHelpWith</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["NeedWillingToHelpWith"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                            <structure>
+                                                                <property name="name">EmploymentStatus</property>
+                                                                <text-property name="displayName">EmploymentStatus</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["EmploymentStatus"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                            <structure>
+                                                                <property name="name">AreaOfOccupation</property>
+                                                                <text-property name="displayName">AreaOfOccupation</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                    </extended-item>
+                                                </cell>
+                                            </row>
+                                            <row id="313">
+                                                <cell id="314">
+                                                    <extended-item extensionName="Chart" id="279">
+                                                        <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithoutAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.6.1</Version>
   <Type>Pie Chart</Type>
   <SubType>Standard</SubType>
@@ -5356,43 +5375,51 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
   </SeriesDefinitions>
 </model:ChartWithoutAxes>
 ]]></xml-property>
-                                            <property name="outputFormat">SVG</property>
-                                            <list-property name="filter">
-                                                <structure>
-                                                    <property name="operator">eq</property>
-                                                    <expression name="expr" type="javascript">row["NeedWillingToHelpWith"]</expression>
-                                                    <simple-property-list name="value1">
-                                                        <value>row._outer["NeedWillingToHelpWith"]</value>
-                                                    </simple-property-list>
-                                                    <property name="updateAggregation">true</property>
-                                                </structure>
-                                            </list-property>
-                                            <property name="inheritColumns">false</property>
-                                            <property name="height">290pt</property>
-                                            <property name="width">100%</property>
-                                            <property name="dataSet">NeedsVsEmploymentStatusAndAreaOfOccupation</property>
-                                            <list-property name="boundDataColumns">
-                                                <structure>
-                                                    <property name="name">NeedWillingToHelpWith</property>
-                                                    <text-property name="displayName">NeedWillingToHelpWith</text-property>
-                                                    <expression name="expression" type="javascript">dataSetRow["NeedWillingToHelpWith"]</expression>
-                                                    <property name="dataType">string</property>
-                                                </structure>
-                                                <structure>
-                                                    <property name="name">EmploymentStatus</property>
-                                                    <text-property name="displayName">EmploymentStatus</text-property>
-                                                    <expression name="expression" type="javascript">dataSetRow["EmploymentStatus"]</expression>
-                                                    <property name="dataType">string</property>
-                                                </structure>
-                                                <structure>
-                                                    <property name="name">AreaOfOccupation</property>
-                                                    <text-property name="displayName">AreaOfOccupation</text-property>
-                                                    <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
-                                                    <property name="dataType">string</property>
-                                                </structure>
-                                            </list-property>
-                                        </extended-item>
+                                                        <property name="outputFormat">SVG</property>
+                                                        <list-property name="filter">
+                                                            <structure>
+                                                                <property name="operator">eq</property>
+                                                                <expression name="expr" type="javascript">row["NeedWillingToHelpWith"]</expression>
+                                                                <simple-property-list name="value1">
+                                                                    <value>row._outer["NeedWillingToHelpWith"]</value>
+                                                                </simple-property-list>
+                                                                <property name="updateAggregation">true</property>
+                                                            </structure>
+                                                        </list-property>
+                                                        <property name="inheritColumns">false</property>
+                                                        <property name="height">290pt</property>
+                                                        <property name="width">100%</property>
+                                                        <property name="dataSet">NeedsVsEmploymentStatusAndAreaOfOccupation</property>
+                                                        <list-property name="boundDataColumns">
+                                                            <structure>
+                                                                <property name="name">NeedWillingToHelpWith</property>
+                                                                <text-property name="displayName">NeedWillingToHelpWith</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["NeedWillingToHelpWith"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                            <structure>
+                                                                <property name="name">EmploymentStatus</property>
+                                                                <text-property name="displayName">EmploymentStatus</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["EmploymentStatus"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                            <structure>
+                                                                <property name="name">AreaOfOccupation</property>
+                                                                <text-property name="displayName">AreaOfOccupation</text-property>
+                                                                <expression name="expression" type="javascript">dataSetRow["AreaOfOccupation"]</expression>
+                                                                <property name="dataType">string</property>
+                                                            </structure>
+                                                        </list-property>
+                                                    </extended-item>
+                                                </cell>
+                                            </row>
+                                        </grid>
                                     </cell>
+                                </row>
+                            </header>
+                            <footer>
+                                <row id="276">
+                                    <cell id="277"/>
                                 </row>
                             </footer>
                         </group>
