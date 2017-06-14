@@ -26,6 +26,36 @@ System.getenv("BIRT_USERNAME");</expression>
             <expression name="value" type="javascript">importPackage(Packages.java.lang);&#13;
 System.getenv("BIRT_PASSWORD");</expression>
         </structure>
+        <structure>
+            <property name="name">odaDriverClass</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">odaURL</property>
+            <property name="id">11</property>
+            <expression name="value" type="javascript">importPackage(Packages.java.lang);&#13;
+System.getenv("BIRT_JDBC_DRIVER_URL");</expression>
+        </structure>
+        <structure>
+            <property name="name">odaAutoCommit</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">odaIsolationMode</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">odaJndiName</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileName</property>
+            <property name="id">11</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileStorePath</property>
+            <property name="id">11</property>
+        </structure>
     </list-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
