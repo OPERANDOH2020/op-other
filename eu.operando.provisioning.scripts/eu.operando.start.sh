@@ -41,6 +41,7 @@ function get_ip_address_for_network_interface () {
 #    $1: docker-name
 #    $2: port to check
 #    $3: path to check
+#    $4: expected status code in answer
 #######################################
 function wait_service_online() {
   EXPECTED=$4
@@ -155,6 +156,9 @@ else
   _title "DEPLOY: mongodb NO persistance"
   docker run -d -p 27017:27017 --name operando.mongo --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
 fi
+# phpmyadmin
+_title "DEPLOY: phpmyadmin"
+docker run -d -t --name phpmyadmin -p 8104:80 --dns $DNS_IP -e "MYSQL_ROOT_PASSWORD=root" -e "PMA_HOST=mysql.integration.operando.lan.esilab.org" -e "PMA_USER=root" -e "PMA_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.phpmyadmin.server:ALPHA
 
 # LDB
 _title "DEPLOY: ldb"
@@ -193,6 +197,10 @@ docker run -d -p 8095:8080 --name pc --dns $DNS_IP registry.devops.operando.esil
 # Web UI
 _title "DEPLOY: webui"
 docker run -d -p 8121:8084 --name webui --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.console.server:ALPHA
+
+docker exec -t webui /bin/sh -c "sed -i -e 's/uiCulture=\"it\"/uiCulture=\"$CULTURE\"/g' _PublishedWebsites/Operando-AdministrationConsole/Web.config"
+docker stop webui
+docker start webui
 
 # RightManager RM
 _title "DEPLOY: rm"

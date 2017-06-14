@@ -1,71 +1,296 @@
 {
-    "policy_text": "Food Coach Service",
-    "policy_url": "FoodCoach",
-    "schema": "http://operando.odata.eservices4life.org/foodcoach/$metadata",
-    "workflow": [],
-    "policies": [
-        {
-            "subject": "Nutritionist",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Identity",
-            "attributes": [{}]
-        },
-        {
-            "subject": "Nutritionist",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Weight",
-            "attributes": [{}]
-        },
-        {
-            "subject": "Nutritionist",
-            "permission": "true",
-            "action": "Access",
-            "resource": "FFQ",
-            "attributes": [{}]
-        },
-        {
-            "subject": "Researcher",
-            "permission": "false",
-            "action": "Access",
-            "resource": "Identity",
-            "attributes": [{}]
-        },
-        {
-            "subject": "Researcher",
-            "permission": "false",
-            "action": "Access",
-            "resource": "Weight",
-            "attributes": [{}]
-        },
-        {
-            "subject": "Researcher",
-            "permission": "true",
-            "action": "Access",
-            "resource": "FFQ",
-            "attributes": [{}]
-        },
-        {
-            "subject": "MarketShareSPA",
-            "permission": "false",
-            "action": "Access",
-            "resource": "Identity",
-            "attributes": [{}]
-        },
-        {
-            "subject": "MarketShareSPA",
-            "permission": "false",
-            "action": "Access",
-            "resource": "Weight",
-            "attributes": [{}]
-        },
-        {
-            "subject": "MarketShareSPA",
-            "permission": "false",
-            "action": "Access",
-            "resource": "FFQ",
-            "attributes": [{}]
-        }
-    ]
+  "policies": [
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "Weight", 
+      "subject": "User"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "Weight", 
+      "subject": "Nutritionist"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "Weight", 
+      "subject": "Researcher"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "Weight", 
+      "subject": "MarketShareSPA"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "WeightId", 
+      "subject": "User"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "WeightId", 
+      "subject": "Nutritionist"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "WeightId", 
+      "subject": "Researcher"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "WeightId", 
+      "subject": "MarketShareSPA"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "Moment", 
+      "subject": "User"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "Moment", 
+      "subject": "Nutritionist"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "Moment", 
+      "subject": "Researcher"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "Moment", 
+      "subject": "MarketShareSPA"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "ID", 
+      "subject": "User"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "ID", 
+      "subject": "Nutritionist"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "ID", 
+      "subject": "Researcher"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "ID", 
+      "subject": "MarketShareSPA"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "FoodcoachUserId", 
+      "subject": "User"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "FoodcoachUserId", 
+      "subject": "Nutritionist"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "FoodcoachUserId", 
+      "subject": "Researcher"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "FoodcoachUserId", 
+      "subject": "MarketShareSPA"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "ScaleRitualId", 
+      "subject": "User"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "ScaleRitualId", 
+      "subject": "Nutritionist"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "ScaleRitualId", 
+      "subject": "Researcher"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "ScaleRitualId", 
+      "subject": "MarketShareSPA"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "RegistrationTimestamp", 
+      "subject": "User"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "RegistrationTimestamp", 
+      "subject": "Nutritionist"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "RegistrationTimestamp", 
+      "subject": "Researcher"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "RegistrationTimestamp", 
+      "subject": "MarketShareSPA"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "Date", 
+      "subject": "User"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "Date", 
+      "subject": "Nutritionist"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "true", 
+      "resource": "Date", 
+      "subject": "Researcher"
+    }, 
+    {
+      "action": "Access", 
+      "attributes": [
+        {}
+      ], 
+      "permission": "false", 
+      "resource": "Date", 
+      "subject": "MarketShareSPA"
+    }
+  ], 
+  "policy_text": "FoodCoach Service", 
+  "policy_url": "FoodCoach", 
+  "schema": "http://operando.odata.eservices4life.org/foodcoach/$metadata", 
+  "workflow": []
 }

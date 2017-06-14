@@ -17,21 +17,14 @@
             "permission": "true",
             "action": "Access",
             "resource": "odata.metadata",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "volunteer_linkup",
             "permission": "true",
             "action": "Access",
             "resource": "Id",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Availability_Id",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "volunteer_linkup",
@@ -44,43 +37,15 @@
             "subject": "volunteer_linkup",
             "permission": "true",
             "action": "Access",
-            "resource": "ConfidentialNote_Id",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
             "resource": "ConfidentialNote",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "volunteer_linkup",
             "permission": "true",
             "action": "Access",
             "resource": "Matches",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "VolunteerOrganisation_Id",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "VolunteerOrganisation",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Preferences_Id",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "volunteer_linkup",
@@ -94,28 +59,21 @@
             "permission": "true",
             "action": "Access",
             "resource": "Unsuccessful",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "UnsuccessfulReason_Id",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "volunteer_linkup",
             "permission": "true",
             "action": "Access",
             "resource": "VolunteerUnsuccessfulReason",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "volunteer_linkup",
             "permission": "true",
             "action": "Access",
             "resource": "VolunteerChecklistItems",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "volunteer_linkup",
@@ -149,31 +107,9 @@
             "subject": "volunteer_linkup",
             "permission": "true",
             "action": "Access",
-            "resource": "DateOfBirth",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
             "resource": "RegistrationDate",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "AmiUserId",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Address_Id",
-            "attributes": [{}]
-        }
-        ,
         {
             "subject": "volunteer_linkup",
             "permission": "true",
@@ -182,74 +118,18 @@
             "attributes": [{}]
         },
         {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "GenderType",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Gender_Value",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "OtherGender",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ActivationUrl",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ActivationDate",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ReferrerType_Value",
-            "attributes": [{}]
-        },
-        {
-            "subject": "volunteer_linkup",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ReferrerType",
-            "attributes": [{}]
-        },
-		        {
             "subject": "abingdon_good_neighbour_scheme",
             "permission": "true",
             "action": "Access",
             "resource": "odata.metadata",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "abingdon_good_neighbour_scheme",
             "permission": "true",
             "action": "Access",
             "resource": "Id",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Availability_Id",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "abingdon_good_neighbour_scheme",
@@ -262,43 +142,15 @@
             "subject": "abingdon_good_neighbour_scheme",
             "permission": "true",
             "action": "Access",
-            "resource": "ConfidentialNote_Id",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
             "resource": "ConfidentialNote",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "abingdon_good_neighbour_scheme",
             "permission": "true",
             "action": "Access",
             "resource": "Matches",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "VolunteerOrganisation_Id",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "VolunteerOrganisation",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Preferences_Id",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "abingdon_good_neighbour_scheme",
@@ -312,28 +164,21 @@
             "permission": "true",
             "action": "Access",
             "resource": "Unsuccessful",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "UnsuccessfulReason_Id",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "abingdon_good_neighbour_scheme",
             "permission": "true",
             "action": "Access",
             "resource": "VolunteerUnsuccessfulReason",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "abingdon_good_neighbour_scheme",
             "permission": "true",
             "action": "Access",
             "resource": "VolunteerChecklistItems",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
         {
             "subject": "abingdon_good_neighbour_scheme",
@@ -367,85 +212,14 @@
             "subject": "abingdon_good_neighbour_scheme",
             "permission": "true",
             "action": "Access",
-            "resource": "DateOfBirth",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
             "resource": "RegistrationDate",
-            "attributes": [{}]
+            "attributes": [{"attribute_name": "fixed", "attribute_value": "true"}]
         },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "AmiUserId",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Address_Id",
-            "attributes": [{}]
-        }
-        ,
         {
             "subject": "abingdon_good_neighbour_scheme",
             "permission": "true",
             "action": "Access",
             "resource": "Address",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "GenderType",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "Gender_Value",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "OtherGender",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ActivationUrl",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ActivationDate",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ReferrerType_Value",
-            "attributes": [{}]
-        },
-        {
-            "subject": "abingdon_good_neighbour_scheme",
-            "permission": "true",
-            "action": "Access",
-            "resource": "ReferrerType",
             "attributes": [{}]
         }
     ]
