@@ -434,6 +434,13 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                     </grid>
                 </cell>
             </row>
+            <row id="295">
+                <cell id="296">
+                    <label id="297">
+                        <text-property name="text">Breakdown by Employment Status</text-property>
+                    </label>
+                </cell>
+            </row>
             <row id="52">
                 <cell id="53">
                     <extended-item extensionName="Chart" id="140">
@@ -1407,6 +1414,13 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                             </row>
                         </footer>
                     </table>
+                </cell>
+            </row>
+            <row id="298">
+                <cell id="299">
+                    <label id="300">
+                        <text-property name="text">Breakdown by Area of Occupation</text-property>
+                    </label>
                 </cell>
             </row>
             <row id="7">
@@ -3576,9 +3590,24 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                             <header>
                                 <row id="274">
                                     <cell id="275">
-                                        <data id="278">
-                                            <property name="resultSetColumn">NeedWillingToHelpWith</property>
-                                        </data>
+                                        <grid id="303">
+                                            <column id="304"/>
+                                            <column id="305"/>
+                                            <row id="306">
+                                                <cell id="307">
+                                                    <label id="302">
+                                                        <property name="textAlign">right</property>
+                                                        <text-property name="text">Breakdown of Volunteers Willing to Help with</text-property>
+                                                    </label>
+                                                </cell>
+                                                <cell id="308">
+                                                    <data id="278">
+                                                        <property name="textAlign">left</property>
+                                                        <property name="resultSetColumn">NeedWillingToHelpWith</property>
+                                                    </data>
+                                                </cell>
+                                            </row>
+                                        </grid>
                                     </cell>
                                 </row>
                             </header>
