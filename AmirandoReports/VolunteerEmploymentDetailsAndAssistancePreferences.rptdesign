@@ -377,6 +377,19 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
     </data-sets>
+    <styles>
+        <style name="SectionHeader" id="355">
+            <property name="backgroundColor">#000080</property>
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">x-large</property>
+            <property name="fontWeight">bold</property>
+            <property name="fontStyle">normal</property>
+            <property name="color">#FFFFFF</property>
+            <property name="textLineThrough">none</property>
+            <property name="textOverline">none</property>
+            <property name="textUnderline">none</property>
+        </style>
+    </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <page-footer>
@@ -453,6 +466,9 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                         <row id="317">
                             <cell id="318">
                                 <label id="297">
+                                    <property name="style">SectionHeader</property>
+                                    <property name="backgroundColor">navy</property>
+                                    <property name="textAlign">left</property>
                                     <text-property name="text">Breakdown by Employment Status</text-property>
                                 </label>
                             </cell>
@@ -1443,6 +1459,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                         <row id="325">
                             <cell id="326">
                                 <label id="300">
+                                    <property name="style">SectionHeader</property>
                                     <text-property name="text">Breakdown by Area of Occupation</text-property>
                                 </label>
                             </cell>
@@ -3580,9 +3597,10 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                         <list-property name="boundDataColumns">
                             <structure>
                                 <property name="name">NeedWillingToHelpWith</property>
-                                <text-property name="displayName">NeedWillingToHelpWith</text-property>
-                                <expression name="expression" type="javascript">dataSetRow["NeedWillingToHelpWith"]</expression>
+                                <text-property name="displayName">NeedWillingToHelpWithLabel</text-property>
+                                <expression name="expression" type="javascript">'Breakdown of Volunteers Willing to Help with ' + dataSetRow["NeedWillingToHelpWith"]</expression>
                                 <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
                             </structure>
                             <structure>
                                 <property name="name">EmploymentStatus</property>
@@ -3619,17 +3637,11 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                             <row id="339">
                                                 <cell id="340">
                                                     <grid id="303">
-                                                        <column id="304"/>
                                                         <column id="305"/>
                                                         <row id="306">
-                                                            <cell id="307">
-                                                                <label id="302">
-                                                                    <property name="textAlign">right</property>
-                                                                    <text-property name="text">Breakdown of Volunteers Willing to Help with</text-property>
-                                                                </label>
-                                                            </cell>
                                                             <cell id="308">
                                                                 <data id="278">
+                                                                    <property name="style">SectionHeader</property>
                                                                     <property name="textAlign">left</property>
                                                                     <property name="resultSetColumn">NeedWillingToHelpWith</property>
                                                                 </data>
@@ -4497,7 +4509,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                                         <list-property name="filter">
                                                             <structure>
                                                                 <property name="operator">eq</property>
-                                                                <expression name="expr" type="javascript">row["NeedWillingToHelpWith"]</expression>
+                                                                <expression name="expr" type="javascript">'Breakdown of Volunteers Willing to Help with ' + row["NeedWillingToHelpWith"]</expression>
                                                                 <simple-property-list name="value1">
                                                                     <value>row._outer["NeedWillingToHelpWith"]</value>
                                                                 </simple-property-list>
@@ -5390,7 +5402,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                                         <list-property name="filter">
                                                             <structure>
                                                                 <property name="operator">eq</property>
-                                                                <expression name="expr" type="javascript">row["NeedWillingToHelpWith"]</expression>
+                                                                <expression name="expr" type="javascript">'Breakdown of Volunteers Willing to Help with ' + row["NeedWillingToHelpWith"]</expression>
                                                                 <simple-property-list name="value1">
                                                                     <value>row._outer["NeedWillingToHelpWith"]</value>
                                                                 </simple-property-list>
