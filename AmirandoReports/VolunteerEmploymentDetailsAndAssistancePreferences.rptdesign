@@ -2440,6 +2440,14 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                 <cell id="8">
                     <grid id="356">
                         <column id="357"/>
+                        <row id="390">
+                            <cell id="391">
+                                <label id="392">
+                                    <property name="style">SectionHeader</property>
+                                    <text-property name="text">Proportion of Volunteers Willing to Volunteer for each Requirement Type</text-property>
+                                </label>
+                            </cell>
+                        </row>
                         <row id="358">
                             <cell id="359">
                                 <extended-item extensionName="Chart" id="256">
@@ -2476,10 +2484,10 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>true</Visible>
+      <Visible>false</Visible>
       <Label>
         <Caption>
-          <Value>Proportion of Volunteers Willing to Assist with each Need Type</Value>
+          <Value>Proportion of Volunteers Willing to Assist with each Type of Requirement</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -2751,7 +2759,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
     <Type>Text</Type>
     <Title>
       <Caption>
-        <Value>Need Willing to Help With</Value>
+        <Value>Requirement</Value>
         <Font>
           <Size>14.0</Size>
           <Bold>true</Bold>
@@ -3618,7 +3626,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                         <row id="363">
                                             <cell id="364">
                                                 <label id="386">
-                                                    <text-property name="text">Need Willing to Help With</text-property>
+                                                    <text-property name="text">Requirement</text-property>
                                                 </label>
                                             </cell>
                                             <cell id="365">
