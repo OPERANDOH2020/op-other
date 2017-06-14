@@ -393,6 +393,34 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
             <column id="5">
                 <property name="width">60%</property>
             </column>
+            <row id="281">
+                <cell id="282">
+                    <grid id="283">
+                        <column id="284"/>
+                        <column id="285"/>
+                        <column id="286"/>
+                        <row id="287">
+                            <property name="height">50pt</property>
+                            <cell id="288">
+                                <image id="291">
+                                    <property name="height">50pt</property>
+                                    <property name="source">url</property>
+                                    <expression name="uri" type="constant">http://www.operando.eu/immagini/logo/logo2.png</expression>
+                                </image>
+                            </cell>
+                            <cell id="289"/>
+                            <cell id="290">
+                                <property name="textAlign">right</property>
+                                <image id="292">
+                                    <property name="height">50pt</property>
+                                    <property name="source">url</property>
+                                    <expression name="uri" type="constant">https://www.withami.co.uk/Assets/Images/ami-logo-pink.png</expression>
+                                </image>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
             <row id="52">
                 <cell id="53">
                     <extended-item extensionName="Chart" id="140">
