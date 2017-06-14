@@ -6,7 +6,11 @@ import sys
 import json
 from OperandoException import OperandoException
 
-def create_user_dict(password, role, username):
+def create_user_dict(user):
+    password = user.password
+    role = user.role
+    username = user.id
+
     data = {}
     data["username"] = username
     data["password"] = password
@@ -25,7 +29,10 @@ def create_user_dict(password, role, username):
         data["requiredAttrs"].append(userTypeAttr)
     return data
 
-def log_create_user_information(password, response, username):
+def log_create_user_information(response, user):
+    password = user.password
+    username = user.id
+    
     print response
     if response.status_code:
         print response.status_code
@@ -37,12 +44,13 @@ def log_create_user_information(password, response, username):
     else:
         print "failed to create user {0}".format(username)
 
-def create_user(username, password, role):
+def create_user(user):
+
     url = config.create_user_url
-    data = create_user_dict(password, role, username)
+    data = create_user_dict(user)
     response = requests.post(url, json=data, timeout=config.timeout)
 
-    log_create_user_information(password, response, username)
+    log_create_user_information(response, user)
 
 def find_policy_for_osp(policies, osp_id):
     for policy in policies:
@@ -102,7 +110,7 @@ if len(args) > 1:
     if (default_user_privacy_policy):
         users = data_reader.read_users()
         for user in users:
-            create_user(user.id, user.password, user.role)
+            create_user(user)
             post_user_privacy_policy(user.id, default_user_privacy_policy)
 else:
     print "please supply the path to a csv text file"
