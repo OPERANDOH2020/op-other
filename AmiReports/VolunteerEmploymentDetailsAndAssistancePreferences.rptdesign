@@ -1377,7 +1377,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
 ]]></xml-property>
                                     <property name="outputFormat">SVG</property>
                                     <property name="inheritColumns">false</property>
-                                    <property name="height">280pt</property>
+                                    <property name="height">350pt</property>
                                     <property name="width">100%</property>
                                     <property name="dataSet">VolunteerEmploymentDetails</property>
                                     <list-property name="boundDataColumns">
@@ -2389,7 +2389,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
 ]]></xml-property>
                                     <property name="outputFormat">SVG</property>
                                     <property name="inheritColumns">false</property>
-                                    <property name="height">280pt</property>
+                                    <property name="height">350pt</property>
                                     <property name="width">100%</property>
                                     <property name="dataSet">VolunteerEmploymentDetails</property>
                                     <list-property name="boundDataColumns">
@@ -3651,7 +3651,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                     <property name="outputFormat">SVG</property>
                                     <property name="inheritColumns">false</property>
                                     <property name="pageBreakAfter">auto</property>
-                                    <property name="height">280pt</property>
+                                    <property name="height">350pt</property>
                                     <property name="width">100%</property>
                                     <property name="dataSet">VolunteerNeedsWillingToHelpWith</property>
                                     <list-property name="boundDataColumns">
@@ -4672,7 +4672,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                                             </structure>
                                                         </list-property>
                                                         <property name="inheritColumns">false</property>
-                                                        <property name="height">280pt</property>
+                                                        <property name="height">300pt</property>
                                                         <property name="width">100%</property>
                                                         <property name="dataSet">NeedsVsEmploymentStatusAndAreaOfOccupation</property>
                                                         <list-property name="boundDataColumns">
@@ -5565,7 +5565,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                                             </structure>
                                                         </list-property>
                                                         <property name="inheritColumns">false</property>
-                                                        <property name="height">280pt</property>
+                                                        <property name="height">300pt</property>
                                                         <property name="width">100%</property>
                                                         <property name="dataSet">NeedsVsEmploymentStatusAndAreaOfOccupation</property>
                                                         <list-property name="boundDataColumns">
