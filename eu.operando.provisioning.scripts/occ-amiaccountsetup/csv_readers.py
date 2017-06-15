@@ -17,7 +17,7 @@ class DataReader(object):
             reader = csv.DictReader(csv_file)
             for line in reader:
                 index = int(line[DataReader.indexkey])
-                if(line[DataReader.accountkey]):
+                if(line[DataReader.accountkey] == '1'):
                     # only bother giving roles to people who have ami accounts
                     type = line[DataReader.typekey]
                     if(type == "VL"):
@@ -28,8 +28,8 @@ class DataReader(object):
                         role = "Volunteer"
                     else:
                         role = ""
-                    password = user.create_password(index, role)
                 else:
                     role = ""
+                password = user.create_password(index, role)
                 users.append(User(index, password, role))
         return users
