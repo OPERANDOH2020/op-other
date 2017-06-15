@@ -24,7 +24,8 @@ class DataReader(object):
         index = int(line[DataReader.indexkey])
         role = self.read_user_role_from_line(line)
         password = user.create_password(index, role)
-        return User(index, password, role)
+        usertype = self.read_user_type_from_line(line)
+        return User(index, password, role, usertype)
 
     def read_user_role_from_line(self, line):
         role = ""
@@ -38,3 +39,12 @@ class DataReader(object):
             elif(type == "Volunteer"):
                 role = "Volunteer"
         return role
+
+    def read_user_type_from_line(self, line):
+        type = line[DataReader.typekey]
+        usertype = ""
+        if(type == "VL" or type == "AGNS"):
+            usertype = "osp_admin"
+        else:
+            usertype = "normal_user"
+        return usertype

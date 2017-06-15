@@ -10,6 +10,7 @@ def create_user_dict(user):
     password = user.password
     role = user.role
     username = user.id
+    usertype = user.usertype
 
     data = {}
     data["username"] = username
@@ -18,7 +19,7 @@ def create_user_dict(user):
     data["optionalAttrs"] = []
     userTypeAttr = {}
     userTypeAttr["attrName"] = "user_type"
-    userTypeAttr["attrValue"] = "normal_user"
+    userTypeAttr["attrValue"] = usertype
     data["optionalAttrs"].append(userTypeAttr)            
     
     if(role):
