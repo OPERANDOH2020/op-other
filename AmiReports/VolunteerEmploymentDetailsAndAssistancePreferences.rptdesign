@@ -463,42 +463,48 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                         <row id="287">
                             <property name="height">20%</property>
                             <cell id="288">
-                                <label name="ReportTitle" id="294">
-                                    <property name="style">TitleStyle</property>
-                                    <property name="fontSize">18pt</property>
-                                    <property name="fontWeight">bold</property>
-                                    <property name="textUnderline">none</property>
-                                    <property name="textAlign">center</property>
-                                    <text-property name="text">Ami Volunteer Breakdown Report</text-property>
-                                </label>
-                            </cell>
-                        </row>
-                        <row id="341">
-                            <property name="height">80%</property>
-                            <cell id="342">
-                                <property name="textAlign">center</property>
-                                <grid id="349">
-                                    <column id="350"/>
-                                    <column id="351"/>
-                                    <row id="352">
-                                        <cell id="353">
-                                            <property name="textAlign">right</property>
+                                <grid id="396">
+                                    <column id="397">
+                                        <property name="width">20%</property>
+                                    </column>
+                                    <column id="398"/>
+                                    <column id="399">
+                                        <property name="width">20%</property>
+                                    </column>
+                                    <row id="400">
+                                        <cell id="401">
                                             <image id="292">
-                                                <property name="height">50pt</property>
+                                                <property name="height">30pt</property>
                                                 <property name="source">url</property>
                                                 <expression name="uri" type="constant">https://www.withami.co.uk/Assets/Images/ami-logo-pink.png</expression>
                                             </image>
                                         </cell>
-                                        <cell id="354">
-                                            <property name="textAlign">left</property>
+                                        <cell id="402">
+                                            <label name="ReportTitle" id="294">
+                                                <property name="style">TitleStyle</property>
+                                                <property name="fontSize">18pt</property>
+                                                <property name="fontWeight">bold</property>
+                                                <property name="textUnderline">none</property>
+                                                <property name="textAlign">center</property>
+                                                <text-property name="text">Ami Volunteer Breakdown Report</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="403">
+                                            <property name="textAlign">right</property>
                                             <image id="291">
-                                                <property name="height">50pt</property>
+                                                <property name="height">30pt</property>
                                                 <property name="source">url</property>
                                                 <expression name="uri" type="constant">http://www.operando.eu/immagini/logo/logo2.png</expression>
                                             </image>
                                         </cell>
                                     </row>
                                 </grid>
+                            </cell>
+                        </row>
+                        <row id="341">
+                            <property name="height">80%</property>
+                            <cell id="342">
+                                <property name="textAlign">center</property>
                             </cell>
                         </row>
                     </grid>
