@@ -27,34 +27,10 @@ System.getenv("BIRT_USERNAME");</expression>
 System.getenv("BIRT_PASSWORD");</expression>
         </structure>
         <structure>
-            <property name="name">odaDriverClass</property>
-            <property name="id">11</property>
-        </structure>
-        <structure>
             <property name="name">odaURL</property>
             <property name="id">11</property>
             <expression name="value" type="javascript">importPackage(Packages.java.lang);&#13;
 System.getenv("BIRT_JDBC_DRIVER_URL");</expression>
-        </structure>
-        <structure>
-            <property name="name">odaAutoCommit</property>
-            <property name="id">11</property>
-        </structure>
-        <structure>
-            <property name="name">odaIsolationMode</property>
-            <property name="id">11</property>
-        </structure>
-        <structure>
-            <property name="name">odaJndiName</property>
-            <property name="id">11</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileName</property>
-            <property name="id">11</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileStorePath</property>
-            <property name="id">11</property>
         </structure>
     </list-property>
     <property name="units">in</property>
@@ -406,6 +382,71 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="NumberOfVolunteers" id="505">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">NumberOfVolunteers</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">NumberOfVolunteers</text-property>
+                    <text-property name="heading">NumberOfVolunteers</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">NumberOfVolunteers</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">AmiSqlDb</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">NumberOfVolunteers</property>
+                    <property name="nativeName">NumberOfVolunteers</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select count(1) AS NumberOfVolunteers
+from Volunteer]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>NumberOfVolunteers</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>NumberOfVolunteers</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>NumberOfVolunteers</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
     </data-sets>
     <styles>
         <style name="SectionHeader" id="355">
@@ -492,7 +533,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                                         <cell id="403">
                                             <property name="textAlign">right</property>
                                             <image id="291">
-                                                <property name="height">30pt</property>
+                                                <property name="height">35pt</property>
                                                 <property name="source">url</property>
                                                 <expression name="uri" type="constant">http://www.operando.eu/immagini/logo/logo2.png</expression>
                                             </image>
@@ -505,6 +546,60 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
                             <property name="height">80%</property>
                             <cell id="342">
                                 <property name="textAlign">center</property>
+                                <grid id="434">
+                                    <property name="width">7.802083333333333in</property>
+                                    <column id="435">
+                                        <property name="width">6.052083333333333in</property>
+                                    </column>
+                                    <column id="436"/>
+                                    <row id="438">
+                                        <cell id="439">
+                                            <label id="507">
+                                                <property name="textAlign">left</property>
+                                                <text-property name="text">Number of volunteers included in this report:</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="440">
+                                            <data id="506">
+                                                <property name="textAlign">right</property>
+                                                <property name="dataSet">NumberOfVolunteers</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">NumberOfVolunteers</property>
+                                                        <text-property name="displayName">NumberOfVolunteers</text-property>
+                                                        <expression name="expression" type="javascript">dataSetRow["NumberOfVolunteers"]</expression>
+                                                        <property name="dataType">integer</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">NumberOfVolunteers</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                    <row id="518">
+                                        <cell id="519">
+                                            <label id="510">
+                                                <property name="textAlign">left</property>
+                                                <text-property name="text">Number of volunteers in system (including those who didn't consent to be included in the report):</text-property>
+                                            </label>
+                                        </cell>
+                                        <cell id="520">
+                                            <data id="512">
+                                                <property name="textAlign">right</property>
+                                                <property name="dataSet">NumberOfVolunteers</property>
+                                                <list-property name="boundDataColumns">
+                                                    <structure>
+                                                        <property name="name">NumberOfVolunteers</property>
+                                                        <text-property name="displayName">TotalVolunteers</text-property>
+                                                        <expression name="expression" type="javascript">Math.floor(dataSetRow["NumberOfVolunteers"] * 100 / 85)</expression>
+                                                        <property name="dataType">integer</property>
+                                                        <property name="allowExport">true</property>
+                                                    </structure>
+                                                </list-property>
+                                                <property name="resultSetColumn">NumberOfVolunteers</property>
+                                            </data>
+                                        </cell>
+                                    </row>
+                                </grid>
                             </cell>
                         </row>
                     </grid>
@@ -3551,6 +3646,7 @@ ORDER BY NeedWillingToHelpWith, EmploymentStatus, AreaOfOccupation]]></xml-prope
         <Value></Value>
         <Font>
           <Alignment/>
+          <Rotation>60.0</Rotation>
         </Font>
       </Caption>
       <Background xsi:type="attribute:ColorDefinition">
