@@ -13,6 +13,7 @@ CULTURE="en";
 
 OS_TYPE=`cat /etc/issue | awk '{printf($1)}'`
 OS_VERSION=`cat /etc/issue | awk '{printf($2)}' |  awk -F. '{printf($1"."$2)}'`
+TIMEZONE=`cat /etc/timezone`
 
 ## check for sudo
 

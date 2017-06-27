@@ -125,53 +125,53 @@ _info "The following IP will be used as DNS_IP for all operando components: $DNS
 # AAPI
 if $PERSISTENCE; then
   _title "DEPLOY: openldap WITH persistance"
-  docker run -d -p 389:389 -p 636:636 --name openldap --dns $DNS_IP -v $VOLUMES/ldap/data:/var/lib/ldap -v $VOLUMES/ldap/config:/etc/ldap/slapd.d -e LDAP_DOMAIN=nodomain -e LDAP_ORGANISATION=nodomain -e HOSTNAME=integration.operando.dmz.lab.esilab.org -e LDAP_TLS_VERIFY_CLIENT=allow registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.openldap.server:ALPHA
+  docker run -d -p 389:389 -p 636:636 --name openldap --dns $DNS_IP -e TZ=$TIMEZONE -v $VOLUMES/ldap/data:/var/lib/ldap -v $VOLUMES/ldap/config:/etc/ldap/slapd.d -e LDAP_DOMAIN=nodomain -e LDAP_ORGANISATION=nodomain -e HOSTNAME=integration.operando.dmz.lab.esilab.org -e LDAP_TLS_VERIFY_CLIENT=allow registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.openldap.server:ALPHA
 else
   _title "DEPLOY: openldap NO persistance"
   docker run -d -p 389:389 -p 636:636 --name openldap --dns $DNS_IP -e LDAP_DOMAIN=nodomain -e LDAP_ORGANISATION=nodomain -e HOSTNAME=integration.operando.dmz.lab.esilab.org -e LDAP_TLS_VERIFY_CLIENT=allow registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.openldap.server:ALPHA
 fi
 
 _title "DEPLOY: cas"
-docker run -d -p 8101:8080 -p 8105:8443 --name cas --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.cas.server:ALPHA
+docker run -d -p 8101:8080 -p 8105:8443 --name cas --dns $DNS_IP -e TZ=$TIMEZONE registry.devops.operando.esilab.org:5000/operando/eu.operando.core.as.cas.server:ALPHA
 wait_service_online cas 8080 / 400
 
 _title "DEPLOY: aapi"
-docker run -d -p 8135:8080 --name aapi --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.aapi.server:ALPHA
+docker run -d -p 8135:8080 --name aapi --dns $DNS_IP -e TZ=$TIMEZONE registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.aapi.server:ALPHA
 wait_service_online aapi 8080 operando/interfaces/aapi/aapi/user/getOspList 201
 
 # MySQL and Mongo DBs
 if $PERSISTENCE; then
   _title "DEPLOY: mysql WITH persistance"
-  docker run -d -p 3306:3306 --name operando.mysql --dns $DNS_IP -v $VOLUMES/mysql:/var/lib/mysql  -e "MYSQL_ROOT_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mysql.server:ALPHA
+  docker run -d -p 3306:3306 --name operando.mysql --dns $DNS_IP -e TZ=$TIMEZONE -v $VOLUMES/mysql:/var/lib/mysql  -e "MYSQL_ROOT_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mysql.server:ALPHA
   wait_mysql_online operando.mysql root root operando_logdb
 
   _title "DEPLOY: mongodb WITH persistance"
-  docker run -d -p 27017:27017 --name operando.mongo --dns $DNS_IP -v $VOLUMES/mongodb:/data/db registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
+  docker run -d -p 27017:27017 --name operando.mongo --dns $DNS_IP -e TZ=$TIMEZONE -v $VOLUMES/mongodb:/data/db registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
 
 else
   _title "DEPLOY: mysql NO persistance"
-  docker run -d -p 3306:3306 --name operando.mysql --dns $DNS_IP -e "MYSQL_ROOT_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mysql.server:ALPHA
+  docker run -d -p 3306:3306 --name operando.mysql --dns $DNS_IP -e TZ=$TIMEZONE -e "MYSQL_ROOT_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mysql.server:ALPHA
   wait_mysql_online operando.mysql root root operando_logdb
 
   _title "DEPLOY: mongodb NO persistance"
-  docker run -d -p 27017:27017 --name operando.mongo --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
+  docker run -d -p 27017:27017 --name operando.mongo --dns $DNS_IP -e TZ=$TIMEZONE registry.devops.operando.esilab.org:5000/operando/eu.operando.core.mongo.server:ALPHA
 fi
 # phpmyadmin
 _title "DEPLOY: phpmyadmin"
-docker run -d -t --name phpmyadmin -p 8104:80 --dns $DNS_IP -e "MYSQL_ROOT_PASSWORD=root" -e "PMA_HOST=mysql.integration.operando.lan.esilab.org" -e "PMA_USER=root" -e "PMA_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.phpmyadmin.server:ALPHA
+docker run -d -t --name phpmyadmin -p 8104:80 --dns $DNS_IP -e TZ=$TIMEZONE -e "MYSQL_ROOT_PASSWORD=root" -e "PMA_HOST=mysql.integration.operando.lan.esilab.org" -e "PMA_USER=root" -e "PMA_PASSWORD=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.phpmyadmin.server:ALPHA
 
 # LDB
 _title "DEPLOY: ldb"
-docker run -d -p 8090:8080 --name ldb --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_logdb" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.ldb.server:ALPHA
+docker run -d -p 8090:8080 --name ldb --dns $DNS_IP -e TZ=$TIMEZONE -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_logdb" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.ldb.server:ALPHA
 wait_service_online ldb 8080 / 200
 
 _title "DEPLOY: ldb.search"
-docker run -d -p 8091:8080 --name ldb.search --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_logdb" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.ldb.search.server:ALPHA
+docker run -d -p 8091:8080 --name ldb.search --dns $DNS_IP -e TZ=$TIMEZONE -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_logdb" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.ldb.search.server:ALPHA
 wait_service_online ldb.search 8080 / 200 "operando/core/ldbsearch/log/search?logType=notification&affectedUserId=stringoperando/core/ldbsearch/log/search?logType=notification&affectedUserId=string"
 
 # DAN
 _title "DEPLOY: dan using config/repositoryManagersRegistry.yml"
-docker run -d -p 8111:8080 --name dan --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_dan" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.pdr.dan.server:ALPHA
+docker run -d -p 8111:8080 --name dan --dns $DNS_IP -e TZ=$TIMEZONE -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_dan" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.pdr.dan.server:ALPHA
 
 wait_service_online dan 8080 /operando/pdr/dan/ 400
 DANCONFIG=$(cat $CONFIGURATION/repositoryManagersRegistry.yml)
@@ -182,21 +182,21 @@ wait_service_online dan 8080 /operando/pdr/dan/ 400
 
 # PDB
 _title "DEPLOY: pdb"
-docker run -d -p 8096:8080 --name pdb --dns $DNS_IP -e "MONGO_HOST=mongo.integration.operando.lan.esilab.org" -e "MONGO_PORT=27017" -e "LDB_ENDPOINT=http://ldb.integration.operando.lan.esilab.org:8090/operando/core/ldb" -e "AAPI_ENDPOINT=http://aapi.integration.operando.lan.esilab.org:8135/operando/interfaces/aapi" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.pdb.server:ALPHA
+docker run -d -p 8096:8080 --name pdb --dns $DNS_IP -e TZ=$TIMEZONE -e "MONGO_HOST=mongo.integration.operando.lan.esilab.org" -e "MONGO_PORT=27017" -e "LDB_ENDPOINT=http://ldb.integration.operando.lan.esilab.org:8090/operando/core/ldb" -e "AAPI_ENDPOINT=http://aapi.integration.operando.lan.esilab.org:8135/operando/interfaces/aapi" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.pdb.server:ALPHA
 wait_service_online pdb 8080 / 200
 
 # RAPI
 _title "DEPLOY: rapi"
-docker run -d -p 8133:8080 --name rapi --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.rapi.server:ALPHA
+docker run -d -p 8133:8080 --name rapi --dns $DNS_IP -e TZ=$TIMEZONE registry.devops.operando.esilab.org:5000/operando/eu.operando.interfaces.rapi.server:ALPHA
 wait_service_online rapi 8080 operando/interfaces/rapi/regulator/osps/anything/compliance-report 401
 
 # PC
 _title "DEPLOY: pc"
-docker run -d -p 8095:8080 --name pc --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.core.pc.server:ALPHA
+docker run -d -p 8095:8080 --name pc --dns $DNS_IP -e TZ=$TIMEZONE registry.devops.operando.esilab.org:5000/operando/eu.operando.core.pc.server:ALPHA
 
 # Web UI
 _title "DEPLOY: webui"
-docker run -d -p 8121:8084 --name webui --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.console.server:ALPHA
+docker run -d -p 8121:8084 --name webui --dns $DNS_IP -e TZ=$TIMEZONE registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.console.server:ALPHA
 
 docker exec -t webui /bin/sh -c "sed -i -e 's/uiCulture=\"it\"/uiCulture=\"$CULTURE\"/g' _PublishedWebsites/Operando-AdministrationConsole/Web.config"
 docker stop webui
@@ -204,18 +204,18 @@ docker start webui
 
 # RightManager RM
 _title "DEPLOY: rm"
-docker run -d -p 8102:8102 --name rm --dns $DNS_IP -e "LDB_ENDPOINT=http://ldb.integration.operando.lan.esilab.org:8090/operando/core/ldb" -e "AAPI_ENDPOINT=http://aapi.integration.operando.lan.esilab.org:8135/operando/interfaces/aapi" -e "DAN_ENDPOINT=http://dan.integration.operando.lan.esilab.org:8111/operando/pdr/dan" -e "PC_ENDPOINT=http://pc.integration.operando.lan.esilab.org:8095/operando/core/pc" -e "RM_URLPATH=operando/core/rm" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.rm.server:ALPHA
+docker run -d -p 8102:8102 --name rm --dns $DNS_IP -e TZ=$TIMEZONE -e "LDB_ENDPOINT=http://ldb.integration.operando.lan.esilab.org:8090/operando/core/ldb" -e "AAPI_ENDPOINT=http://aapi.integration.operando.lan.esilab.org:8135/operando/interfaces/aapi" -e "DAN_ENDPOINT=http://dan.integration.operando.lan.esilab.org:8111/operando/pdr/dan" -e "PC_ENDPOINT=http://pc.integration.operando.lan.esilab.org:8095/operando/core/pc" -e "RM_URLPATH=operando/core/rm" registry.devops.operando.esilab.org:5000/operando/eu.operando.core.rm.server:ALPHA
 wait_service_online rm 8102 / 301
 
 # GateKeeper
 _title "DEPLOY: gatekeeper"
-docker run -d -p 8110:8080 --name gk --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.pdr.gk.server:ALPHA
+docker run -d -p 8110:8080 --name gk --dns $DNS_IP -e TZ=$TIMEZONE registry.devops.operando.esilab.org:5000/operando/eu.operando.pdr.gk.server:ALPHA
 wait_service_online gk 8080 / 200
 
 # RG
 _title "DEPLOY: rg"
-docker run -d -p 8120:8080 --name rg.birt --dns $DNS_IP -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_data" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.rg.birt.server:ALPHA
-docker run -d -p 8122:8084 --name rg --dns $DNS_IP registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.rg.server:ALPHA
+docker run -d -p 8120:8080 --name rg.birt --dns $DNS_IP -e TZ=$TIMEZONE -e "MYSQL_DB_HOST=mysql.integration.operando.lan.esilab.org" -e "MYSQL_DB_NAME=operando_data" -e "MYSQL_DB_PASSWORD=root" -e "MYSQL_DB_USER=root" registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.rg.birt.server:ALPHA
+docker run -d -p 8122:8084 --name rg --dns $DNS_IP -e TZ=$TIMEZONE registry.devops.operando.esilab.org:5000/operando/eu.operando.webui.rg.server:ALPHA
 wait_service_online rg 8084 /Report/Report 401
 
 # CONFIGURATION
