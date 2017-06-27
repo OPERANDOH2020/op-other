@@ -579,7 +579,7 @@ from Volunteer]]></xml-property>
                                         <cell id="519">
                                             <label id="510">
                                                 <property name="textAlign">left</property>
-                                                <text-property name="text">Number of volunteers in system (inlcuding those who didn't consent to be inlcuded in the report):</text-property>
+                                                <text-property name="text">Number of volunteers in system (including those who didn't consent to be included in the report):</text-property>
                                             </label>
                                         </cell>
                                         <cell id="520">
