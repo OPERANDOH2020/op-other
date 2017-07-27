@@ -25,3 +25,5 @@ A folder to keep track of the dependencies which are required for testing. Some 
 * Regulator API
 * OSP API
 
+## Note
+The common code in op-other-common-java and test-dependencies does not have a function by itself, but forms part of the functions of the dependent modules. See the relevant repositories for detailed descriptions of functionality and installation/usage instructions.
