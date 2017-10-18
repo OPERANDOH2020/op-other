@@ -36,7 +36,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-@Ignore // This class contains helper methods for tests, not tests itself. TODO - make a helper class rather than superclass?
+@Ignore // This class contains helper methods for tests, not tests itself.
 public class ClientOperandoModuleTests
 {
 	private static final String PREFIX_HTTP = "http://";

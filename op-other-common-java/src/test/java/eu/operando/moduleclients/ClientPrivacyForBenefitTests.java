@@ -44,8 +44,6 @@ public class ClientPrivacyForBenefitTests extends ClientOperandoModuleTests
 	@Test
 	public void testGetPfbDeal_ResponseHandledCorrectly()
 	{
-		// TODO - maybe there does not need to be complicated response handling - the JSON from the response body could just be passed back,
-		// could just check that the returned JSON string is correct
 		// Set Up
 		int id = 1;
 		int userId = 2;
