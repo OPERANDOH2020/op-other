@@ -30,13 +30,4 @@ public class LogOperando
 		this.title = title;
 		this.description = description;
 	}
-
-	/*
-	 * public String getRequesterType() { return requesterType; } public void setRequesterType(String requesterType) { this.requesterType =
-	 * requesterType; } public String getRequesterId() { return requesterId; } public void setRequesterId(String requesterId) { this.requesterId =
-	 * requesterId; } public String getLogPriority() { return logPriority; } public void setLogPriority(String logPriority) { this.logPriority =
-	 * logPriority; } public String getLogDataType() { return logDataType; } public void setLogDataType(String logDataType) { this.logDataType =
-	 * logDataType; } public String getTitle() { return title; } public void setTitle(String title) { this.title = title; } public String
-	 * getDescription() { return description; } public void setDescription(String description) { this.description = description; }
-	 */
 }

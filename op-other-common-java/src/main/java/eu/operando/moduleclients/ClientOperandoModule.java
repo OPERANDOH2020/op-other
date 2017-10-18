@@ -166,8 +166,6 @@ public abstract class ClientOperandoModule
 
 	/**
 	 * Takes in a java object, converts it to JSON, and returns an entity containing the JSON string.
-	 * 
-	 * TODO - make safer - not obvious that !encodeObjectBodyAsJson => object instanceof String
 	 */
 	private Entity<String> createEntityStringJson(Object object)
 	{

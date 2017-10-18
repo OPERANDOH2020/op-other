@@ -28,7 +28,6 @@ public class ClientBigDataAnalytics extends ClientOperandoModule
 		clientAuthenticationApi = clientAuthenticationService; ;
 	}
 
-	// TODO implementation
 	public AnalyticsReport getBdaReport(String jobId, String userId) throws OperandoCommunicationException, OperandoAuthenticationException{
 		String endpoint = ENDPOINT_BIG_DATA_ANALYTICS_REPORTS_VARIABLE_REPORT_ID.replace("{job-id}", jobId);
 		MultivaluedStringMap headers = new MultivaluedStringMap();

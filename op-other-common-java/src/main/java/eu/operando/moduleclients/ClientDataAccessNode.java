@@ -16,7 +16,7 @@ public class ClientDataAccessNode extends ClientOperandoModule
 	private static final String HEADER_NAME_PSP_USER_IDENTIFIER = "psp-user-identifier";
 	private static final String HEADER_NAME_SERVICE_TICKET = "service-ticket";
 
-	private ClientAuthenticationApiOperandoClient clientAuthenticationApi = null; //TODO - abstract to a superclass?
+	private ClientAuthenticationApiOperandoClient clientAuthenticationApi = null;
 
 	public ClientDataAccessNode(String originDataAccessNode, ClientAuthenticationApiOperandoClient clientAuthenticationService)
 	{
