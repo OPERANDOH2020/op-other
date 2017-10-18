@@ -7,8 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
 
-// TODO correct this string
-@ApiModel(description = "tbd")
+@ApiModel(description = "An OSP's policy on who can access which data for what reason")
 public class PrivacyPolicy
 {
 	public PrivacyPolicy(String id, Vector<AccessPolicy> accessPolicies){

@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
 
-// TODO correct this string
-@ApiModel(description = "A report on an OSP's compliance with whatever it is")
+@ApiModel(description = "A report to assist checking an OSP's compliance with regulations")
 public class ComplianceReport {
 	
 	private PrivacyPolicy policy;
