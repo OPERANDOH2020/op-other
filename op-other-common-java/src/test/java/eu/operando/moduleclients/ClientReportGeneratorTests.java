@@ -59,20 +59,6 @@ public class ClientReportGeneratorTests extends ClientOperandoModuleTests
 		testGetReport_HttpStatusError_CorrectExceptionThrown(Status.INTERNAL_SERVER_ERROR, CommunicationError.ERROR_FROM_OTHER_MODULE);
 	}
 
-	@Test
-	public void testGetReport_OkFromReportGenerator_ReportInterpretedCorreclty() throws OperandoCommunicationException
-	{
-		// Set up
-		stub(HttpMethod.GET, ENDPOINT_REPORT_GENERATOR_REPORTS, ENCODED_REPORT, Status.OK);
-
-		// Exercise
-		MultivaluedMap<String, String> parametersOptional = determineParametersOptional(0);
-		String reportFromRg = client.getReport(REPORT_ID, FORMAT, parametersOptional);		
-		
-		// TODO - this is yet to be implemented; need to know how a report is represented.
-		assertEquals(ENCODED_REPORT, reportFromRg);
-	}
-
 	private void testGetReport_CorrectHttpRequest(int numberOfOptionalParameters) throws OperandoCommunicationException
 	{
 		// Set up
