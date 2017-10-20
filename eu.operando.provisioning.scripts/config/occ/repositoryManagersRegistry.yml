@@ -16,6 +16,6 @@ repositoryManagers:
 - name: Ami
   serviceId: op-pdr/rpm/built-in
   schema: http
-  host: 192.168.101.166
+  host: 192.168.66.20
   port: 80
   serviceRoot: /AmiOData/AmiOdataService.svc
