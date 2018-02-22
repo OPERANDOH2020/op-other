@@ -15,7 +15,6 @@ import eu.operando.OperandoCommunicationException.CommunicationError;
 
 public class ClientReportGeneratorTests extends ClientOperandoModuleTests
 {
-	private static final String ENCODED_REPORT = "encoded report";
 	private static final String PATH_INTERNAL_OPERANDO_WEBUI_REPORTS = "/operando/webui/reports";
 	private static final String ENDPOINT_REPORT_GENERATOR_REPORTS = PATH_INTERNAL_OPERANDO_WEBUI_REPORTS + "/reports";
 
