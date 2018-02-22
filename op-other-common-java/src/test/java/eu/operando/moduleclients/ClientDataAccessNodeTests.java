@@ -76,7 +76,7 @@ public class ClientDataAccessNodeTests extends ClientOperandoModuleTests
 	public void testSendRequest_CorrectHttpRequestGenerated() throws OperandoAuthenticationException
 	{
 		// Set up
-		when(mockClientAuthenticationApiOperandoClient.requestServiceTicket(eq(SERVICE_ID_DAN))).thenReturn(SERVICE_TICKET_FOR_DAN); //TODO - check service ticket.
+		when(mockClientAuthenticationApiOperandoClient.requestServiceTicket(eq(SERVICE_ID_DAN))).thenReturn(SERVICE_TICKET_FOR_DAN);
 				
 		// Have to do this here because mapHeaders could change when passed to sendRequest.
 		MultivaluedMap<String, String> headersShouldSend = new MultivaluedHashMap<String, String>(mapHeaders);
