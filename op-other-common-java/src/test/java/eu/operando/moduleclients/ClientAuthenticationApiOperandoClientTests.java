@@ -77,6 +77,7 @@ public class ClientAuthenticationApiOperandoClientTests
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testRequestServiceTicket_TicketGrantingTicketInvalid_NewTicketGrantingTicketRequested() throws OperandoAuthenticationException
 	{
 		// Set up
@@ -94,6 +95,7 @@ public class ClientAuthenticationApiOperandoClientTests
 	}
 
 	@Test(expected = OperandoAuthenticationException.class)
+	@SuppressWarnings("unchecked")
 	public void testRequestServiceTicket_InvalidCredentials_OperandoAuthenticationExceptionThrown() throws OperandoAuthenticationException
 	{
 		// Set up

@@ -91,6 +91,7 @@ public class ClientDataAccessNodeTests extends ClientOperandoModuleTests
 	}
 	
 	@Test(expected = OperandoAuthenticationException.class)
+	@SuppressWarnings("unchecked")
 	public void testSendRequest_AuthenticationApiClientThrowsCommunicationException_CommunicationExceptionThrown() throws OperandoAuthenticationException
 	{
 		// Set up

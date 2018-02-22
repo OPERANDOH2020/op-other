@@ -70,6 +70,7 @@ public abstract class ClientOperandoModule
 		return sendRequest(httpMethod, endpoint, null, objectInBody, queryParams);
 	}
 
+	@SuppressWarnings("unchecked") // for cast (MultivaluedMap<String, Object>) headers.
 	protected Response sendRequest(String httpMethod, String endpoint, MultivaluedMap<String, ? extends Object> headers, Object objectInBody,
 			MultivaluedMap<String, String> queryParams)
 	{
