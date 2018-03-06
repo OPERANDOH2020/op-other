@@ -23,13 +23,12 @@ import eu.operando.api.model.PrivacySetting;
 public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 {
 	// Variables to be tested.
-	private static final String PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT = "/operando/core/osp_enforcement";
-	private static final String ENDPOINT_OSP_ENFORCEMENT_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT + "/regulations";
+	private static final String ENDPOINT_OSP_ENFORCEMENT_REGULATIONS = "/regulations";
 	private static final String PATH_PARAMETER_REG_ID = "{reg_id}";
 	private static final String ENDPOINT_OSP_ENFORCEMENT_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_OSP_ENFORCEMENT_REGULATIONS + "/" + PATH_PARAMETER_REG_ID;
 	private static final String PATH_PARAMETER_OSP_ID = "{osp_id}";
 	private static final String ENDPOINT_OSP_ENFORCEMENT_PRIVACY_SETTINGS_VARIABLE_OSP_ID =
-			PATH_INTERNAL_OPERANDO_CORE_OSP_ENFORCEMENT + "/osps/" + PATH_PARAMETER_OSP_ID + "/privacy_settings";
+			"/osps/" + PATH_PARAMETER_OSP_ID + "/privacy_settings";
 
 	// Dummy variables for facilitating testing - regulations.
 	private static final PrivacyRegulation REGULATION =
@@ -52,7 +51,7 @@ public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 		client.sendNewRegulationToOspEnforcement(REGULATION);
 
 		// Verify
-		verifyCorrectHttpRequest(HttpMethod.POST, ENDPOINT_OSP_ENFORCEMENT_REGULATIONS, INPUT_OBJECT);
+		verifyCorrectHttpRequest(HttpMethod.POST, ENDPOINT_OSP_ENFORCEMENT_REGULATIONS, REGULATION);
 	}
 
 	@Test
@@ -72,7 +71,7 @@ public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 	public void testSendNewRegulationToOspEnforcement_SuccessFromPolicyComputation_TrueReturned()
 	{
 		// Set up
-		stub(HttpMethod.POST, ENDPOINT_OSP_ENFORCEMENT_REGULATIONS, "", Status.ACCEPTED);
+		stub(HttpMethod.POST, ENDPOINT_OSP_ENFORCEMENT_REGULATIONS, "", Status.CREATED);
 
 		// Exercise
 		boolean success = client.sendNewRegulationToOspEnforcement(REGULATION);
@@ -108,7 +107,7 @@ public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 	public void testSendExistingRegulationToOspEnforcement_SuccessFromPolicyComputation_TrueReturned()
 	{
 		// Set up
-		stub(HttpMethod.PUT, ENDPOINT_EXISTING_REGULATION_WITH_REG_ID, "", Status.ACCEPTED);
+		stub(HttpMethod.PUT, ENDPOINT_EXISTING_REGULATION_WITH_REG_ID, "", Status.CREATED);
 
 		// Exercise
 		boolean success = client.sendExistingRegulationToOspEnforcement(REGULATION);

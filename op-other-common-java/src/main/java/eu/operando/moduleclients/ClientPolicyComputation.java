@@ -8,9 +8,7 @@ import eu.operando.api.model.PrivacyRegulation;
 
 public class ClientPolicyComputation extends ClientOperandoModule
 {
-	private static final String PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION = PATH_OPERANDO_CORE + "/policy_computation";
-	private static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS = PATH_INTERNAL_OPERANDO_CORE_POLICY_COMPUTATION + "/regulations";
-	private static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_COMPUTATION_REGULATIONS + "/{reg_id}";
+	private static final String ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID = "/regulations/{reg_id}";
 	
 	public ClientPolicyComputation(String originPolicyComputation)
 	{
@@ -26,7 +24,9 @@ public class ClientPolicyComputation extends ClientOperandoModule
 	 */
 	public boolean sendNewRegulationToPolicyComputation(PrivacyRegulation regulation)
 	{
-		Response responseFromPc = sendRequest(HttpMethod.POST, ENDPOINT_POLICY_COMPUTATION_REGULATIONS, regulation.getInputObject());
+		String regId = regulation.getRegId();
+		String endpoint = ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID.replace("{reg_id}", regId);
+		Response responseFromPc = sendRequest(HttpMethod.POST, endpoint, regulation.getInputObject());
 		
 		return wasPolicyComputationRequestSuccessful(responseFromPc);
 	}
@@ -57,7 +57,7 @@ public class ClientPolicyComputation extends ClientOperandoModule
 	private boolean wasPolicyComputationRequestSuccessful(Response responseFromPc)
 	{
 		int statusCodeFromPc = responseFromPc.getStatus();
-		boolean requestWasSuccessful = statusCodeFromPc == Status.ACCEPTED.getStatusCode();
+		boolean requestWasSuccessful = statusCodeFromPc == Status.OK.getStatusCode();
 		return requestWasSuccessful;
 	}
 }

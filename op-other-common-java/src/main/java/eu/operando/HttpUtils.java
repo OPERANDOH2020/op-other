@@ -1,5 +1,6 @@
 package eu.operando;
 
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.Response.Status.Family;
 
@@ -14,5 +15,10 @@ public class HttpUtils
 		Family statusFamilyResponse = status.getFamily();
 		boolean doesFamilyContainStatus = statusFamilyResponse.equals(family);
 		return doesFamilyContainStatus;
+	}
+	
+	public static boolean requestSuccessful(Response response)
+	{
+		return statusCodeIsInFamily(response.getStatus(), Status.Family.SUCCESSFUL);
 	}
 }

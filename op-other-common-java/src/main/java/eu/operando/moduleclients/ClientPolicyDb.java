@@ -15,7 +15,8 @@ public class ClientPolicyDb extends ClientOperandoModule
 {
 	private static final String ENDPOINT_POLICY_DB_OSP_VARIABLE_OSP_ID_PRIVACY_POLICY = "/OSP/{osp_id}/privacy-policy";
 	private static final String ENDPOINT_POLICY_DB_REGULATIONS = "/regulations";
-	private static final String ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_DB_REGULATIONS + "/{reg_id}";
+	private static final String REG_ID = "{reg_id}";
+	private static final String ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID = ENDPOINT_POLICY_DB_REGULATIONS + "/" + REG_ID;
 
 	public ClientPolicyDb(String originPolicyDb)
 	{
@@ -25,42 +26,49 @@ public class ClientPolicyDb extends ClientOperandoModule
 	public PrivacyPolicy getPrivacyPolicyForOsp(String ospId) throws OperandoCommunicationException
 	{
 		String endpoint = ENDPOINT_POLICY_DB_OSP_VARIABLE_OSP_ID_PRIVACY_POLICY.replace("{osp_id}", ospId);
-		return sendRequestToPdb(HttpMethod.GET, null, endpoint, PrivacyPolicy.class);
+		Response response = sendRequest(HttpMethod.GET, endpoint);
+
+		validateResponse(response);
+
+		String strJson = response.readEntity(String.class);
+		return createObjectFromJsonFollowingOperandoConventions(strJson, PrivacyPolicy.class);
 	}
 
 	public PrivacyRegulation createNewRegulationOnPolicyDb(PrivacyRegulationInput privacyReulationInput) throws OperandoCommunicationException
 	{
-		return sendRequestToPdb(HttpMethod.POST, privacyReulationInput, ENDPOINT_POLICY_DB_REGULATIONS, PrivacyRegulation.class);
+		Response response = sendRequest(HttpMethod.POST, ENDPOINT_POLICY_DB_REGULATIONS, privacyReulationInput);
+
+		validateResponse(response);
+
+		String strJson = response.readEntity(String.class);
+		return createObjectFromJsonFollowingOperandoConventions(strJson, PrivacyRegulation.class);
 	}
 
-	public PrivacyRegulation updateExistingRegulationOnPolicyDb(String regId, PrivacyRegulationInput input) throws OperandoCommunicationException
+	public void updateExistingRegulationOnPolicyDb(String regId, PrivacyRegulationInput input) throws OperandoCommunicationException
 	{
-		String endpoint = ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID.replace("{reg_id}", regId);
-		return sendRequestToPdb(HttpMethod.PUT, input, endpoint, PrivacyRegulation.class);
+		String endpoint = ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID.replace(REG_ID, regId);
+		Response response = sendRequest(HttpMethod.PUT, endpoint, input);
+
+		validateResponse(response);
 	}
 
+	public PrivacyRegulation getRegulation(String regId) throws OperandoCommunicationException
+	{
+		String endpoint = ENDPOINT_POLICY_DB_REGULATIONS_VARIABLE_REG_ID.replace(REG_ID, regId);
+		Response response = sendRequest(HttpMethod.GET, endpoint);
+
+		validateResponse(response);
+
+		String strJson = response.readEntity(String.class);
+		return createObjectFromJsonFollowingOperandoConventions(strJson, PrivacyRegulation.class);
+	}
+	
 	/**
-	 * Encodes an object in JSON and sends it to the specified endpoint of the PDB, using the specified HTTP method. If possible, a
-	 * object of the specified type is read from the response. If not, an HttpException is thrown.
-	 * 
-	 * @param httpMethod
-	 *        the HTTP method to send in the request.
-	 * @param content
-	 *        the object to send to the PDB.
-	 * @param endpoint
-	 *        the endpoint of the PDB to send the request to.
-	 * @param responseClass
-	 * 		  the expected type of the response
-	 * 
-	 * @return the object in the response from the PDB as the specified type.
-	 * @throws HttpException
+	 * @throwsOperandoCommunicationExceptionn
 	 *         if the request is not successful
 	 */	
-	private <T> T sendRequestToPdb(String httpMethod, Object content, String endpoint, Class<T> responseClass) throws OperandoCommunicationException
+	private void validateResponse(Response response) throws OperandoCommunicationException
 	{
-		Response response = sendRequest(httpMethod, endpoint, content);
-
-		// Only try to interpret the response if the status code is a success code.
 		int statusCodeResponse = response.getStatus();
 		boolean responseSuccessful = HttpUtils.statusCodeIsInFamily(statusCodeResponse, Status.Family.SUCCESSFUL);
 		if (!responseSuccessful)
@@ -72,8 +80,5 @@ public class ClientPolicyDb extends ClientOperandoModule
 			}
 			throw new OperandoCommunicationException(communicationError, "A response from the PDB had status code: " + statusCodeResponse);
 		}
-
-		String strJson = response.readEntity(String.class);
-		return createObjectFromJsonFollowingOperandoConventions(strJson, responseClass);
 	}
 }

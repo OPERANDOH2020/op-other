@@ -110,12 +110,6 @@ public class ClientPolicyDbTests extends ClientOperandoModuleTests
 		testSendRegulationToPdb_ResponseBodyInterpretedCorrectly(false, false);
 	}
 
-	@Test
-	public void testUpdateExistingRegulationOnPolicyDb_SuccessfulPost_ResponseBodyInterpretedCorrectly() throws OperandoCommunicationException
-	{
-		testSendRegulationToPdb_ResponseBodyInterpretedCorrectly(false, true);
-	}
-
 	/**
 	 * Test the client uses a correct HTTP request when sending a regulation to another module.
 	 * 
@@ -243,7 +237,7 @@ public class ClientPolicyDbTests extends ClientOperandoModuleTests
 		}
 		else
 		{
-			regulationFromPdb = client.updateExistingRegulationOnPolicyDb(regulation.getRegId(), regulation.getInputObject());
+			client.updateExistingRegulationOnPolicyDb(regulation.getRegId(), regulation.getInputObject());
 		}
 
 		return regulationFromPdb;
