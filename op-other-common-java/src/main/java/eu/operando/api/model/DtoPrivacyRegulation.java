@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.annotations.SerializedName;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -36,14 +37,23 @@ public abstract class DtoPrivacyRegulation
 	 */
 	public enum PrivateInformationTypeEnum
 	{
+		@SerializedName("Identification")
 		IDENTIFICATION("Identification"),
+		@SerializedName("Shared Identification")
 		SHARED_IDENTIFICATION("Shared Identification"),
+		@SerializedName("Geographic")
 		GEOGRAPHIC("Geographic"),
+		@SerializedName("Temporal")
 		TEMPORAL("Temporal"),
+		@SerializedName("Network and relationships")
 		NETWORK_AND_RELATIONSHIPS("Network and relationships"),
+		@SerializedName("Objects")
 		OBJECTS("Objects"),
+		@SerializedName("Behavioural")
 		BEHAVIOURAL("Behavioural"),
+		@SerializedName("Beliefs")
 		BELIEFS("Beliefs"),
+		@SerializedName("Measurements")
 		MEASUREMENTS("Measurements");
 
 		private String value;
@@ -66,7 +76,9 @@ public abstract class DtoPrivacyRegulation
 	 */
 	public enum RequiredConsentEnum
 	{
+		@SerializedName("opt-in")
 		IN("opt-in"),
+		@SerializedName("opt-out")
 		OUT("opt-out");
 
 		private String value;

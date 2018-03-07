@@ -2,6 +2,8 @@ package eu.operando.moduleclients;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Vector;
+
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.core.Response.Status;
 
@@ -68,7 +70,9 @@ public class ClientPolicyComputationTests extends ClientOperandoModuleTests
 		client.sendExistingRegulationToPolicyComputation(REGULATION);
 
 		// Verify
-		verifyCorrectHttpRequest(HttpMethod.PUT, ENDPOINT_REGULATION_WITH_REG_ID, INPUT_OBJECT);
+		Vector<PrivacyRegulationInput> regulationVector = new Vector<PrivacyRegulationInput>();
+		regulationVector.add(INPUT_OBJECT);
+		verifyCorrectHttpRequest(HttpMethod.PUT, ENDPOINT_REGULATION_WITH_REG_ID, regulationVector);
 	}
 
 	@Test

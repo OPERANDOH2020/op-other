@@ -1,10 +1,13 @@
 package eu.operando.moduleclients;
 
+import java.util.Vector;
+
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import eu.operando.api.model.PrivacyRegulation;
+import eu.operando.api.model.PrivacyRegulationInput;
 
 public class ClientPolicyComputation extends ClientOperandoModule
 {
@@ -42,7 +45,9 @@ public class ClientPolicyComputation extends ClientOperandoModule
 	{
 		String regId = regulation.getRegId();
 		String endpoint = ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID.replace("{reg_id}", regId);
-		Response responseFromPc = sendRequest(HttpMethod.PUT, endpoint, regulation.getInputObject());
+		Vector<PrivacyRegulationInput> regulationVector = new Vector<PrivacyRegulationInput>();
+		regulationVector.add(regulation.getInputObject());
+		Response responseFromPc = sendRequest(HttpMethod.PUT, endpoint, regulationVector);
 		
 		return wasPolicyComputationRequestSuccessful(responseFromPc);
 	}
