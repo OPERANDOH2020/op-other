@@ -13,9 +13,9 @@ public final class PrivacyRegulationInput extends DtoPrivacyRegulation
 		super();
 	}
 
-	public PrivacyRegulationInput(String legislationSector, String privateInformationSource, PrivateInformationTypeEnum privateInformationType, String action,
+	public PrivacyRegulationInput(String legislationSector, String reason, PrivateInformationTypeEnum privateInformationType, String action,
 			RequiredConsentEnum requiredConsent)
 	{
-		super(legislationSector, privateInformationSource, privateInformationType, action, requiredConsent);
+		super(legislationSector, reason, privateInformationType, action, requiredConsent);
 	}
 }

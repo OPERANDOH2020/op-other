@@ -17,10 +17,10 @@ public class PrivacyRegulation extends DtoPrivacyRegulation
 {
 	private String regId = "";
 
-	public PrivacyRegulation(String regId, String legislationSector, String privateInformationSource, PrivateInformationTypeEnum privateInformationType, String action,
+	public PrivacyRegulation(String regId, String legislationSector, String reason, PrivateInformationTypeEnum privateInformationType, String action,
 			RequiredConsentEnum requiredConsent)
 	{
-		super(legislationSector, privateInformationSource, privateInformationType, action, requiredConsent);
+		super(legislationSector, reason, privateInformationType, action, requiredConsent);
 		this.regId = regId;
 	}
 
@@ -51,7 +51,7 @@ public class PrivacyRegulation extends DtoPrivacyRegulation
 	 */
 	public PrivacyRegulationInput getInputObject()
 	{
-		return new PrivacyRegulationInput(getLegislationSector(), getPrivateInformationSource(), getPrivateInformationType(), getAction(), getRequiredConsent());
+		return new PrivacyRegulationInput(getLegislationSector(), getReason(), getPrivateInformationType(), getAction(), getRequiredConsent());
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class PrivacyRegulation extends DtoPrivacyRegulation
 		}
 		PrivacyRegulation privacyRegulation = (PrivacyRegulation) o;
 		return Objects.equals(regId, privacyRegulation.regId) && Objects.equals(getLegislationSector(), privacyRegulation.getLegislationSector())
-			&& Objects.equals(getPrivateInformationSource(), privacyRegulation.getPrivateInformationSource())
+			&& Objects.equals(getReason(), privacyRegulation.getReason())
 			&& Objects.equals(getPrivateInformationType(), privacyRegulation.getPrivateInformationType()) && Objects.equals(getAction(), privacyRegulation.getAction())
 			&& Objects.equals(getRequiredConsent(), privacyRegulation.getRequiredConsent());
 	}
@@ -75,7 +75,7 @@ public class PrivacyRegulation extends DtoPrivacyRegulation
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash(getRegId(), getLegislationSector(), getPrivateInformationSource(), getPrivateInformationType(), getAction(), getRequiredConsent());
+		return Objects.hash(getRegId(), getLegislationSector(), getReason(), getPrivateInformationType(), getAction(), getRequiredConsent());
 	}
 
 	@Override
@@ -90,8 +90,8 @@ public class PrivacyRegulation extends DtoPrivacyRegulation
 		sb.append("    legislationSector: ")
 			.append(toIndentedString(getLegislationSector()))
 			.append("\n");
-		sb.append("    privateInformationSource: ")
-			.append(toIndentedString(getPrivateInformationSource()))
+		sb.append("    reason: ")
+			.append(toIndentedString(getReason()))
 			.append("\n");
 		sb.append("    privateInformationType: ")
 			.append(toIndentedString(getPrivateInformationType()))

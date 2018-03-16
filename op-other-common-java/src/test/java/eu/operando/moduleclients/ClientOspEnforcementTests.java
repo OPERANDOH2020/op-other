@@ -32,7 +32,7 @@ public class ClientOspEnforcementTests extends ClientOperandoModuleTests
 
 	// Dummy variables for facilitating testing - regulations.
 	private static final PrivacyRegulation REGULATION =
-			new PrivacyRegulation("1", "sector", "source", PrivateInformationTypeEnum.BEHAVIOURAL, "action", RequiredConsentEnum.IN);
+			new PrivacyRegulation("1", "sector", "reason", PrivateInformationTypeEnum.BEHAVIOURAL, "action", RequiredConsentEnum.IN);
 	private static final PrivacyRegulationInput INPUT_OBJECT = REGULATION.getInputObject();
 	private static final String ENDPOINT_EXISTING_REGULATION_WITH_REG_ID =
 			ENDPOINT_OSP_ENFORCEMENT_REGULATIONS_VARIABLE_REG_ID.replace(PATH_PARAMETER_REG_ID, REGULATION.getRegId());

@@ -21,7 +21,7 @@ public class ClientPolicyComputationTests extends ClientOperandoModuleTests
 
 	// Dummy variables for facilitating testing.
 	private static final PrivacyRegulation REGULATION =
-			new PrivacyRegulation("1", "sector", "source", PrivateInformationTypeEnum.BEHAVIOURAL, "action", RequiredConsentEnum.IN);
+			new PrivacyRegulation("1", "sector", "reason", PrivateInformationTypeEnum.BEHAVIOURAL, "action", RequiredConsentEnum.IN);
 	private static final PrivacyRegulationInput INPUT_OBJECT = REGULATION.getInputObject();
 	private static final String ENDPOINT_REGULATION_WITH_REG_ID = ENDPOINT_POLICY_COMPUTATION_REGULATIONS_VARIABLE_REG_ID.replace("{reg_id}", REGULATION.getRegId());
 

@@ -19,7 +19,7 @@ public abstract class DtoPrivacyRegulation
 {
 
 	private String legislationSector = "";
-	private String privateInformationSource = "";
+	private String reason = "";
 	private PrivateInformationTypeEnum privateInformationType = null;
 	private String action = "";
 	private RequiredConsentEnum requiredConsent = null;
@@ -96,11 +96,11 @@ public abstract class DtoPrivacyRegulation
 		}
 	}
 
-	public DtoPrivacyRegulation(String legislationSector, String privateInformationSource, PrivateInformationTypeEnum privateInformationType, String action,
+	public DtoPrivacyRegulation(String legislationSector, String reason, PrivateInformationTypeEnum privateInformationType, String action,
 			RequiredConsentEnum requiredConsent)
 	{
 		this.legislationSector = legislationSector;
-		this.privateInformationSource = privateInformationSource;
+		this.reason = reason;
 		this.privateInformationType = privateInformationType;
 		this.action = action;
 		this.requiredConsent = requiredConsent;
@@ -128,24 +128,24 @@ public abstract class DtoPrivacyRegulation
 	}
 
 	/**
-	 * The source of the private data
+	 * The purpose for performing an action on data e.g. medical care, marketing, admin
 	 **/
-	public DtoPrivacyRegulation privateInformationSource(String privateInformationSource)
+	public DtoPrivacyRegulation reason(String reason)
 	{
-		this.privateInformationSource = privateInformationSource;
+		this.reason = reason;
 		return this;
 	}
 
-	@ApiModelProperty(value = "The source of the private data")
-	@JsonProperty("private_information_source")
-	public String getPrivateInformationSource()
+	@ApiModelProperty(value = "The purpose for performing an action on data e.g. medical care, marketing, admin")
+	@JsonProperty("reason")
+	public String getReason()
 	{
-		return privateInformationSource;
+		return reason;
 	}
 
-	public void setPrivateInformationSource(String privateInformationSource)
+	public void setReason(String reason)
 	{
-		this.privateInformationSource = privateInformationSource;
+		this.reason = reason;
 	}
 
 	/**
@@ -226,7 +226,7 @@ public abstract class DtoPrivacyRegulation
 		}
 		DtoPrivacyRegulation privacyRegulationInput = (DtoPrivacyRegulation) o;
 		return Objects.equals(legislationSector, privacyRegulationInput.legislationSector)
-			&& Objects.equals(privateInformationSource, privacyRegulationInput.privateInformationSource)
+			&& Objects.equals(reason, privacyRegulationInput.reason)
 			&& Objects.equals(privateInformationType, privacyRegulationInput.privateInformationType) && Objects.equals(action, privacyRegulationInput.action)
 			&& Objects.equals(requiredConsent, privacyRegulationInput.requiredConsent);
 	}
@@ -234,7 +234,7 @@ public abstract class DtoPrivacyRegulation
 	@Override
 	public int hashCode()
 	{
-		return Objects.hash(legislationSector, privateInformationSource, privateInformationType, action, requiredConsent);
+		return Objects.hash(legislationSector, reason, privateInformationType, action, requiredConsent);
 	}
 
 	@Override
@@ -246,8 +246,8 @@ public abstract class DtoPrivacyRegulation
 		sb.append("    legislationSector: ")
 			.append(toIndentedString(legislationSector))
 			.append("\n");
-		sb.append("    privateInformationSource: ")
-			.append(toIndentedString(privateInformationSource))
+		sb.append("    reason: ")
+			.append(toIndentedString(reason))
 			.append("\n");
 		sb.append("    privateInformationType: ")
 			.append(toIndentedString(privateInformationType))

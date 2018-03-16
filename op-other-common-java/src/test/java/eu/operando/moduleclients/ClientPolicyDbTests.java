@@ -34,7 +34,7 @@ public class ClientPolicyDbTests extends ClientOperandoModuleTests
 			new Vector<>(Arrays.asList(new AccessPolicy("2", "Doctor", "Patient", "Medical Data", "Medical Reasons")));
 	private static final PrivacyPolicy POLICY_RETURNED_FROM_PDB = new PrivacyPolicy("2", ACCESS_POLICIES);
 	private static final PrivacyRegulation REGULATION_TO_SEND =
-			new PrivacyRegulation("1", "sector", "source", PrivateInformationTypeEnum.BEHAVIOURAL, "action", RequiredConsentEnum.IN);
+			new PrivacyRegulation("1", "sector", "reason", PrivateInformationTypeEnum.BEHAVIOURAL, "action", RequiredConsentEnum.IN);
 	private static final PrivacyRegulation REGULATION_RETURNED_FROM_PDB = REGULATION_TO_SEND;
 	private ClientPolicyDb client = new ClientPolicyDb(ORIGIN_WIREMOCK);
 
